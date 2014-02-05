@@ -69,7 +69,7 @@ public class WindowDeviceGUI extends WindowControllerDevice implements ActionLis
     }
 
     /**
-     * Create GUI and then activate robot server functionality
+     * Create GUI and then activate device server functionality
      */
     public static void main(String argv[]) throws IOException {
         WindowDeviceGUI device = new WindowDeviceGUI();
@@ -99,7 +99,7 @@ public class WindowDeviceGUI extends WindowControllerDevice implements ActionLis
     }
 
     /**
-     * Respond to a robot drive command received over the network
+     * Respond to a set position command received over the network
      */
     @Override
     protected void setPosition(int position, int speed) {
@@ -111,7 +111,7 @@ public class WindowDeviceGUI extends WindowControllerDevice implements ActionLis
     }
 
     /**
-     * Respond to a robot stop command received over the network
+     * Respond to a stop command received over the network
      */
     @Override
     protected void positionStop() {
@@ -123,7 +123,7 @@ public class WindowDeviceGUI extends WindowControllerDevice implements ActionLis
     }
 
     /**
-     * Respond to a read bump sensor event received over the network
+     * Respond to a read temperature event received over the network
      */
     @Override
     protected int readTemperature(String sensor) {
