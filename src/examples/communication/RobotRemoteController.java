@@ -79,7 +79,7 @@ public class RobotRemoteController implements IPacketHandler {
      * @throws IOException if there was any problems with I/O
      */
     public void main() throws IOException {
-        PacketFormat format = new MobileRobotComm.MRPacket();
+        PacketFormat format = new RobotComm.MRPacket();
         Communicator comm = new Communicator(format,getCommunicationChannel());
         comm.addPacketHandler(this);
         Packetizer ptz = comm.getPacketizer();

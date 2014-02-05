@@ -123,7 +123,7 @@ public class RobotDriver implements IPacketHandler {
      * @throws IOException if there was a communication problem
      */
     public void main() throws IOException {
-        PacketFormat format = new MobileRobotComm.MRPacket();
+        PacketFormat format = new RobotComm.MRPacket();
         comm = new Communicator(format,getCommunicationChannel());
         packetizer = comm.getPacketizer();
         comm.addPacketHandler(this);
