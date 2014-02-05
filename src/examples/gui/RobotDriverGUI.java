@@ -42,7 +42,7 @@ import quickqui.QuickGUI;
  * control of bumper sensor available as a user interface
  * @author ups
  */
-public class DriverGUI extends RobotDriver implements ActionListener {
+public class RobotDriverGUI extends RobotDriver implements ActionListener {
     
     /**
      * The specific GUI to use for this application
@@ -71,7 +71,7 @@ public class DriverGUI extends RobotDriver implements ActionListener {
      * Create GUI and then activate robot server functionality
      */
     public static void main(String argv[]) throws IOException {
-        DriverGUI driver = new DriverGUI();
+        RobotDriverGUI driver = new RobotDriverGUI();
         driver.gui = new QuickGUI(new ControlGUI(),driver);
         driver.main();
     }
