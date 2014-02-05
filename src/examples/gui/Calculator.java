@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 
-import examples.communication.Driver;
+import examples.communication.RobotDriver;
 import quickqui.QuickGUI;
 
 /**

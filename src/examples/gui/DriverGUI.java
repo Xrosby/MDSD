@@ -34,7 +34,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JLabel;
 
-import examples.communication.Driver;
+import examples.communication.RobotDriver;
 import quickqui.QuickGUI;
 
 /**
@@ -42,7 +42,7 @@ import quickqui.QuickGUI;
  * control of bumper sensor available as a user interface
  * @author ups
  */
-public class DriverGUI extends Driver implements ActionListener {
+public class DriverGUI extends RobotDriver implements ActionListener {
     
     /**
      * The specific GUI to use for this application
