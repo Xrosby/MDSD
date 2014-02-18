@@ -42,8 +42,7 @@ public class Entity {
     }
     /**
      * Perform the actual initialization
-     * <i>Note 1: currently, multi-relation argument must be empty during initialization!</i>
-     * <i>Note 2: 1-n relations are not established correctly for initialization (must be included)</i>
+     * <i>Note: currently, multi-relation argument must be empty during initialization!</i>
      * @param typeName the type of the entity
      * @param contents one argument for each of the contents to be stored in the array
      */
@@ -64,7 +63,7 @@ public class Entity {
                 	throw new Error("Expected multiple argument for "+typeName+"."+f.getName()+", got: "+next+" of type "+next.getClass().getName());
                 checkType = (next instanceof Collection) ? Entity.class : next.getClass().getComponentType();
             }
-            if(!f.getType().isAssignableFrom(checkType)) throw new Error("Illegal type argument, expected "+f.getType()+", got "+checkType);
+            if(!f.getType().isAssignableFrom(checkType)) throw new Error("Illegal type argument for "+f.getName()+", expected "+f.getType()+", got "+checkType);
             if(f.isMultiple()) { // Must store set for multi-argument, single element otherwise
             	if(next instanceof Collection)
             		next = new HashSet<Entity>((Collection<Entity>)next);
