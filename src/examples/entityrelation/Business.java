@@ -51,30 +51,38 @@ public class Business extends EntityRelation {
 	          attribute(String.class,"name").
 	          attribute(String.class,"address").
 	        entity("Customer").sub("Contact").
-	          relation_1_n("orders","Order","buyer").
+	          relation_n_1("orders","Order","bought_by").
 	        entity("Business").sub("Contact").
 	          relation_n_n("customers","Customer","shops_in").
 	        entity("SingleCustomer").sub("Customer").
 	          attribute(String.class,"date").
 	        entity("ReturningCustomer").sub("Customer").
-	          attribute(Integer.class,"count").
-	        entity("B2B_Customer").sub("Customer").
-	          relation_1_n("business","Business","buys_from")
+	          attribute(Integer.class,"count")
 	        ;
 	}
     /**
      * Use semantic model to create small system, query for data
      */
     void main() {
-        Entity ulrik = new Entity(this, "Person","Ulrik",39);
-        Entity swc = new Entity(this, "Course","SWC",EMPTY,ulrik);
-        Entity opn = new Entity(this, "Course","OPN",EMPTY,ulrik);
-        ulrik.become("Teacher", multi(swc));
-        ulrik.associate("teaches", opn);
-        new Entity(this, "Student","John",23,9123456,EMPTY).associate("follows",swc);
-        new Entity(this, "Student","Doe",23,234234,EMPTY).associate("follows",swc);
-        new Entity(this, "Student","Jane",23,8347543,EMPTY).associate("follows",opn);
-        System.out.println(ulrik.getMulti("teaches").getMulti("enrolled"));
+    	// Entity created and changes class
+        Entity ulrik = new Entity(this, "Customer","Ulrik","Kolding",EMPTY,EMPTY);
+        System.out.println("First: "+ulrik);
+        ulrik.become("SingleCustomer","today");
+        System.out.println("Then: "+ulrik);
+        ulrik.become("ReturningCustomer",2);
+        System.out.println("Last: "+ulrik);
+        // Inverse automatically established
+        new Entity(this, "Order","beer",20,ulrik);
+        new Entity(this, "Order","chips",15,ulrik);
+        System.out.println("Ulriks orders: "+ulrik.getMulti("orders"));
+        // Shops and associations
+        Entity brugsen = new Entity(this, "Business","DagligBrugsen","Kolding",EMPTY);
+        Entity bob = new Entity(this, "SingleCustomer","Bob","Vejle",EMPTY,EMPTY,"January");
+        ulrik.associate("shops_in", brugsen);
+        bob.associate("shops_in", brugsen);
+        new Entity(this, "Order","cake",30,bob);
+        System.out.println("Ulriks shops: "+ulrik.getMulti("shops_in"));
+        System.out.println("Customers in Brugsen buy: "+brugsen.getMulti("customers").getMulti("orders"));
     }
 
     /**
