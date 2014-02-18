@@ -42,7 +42,8 @@ public class Entity {
     }
     /**
      * Perform the actual initialization
-     * <i>Note: currently, multi-relation argument must be empty during initialization!</i>
+     * <i>Note 1: currently, multi-relation argument must be empty during initialization!</i>
+     * <i>Note 2: 1-n relations are not established correctly for initialization (must be included)</i>
      * @param typeName the type of the entity
      * @param contents one argument for each of the contents to be stored in the array
      */
@@ -72,6 +73,10 @@ public class Entity {
             }
             // Store data in field
             data.put(f.getName(),next);
+            // Inverse?
+            if(checkType==Entity.class && !f.isMultiple() && next instanceof Entity && f.getInverseMaybe()!=null) {
+            	((Entity)next).associate(f.getInverseMaybe(), this);
+            }
         }
     }
     
