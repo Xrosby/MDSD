@@ -2,6 +2,7 @@ package entityrelation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -45,7 +46,8 @@ public class Entity {
      * @param typeName the type of the entity
      * @param contents one argument for each of the contents to be stored in the array
      */
-    private void initialize(String typeName, Object contents[]) {
+    @SuppressWarnings("unchecked")
+	private void initialize(String typeName, Object contents[]) {
         // Set type
         type = entityRelationSystem.getEntities().get(typeName);
         if(type==null) throw new Error("Unknown entity type: "+typeName);
@@ -57,17 +59,23 @@ public class Entity {
             // Type check
             Class<?> checkType = next.getClass();
             if(f.isMultiple()) { 
-                if(!next.getClass().isArray()) throw new Error("Expected multiple argument for "+typeName+"."+f.getName());
-                checkType = next.getClass().getComponentType();
+                if(!next.getClass().isArray() && !(next instanceof Collection)) 
+                	throw new Error("Expected multiple argument for "+typeName+"."+f.getName()+", got: "+next+" of type "+next.getClass().getName());
+                checkType = (next instanceof Collection) ? Entity.class : next.getClass().getComponentType();
             }
             if(!f.getType().isAssignableFrom(checkType)) throw new Error("Illegal type argument, expected "+f.getType()+", got "+checkType);
-            if(f.isMultiple()) // Must store set for multi-argument, single element otherwise
-                next = new HashSet<Entity>(Arrays.asList((Entity[])next));
+            if(f.isMultiple()) { // Must store set for multi-argument, single element otherwise
+            	if(next instanceof Collection)
+            		next = new HashSet<Entity>((Collection<Entity>)next);
+            	else
+            		next = new HashSet<Entity>(Arrays.asList((Entity[])next));
+            }
             // Store data in field
             data.put(f.getName(),next);
         }
     }
-    /**
+    
+	/**
      * Change the type of the entity, fields with matching names are preserved, all
      * others must get values from the contents argument.
      * @param name the name of the type to change to
