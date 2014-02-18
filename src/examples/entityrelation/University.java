@@ -61,15 +61,13 @@ public class University extends EntityRelation {
      * Use semantic model to create small system, query for data
      */
     void main() {
-        Entity ulrik = new Entity(this, "Person","Ulrik",39);
+        Entity ulrik = new Entity(this, "Teacher","Ulrik",41,EMPTY);
         Entity swc = new Entity(this, "Course","SWC",EMPTY,ulrik);
         Entity opn = new Entity(this, "Course","OPN",EMPTY,ulrik);
-        ulrik.become("Teacher", multi(swc));
-        ulrik.associate("teaches", opn);
         new Entity(this, "Student","John",23,9123456,EMPTY).associate("follows",swc);
         new Entity(this, "Student","Doe",23,234234,EMPTY).associate("follows",swc);
         new Entity(this, "Student","Jane",23,8347543,EMPTY).associate("follows",opn);
-        System.out.println(ulrik.getMulti("teaches").getMulti("enrolled"));
+        System.out.println("Ulriks students: "+ulrik.getMulti("teaches").getMulti("enrolled"));
     }
 
     /**
