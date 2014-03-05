@@ -50,7 +50,7 @@ public class University extends EntityRelation {
         ENTITY(Course)
           FIELD(String,title)
         ENTITY(Student) EXTENDS(Person)
-          FIELDInteger,id)
+          FIELD(Integer,id)
           RELATION(n_n,follows,Course,enrolled)
         ENTITY(Teacher) EXTENDS(Person)
           RELATION(n_1,teaches,Course,taught_by)
