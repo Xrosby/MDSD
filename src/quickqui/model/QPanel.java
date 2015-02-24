@@ -9,9 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import quickqui.QuickGUI;
 import quickqui.QuickGUI.GUIModel;
-import quickqui.QuickGUI.GUIModel.Layout;
 
 /**
  * GUI metamodel: a nested panel organizing a number of nested components

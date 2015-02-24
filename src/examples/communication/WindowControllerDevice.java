@@ -52,7 +52,8 @@ public class WindowControllerDevice implements IPacketHandler {
      * Create the server socket for communication with a controller, localhost on port 4444
      * @return newly created socket
      */
-    private static Socket getCommunicationChannel() { 
+    @SuppressWarnings("resource")
+	private static Socket getCommunicationChannel() { 
         try {
             ServerSocket serverSocket = new ServerSocket(4444);
             System.out.println("Waiting for client to connect...");

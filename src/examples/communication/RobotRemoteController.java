@@ -37,7 +37,6 @@ import java.util.LinkedList;
 import serializer.Communicator;
 import serializer.IPacketHandler;
 import serializer.IncomingPacket;
-import serializer.Packet;
 import serializer.PacketFormat;
 import serializer.Packetizer;
 
