@@ -1,4 +1,4 @@
-SSE02 students: there are a number of obvious exercises that you can
+SWC students: there are a number of obvious exercises that you can
 do with source code.
 
 (1) Extend the quickgui framework to support more GUI elements.
