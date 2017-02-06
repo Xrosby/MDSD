@@ -12,3 +12,4 @@
       relation.n_1.Course.teaches(inverse.taught_by)
   )
 }
+# Hint: def __getattr__(self,name)
