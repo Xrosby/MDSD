@@ -63,19 +63,19 @@ public class CDPlayerMachine extends MachineDescription<CD> {
             @Override public void effect(CD state) { state.track=0; } 
         };
         // Define states and transitions
-        STATE_STOP = new State<CD>(this,"STOP");
+        STATE_STOP = new State<CD>("STOP");
         STATE_STOP.addTransition("PLAY", new Transition<CD>("PLAYING") {
            @Override public void effect(CD state) { if(state.track==0) state.track=1; } 
         });
         STATE_STOP.addTransition("FORWARD", forward);
         STATE_STOP.addTransition("BACK", backward);
-        STATE_PLAYING = new State<CD>(this,"PLAYING");
+        STATE_PLAYING = new State<CD>("PLAYING");
         STATE_PLAYING.addTransition("STOP", stop);
         STATE_PLAYING.addTransition("PAUSE", new Transition<CD>("PAUSED"));
         STATE_PLAYING.addTransition("TRACK_END", new Transition<CD>(null) {
             @Override public void effect(CD state) { state.track++; }
         });
-        STATE_PAUSED = new State<CD>(this,"PAUSED");
+        STATE_PAUSED = new State<CD>("PAUSED");
         STATE_PAUSED.addTransition("PLAY", new Transition<CD>("PLAYING"));
         STATE_PAUSED.addTransition("STOP", stop);
         STATE_PAUSED.addTransition("FORWARD", forward);

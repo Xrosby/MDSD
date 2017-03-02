@@ -54,11 +54,11 @@ public class CookingHoodMachine extends MachineDescription<CHM> {
 	
     // State machine definition
     public CookingHoodMachine() {
-        STATE_POWER_OFF = new State<CHM>(this,"POWER_OFF");
+        STATE_POWER_OFF = new State<CHM>("POWER_OFF");
         STATE_POWER_OFF.addTransition("PLUS", new Transition<CHM>("POWER_ON") { 
             @Override public void effect(CHM state) { state.power=MIN_POWER; }
         });
-        STATE_POWER_ON = new State<CHM>(this,"POWER_ON");
+        STATE_POWER_ON = new State<CHM>("POWER_ON");
         STATE_POWER_ON.addTransition("PLUS", new Transition<CHM>("MAX_POWER") {
             @Override public boolean isApplicable(CHM state) { return state.power==MAX_POWER; } 
         });
@@ -71,7 +71,7 @@ public class CookingHoodMachine extends MachineDescription<CHM> {
         STATE_POWER_ON.addTransition("MINUS", new Transition<CHM>(null) {
             @Override public void effect(CHM state) { state.power--; }
         });
-        STATE_MAX_POWER = new State<CHM>(this,"MAX_POWER");
+        STATE_MAX_POWER = new State<CHM>("MAX_POWER");
         STATE_MAX_POWER.addTransition("MINUS", new Transition<CHM>("POWER_ON") {
             @Override public void effect(CHM state) { state.power=MAX_POWER; }
         });

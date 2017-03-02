@@ -48,10 +48,6 @@ import statemachine.year1.library.Event;
 public class State<T extends AbstractRuntimeState<T>> {
 
     /**
-     * The machine to which this state belongs
-     */
-    private MachineDescription<T> machine;
-    /**
      * The name of the state
      */
     private String name;
@@ -65,8 +61,7 @@ public class State<T extends AbstractRuntimeState<T>> {
      * @param machine the state machine to which the state belongs
      * @param name the name of the state
      */
-    public State(MachineDescription machine, String name) {
-        this.machine = machine;
+    public State(String name) {
         this.name = name;
     }
 

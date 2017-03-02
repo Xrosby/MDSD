@@ -47,13 +47,13 @@ public class MicrowaveMachine extends MachineDescription<MMS> {
     
     // State machine definition
     public MicrowaveMachine() {
-        STATE_INACTIVE = new State<MMS>(this,"INACTIVE");
+        STATE_INACTIVE = new State<MMS>("INACTIVE");
         STATE_INACTIVE.addTransition("START", new Transition<MMS>("COOKING"));
-        STATE_COOKING = new State<MMS>(this,"COOKING");
+        STATE_COOKING = new State<MMS>("COOKING");
         STATE_COOKING.addTransition("TIMER", new Transition<MMS>("INACTIVE"));
         STATE_COOKING.addTransition("STOP", new Transition<MMS>("INACTIVE"));
         STATE_COOKING.addTransition("OPEN", new Transition<MMS>("DOOR_OPEN"));
-        STATE_DOOR_OPEN = new State<MMS>(this,"DOOR_OPEN");
+        STATE_DOOR_OPEN = new State<MMS>("DOOR_OPEN");
         STATE_DOOR_OPEN.addTransition("CLOSE", new Transition<MMS>("COOKING"));
         STATE_DOOR_OPEN.addTransition("STOP", new Transition<MMS>("INACTIVE"));
     }
