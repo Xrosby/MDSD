@@ -60,7 +60,7 @@ public abstract class GraphicalMachine implements ActionListener, Observer {
      * @param machine the statemachine
      * @param powerOnCommand the command tha triggers state machine initialization
      */
-    public GraphicalMachine(QuickGUI.GUIModel model, IMachine machine, String powerOnCommand) {
+    public GraphicalMachine(QuickGUI.GUIModel model, IMachine<RuntimeState> machine, String powerOnCommand) {
         this.gui = new QuickGUI(model,this);
         this.machine = machine;
         this.powerOnCommand = powerOnCommand;

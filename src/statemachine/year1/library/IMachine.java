@@ -35,7 +35,7 @@ import java.util.Observer;
  * Generic interface for state machine implementations, allowing them to be reused between iterations
  * @author ups
  */
-public interface IMachine {
+public interface IMachine<T extends RuntimeState> {
 
 	/**
 	 * Initialize the statemachine (before sending events)
@@ -56,4 +56,5 @@ public interface IMachine {
      * @return name of currently active state
      */
     public String getStateName();
+    public T getRuntimeState();
 }

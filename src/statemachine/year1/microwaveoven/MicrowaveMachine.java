@@ -29,10 +29,10 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year1.microwaveoven;
 
-import statemachine.year1.library.Machine;
+import statemachine.year1.library.MachineWithInternalState;
 import statemachine.year1.library.State;
 
-public class MicrowaveMachine extends Machine {
+public class MicrowaveMachine extends MachineWithInternalState {
     
     public final State INACTIVE_STATE = new InactiveState(this);
     public final State COOKING_STATE = new CookingState(this);

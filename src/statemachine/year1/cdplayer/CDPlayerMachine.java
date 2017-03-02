@@ -29,10 +29,10 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year1.cdplayer;
 
-import statemachine.year1.library.Machine;
+import statemachine.year1.library.MachineWithInternalState;
 import statemachine.year1.library.State;
 
-public class CDPlayerMachine extends Machine {
+public class CDPlayerMachine extends MachineWithInternalState {
     // Constants
     public static final int MAX_POWER = 6;
     public static final int MIN_POWER = 1;
