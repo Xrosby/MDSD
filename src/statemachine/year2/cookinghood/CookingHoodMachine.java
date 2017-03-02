@@ -32,51 +32,59 @@ package statemachine.year2.cookinghood;
 import java.util.Arrays;
 import java.util.List;
 
-import statemachine.year2.framework.Machine;
+import statemachine.year2.framework.AbstractRuntimeState;
+import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
+import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
 
-public class CookingHoodMachine extends Machine {
+public class CookingHoodMachine extends MachineDescription<CHM> {
 
     // Constants
     private static final int MIN_POWER = 1;
     private static final int MAX_POWER = 6;
 
     // States
-    private State STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER;
+    private State<CHM> STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER;
     
     // Extended state
-    private int power;
-    public int getPower() { return power; }
-    
+	public static class CHM extends AbstractRuntimeState<CHM> {
+		public int power;
+	}
+	
     // State machine definition
     public CookingHoodMachine() {
-        STATE_POWER_OFF = new State(this,"POWER_OFF");
-        STATE_POWER_OFF.addTransition("PLUS", new Transition("POWER_ON") { 
-            @Override public void effect() { power=MIN_POWER; }
+        STATE_POWER_OFF = new State<CHM>(this,"POWER_OFF");
+        STATE_POWER_OFF.addTransition("PLUS", new Transition<CHM>("POWER_ON") { 
+            @Override public void effect(CHM state) { state.power=MIN_POWER; }
         });
-        STATE_POWER_ON = new State(this,"POWER_ON");
-        STATE_POWER_ON.addTransition("PLUS", new Transition("MAX_POWER") {
-            @Override public boolean isApplicable() { return power==MAX_POWER; } 
+        STATE_POWER_ON = new State<CHM>(this,"POWER_ON");
+        STATE_POWER_ON.addTransition("PLUS", new Transition<CHM>("MAX_POWER") {
+            @Override public boolean isApplicable(CHM state) { return state.power==MAX_POWER; } 
         });
-        STATE_POWER_ON.addTransition("PLUS", new Transition(null) {
-            @Override public void effect() { power++; }
+        STATE_POWER_ON.addTransition("PLUS", new Transition<CHM>(null) {
+            @Override public void effect(CHM state) { state.power++; }
         });
-        STATE_POWER_ON.addTransition("MINUS", new Transition("POWER_OFF") {
-           @Override public boolean isApplicable() { return power==MIN_POWER; } 
+        STATE_POWER_ON.addTransition("MINUS", new Transition<CHM>("POWER_OFF") {
+           @Override public boolean isApplicable(CHM state) { return state.power==MIN_POWER; } 
         });
-        STATE_POWER_ON.addTransition("MINUS", new Transition(null) {
-            @Override public void effect() { power--; }
+        STATE_POWER_ON.addTransition("MINUS", new Transition<CHM>(null) {
+            @Override public void effect(CHM state) { state.power--; }
         });
-        STATE_MAX_POWER = new State(this,"MAX_POWER");
-        STATE_MAX_POWER.addTransition("MINUS", new Transition("POWER_ON") {
-            @Override public void effect() { power=MAX_POWER; }
+        STATE_MAX_POWER = new State<CHM>(this,"MAX_POWER");
+        STATE_MAX_POWER.addTransition("MINUS", new Transition<CHM>("POWER_ON") {
+            @Override public void effect(CHM state) { state.power=MAX_POWER; }
         });
     }
     
     @Override
-    protected List<State> getAllStates() {
+    protected List<State<CHM>> getAllStates() {
         return Arrays.asList(STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER);
     }
+
+	@Override
+	protected CHM createExtendedState() {
+		return new CHM();
+	}
 
 }

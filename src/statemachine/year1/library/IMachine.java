@@ -55,6 +55,5 @@ public interface IMachine<T extends RuntimeState> {
      * Get the name of the currently active state
      * @return name of currently active state
      */
-    public String getStateName();
     public T getRuntimeState();
 }

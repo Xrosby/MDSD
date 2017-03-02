@@ -29,13 +29,15 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year2.framework;
 
+import java.util.Map;
+
 /**
  * Generic template class for transitions.  Simple transitions can use this class directly,
  * conditions can be added by overriding the isApplicable method, effects can be added by
  * overriding the effect method.
  * @author ups
  */
-public class Transition {
+public class Transition<T> {
 
 	/**
 	 * The target state of the transition
@@ -54,8 +56,8 @@ public class Transition {
      * The action of the state: perform effect (as defined by hook method), returning the target state
      * @return the target state
      */
-    public String action() {
-        effect();
+    public String action(T extendedState) {
+        effect(extendedState);
         return targetState;
     }
 
@@ -70,13 +72,13 @@ public class Transition {
     /**
      * Hook method: override to provide effect 
      */
-    protected void effect() { ; }
+    protected void effect(T extendedState) { ; }
 
     /**
      * Hook method: override to provide condition
      * @return false if this transition should not take place now, true otherwise
      */
-    protected boolean isApplicable() {
+    protected boolean isApplicable(T extendedState) {
         return true;
     }
 

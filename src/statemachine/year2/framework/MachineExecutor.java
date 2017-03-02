@@ -38,29 +38,43 @@ import statemachine.year1.library.Event;
 import statemachine.year1.library.IMachine;
 
 /**
- * State machine: keeps track of current state, stores a map from state name
+ * State machine executor: executes a state machine description,
+ * keeping track of current state, stores a map from state name
  * to state object (used to perform state transitions).
  * @author ups
  */
-public abstract class Machine extends Observable implements IMachine {
+public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observable implements IMachine<T> {
 
     /**
-     * Current state
+     * Initial state
      */
-    private State currentState;
+    private String initialStateName;
     /**
      * Map from state name to state object
      */
-    private Map<String,State> states = new HashMap<String,State>();
+    private Map<String,State<T>> states = new HashMap<String,State<T>>();
+    /**
+     * Extended state
+     */
+    private T runtimeState;
     
     /**
-     * Initialize the state machine based on the getAllStates hook method
+     * Initialize the state machine based on the machine description
+     */
+    public MachineExecutor(MachineDescription<T> description) {
+        List<State<T>> allStates = description.getAllStates();
+        for(State<T> state: allStates)
+            states.put(state.getName(), state);
+        initialStateName = allStates.get(0).getName();
+        runtimeState = description.createExtendedState();
+    }
+    
+    /**
+     * Reset the state machine 
      */
     public void initialize() {
-        List<State> allStates = getAllStates();
-        for(State state: allStates)
-            states.put(state.getName(), state);
-        setState(allStates.get(0).getName());
+    	runtimeState.reset();
+        setState(initialStateName);
         setChanged();
         notifyObservers();
     }
@@ -70,33 +84,32 @@ public abstract class Machine extends Observable implements IMachine {
      * @param stateid the ID of the active state
      */
     public void setState(String stateid) {
-        State state = states.get(stateid);
+        State<T> state = states.get(stateid);
         if(state==null) throw new Error("Illegal state identifier: "+stateid);
-        currentState = state;
+        runtimeState.setState(state);
     }
 
     /**
      * Get the name of the currently active state
      */
     public String getStateName() {
-        return currentState.toString();
+        return runtimeState.getStateName();
     }
 
     /**
      * Process an incoming event based on the current state
      */
     public void processEvent(Event event) {
-        if(currentState==null) throw new Error("State machine not initialized");
-        currentState.processEvent(event);
+        if(runtimeState.getState()==null) throw new Error("State machine not initialized");
+        runtimeState.getState().processEvent(this,event);
         setChanged();
         notifyObservers();
     }
-    
-    /**
-     * Overridden by concrete state machine.  By convention the first element must be
-     * the initial state.
-     * @return List of all states, first element is initial state
-     */
-    protected abstract List<State> getAllStates();
+
+
+	@Override
+	public T getRuntimeState() {
+		return runtimeState;
+	}
 
 }

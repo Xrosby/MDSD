@@ -32,31 +32,40 @@ package statemachine.year2.microwaveoven;
 import java.util.Arrays;
 import java.util.List;
 
-import statemachine.year2.framework.Machine;
+import statemachine.year2.framework.AbstractRuntimeState;
+import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
+import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
 
-public class MicrowaveMachine extends Machine {
+public class MicrowaveMachine extends MachineDescription<MMS> {
 
+	public static class MMS extends AbstractRuntimeState<MMS> {	}
+	
     // States
-    private State STATE_INACTIVE, STATE_COOKING, STATE_DOOR_OPEN;
+    private State<MMS> STATE_INACTIVE, STATE_COOKING, STATE_DOOR_OPEN;
     
     // State machine definition
     public MicrowaveMachine() {
-        STATE_INACTIVE = new State(this,"INACTIVE");
-        STATE_INACTIVE.addTransition("START", new Transition("COOKING"));
-        STATE_COOKING = new State(this,"COOKING");
-        STATE_COOKING.addTransition("TIMER", new Transition("INACTIVE"));
-        STATE_COOKING.addTransition("STOP", new Transition("INACTIVE"));
-        STATE_COOKING.addTransition("OPEN", new Transition("DOOR_OPEN"));
-        STATE_DOOR_OPEN = new State(this,"DOOR_OPEN");
-        STATE_DOOR_OPEN.addTransition("CLOSE", new Transition("COOKING"));
-        STATE_DOOR_OPEN.addTransition("STOP", new Transition("INACTIVE"));
+        STATE_INACTIVE = new State<MMS>(this,"INACTIVE");
+        STATE_INACTIVE.addTransition("START", new Transition<MMS>("COOKING"));
+        STATE_COOKING = new State<MMS>(this,"COOKING");
+        STATE_COOKING.addTransition("TIMER", new Transition<MMS>("INACTIVE"));
+        STATE_COOKING.addTransition("STOP", new Transition<MMS>("INACTIVE"));
+        STATE_COOKING.addTransition("OPEN", new Transition<MMS>("DOOR_OPEN"));
+        STATE_DOOR_OPEN = new State<MMS>(this,"DOOR_OPEN");
+        STATE_DOOR_OPEN.addTransition("CLOSE", new Transition<MMS>("COOKING"));
+        STATE_DOOR_OPEN.addTransition("STOP", new Transition<MMS>("INACTIVE"));
     }
     
     @Override
-    protected List<State> getAllStates() {
+    protected List<State<MMS>> getAllStates() {
         return Arrays.asList(STATE_INACTIVE, STATE_COOKING, STATE_DOOR_OPEN);
     }
+
+	@Override
+	protected MMS createExtendedState() {
+		return new MMS();
+	}
 
 }

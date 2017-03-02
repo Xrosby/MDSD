@@ -1,6 +1,6 @@
 package statemachine.year1.library;
 
-public abstract class MachineWithInternalState extends Machine<RuntimeState> {
+public abstract class MachineWithInternalState extends Machine<SimpleRuntimeState> {
 	@Override
-	protected RuntimeState createCurrentState() { return new RuntimeState(); }
+	protected SimpleRuntimeState createCurrentState() { return new SimpleRuntimeState(); }
 }

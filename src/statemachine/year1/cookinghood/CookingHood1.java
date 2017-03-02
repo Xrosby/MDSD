@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
 import statemachine.year1.library.GraphicalMachine;
+import statemachine.year1.library.SimpleRuntimeState;
 
 /*
 Copyright (c) 2012, Ulrik Pagh Schultz, University of Southern Denmark
@@ -34,7 +35,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-public class CookingHood1 extends GraphicalMachine {
+public class CookingHood1 extends GraphicalMachine<SimpleRuntimeState> {
 
     /**
      * GUI for cooking hood test
@@ -76,7 +77,7 @@ public class CookingHood1 extends GraphicalMachine {
      */
     @Override
     public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getStateName());
+        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
         ((JLabel)gui.getComponent("power")).setText(new Integer(((CookingHoodMachine)machine).getPower()).toString());
     }
 

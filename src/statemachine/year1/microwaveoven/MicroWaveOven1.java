@@ -33,8 +33,9 @@ import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
 import statemachine.year1.library.GraphicalMachine;
+import statemachine.year1.library.SimpleRuntimeState;
 
-public class MicroWaveOven1 extends GraphicalMachine {
+public class MicroWaveOven1 extends GraphicalMachine<SimpleRuntimeState> {
 
     /**
      * GUI for microwave oven test
@@ -82,7 +83,7 @@ public class MicroWaveOven1 extends GraphicalMachine {
      */
     @Override
     public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getStateName());
+        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
     }
 
 }

@@ -45,12 +45,12 @@ import statemachine.year1.library.Event;
  * corresponding transition (if any).
  * @author ups
  */
-public class State {
+public class State<T extends AbstractRuntimeState<T>> {
 
     /**
      * The machine to which this state belongs
      */
-    private Machine machine;
+    private MachineDescription<T> machine;
     /**
      * The name of the state
      */
@@ -58,14 +58,14 @@ public class State {
     /**
      * Transitions associated with this state
      */
-    private Map<String,List<Transition>> transitions = new HashMap<String,List<Transition>>();
+    private Map<String,List<Transition<T>>> transitions = new HashMap<String,List<Transition<T>>>();
 
     /**
      * Instantiate state for a given state machine
      * @param machine the state machine to which the state belongs
      * @param name the name of the state
      */
-    public State(Machine machine, String name) {
+    public State(MachineDescription machine, String name) {
         this.machine = machine;
         this.name = name;
     }
@@ -75,10 +75,10 @@ public class State {
      * @param eventName name of event that can trigger this transition
      * @param transition the transition
      */
-    public void addTransition(String eventName, Transition transition) {
-        List<Transition> matches = transitions.get(eventName);
+    public void addTransition(String eventName, Transition<T> transition) {
+        List<Transition<T>> matches = transitions.get(eventName);
         if(matches==null) {
-            matches = new ArrayList<Transition>();
+            matches = new ArrayList<Transition<T>>();
             transitions.put(eventName, matches);
         }
         matches.add(transition);
@@ -88,25 +88,17 @@ public class State {
      * Process event by testing isApplicable in sequence, and then performing the action which
      * may have an effect and returns the name of a new state, if a transition is to be made.
      */
-    public void processEvent(Event event) {
-        List<Transition> matches = transitions.get(event.code());
+    public void processEvent(MachineExecutor<T> machine, Event event) {
+        List<Transition<T>> matches = transitions.get(event.code());
         if(matches==null) return;
-        for(Transition tran: matches)
-            if(tran.isApplicable()) { 
-                String newMaybe = tran.action();
-                if(newMaybe!=null) machine().setState(newMaybe);
+        for(Transition<T> tran: matches)
+            if(tran.isApplicable(machine.getRuntimeState())) { 
+                String newMaybe = tran.action(machine.getRuntimeState());
+                if(newMaybe!=null) machine.setState(newMaybe);
                 return;
             }
     }
     
-    /**
-     * Get the machine to which this state belongs
-     * @return the machine
-     */
-    public Machine machine() {
-        return machine;
-    }
-
     /**
      * Get the name of the state
      */
@@ -132,7 +124,7 @@ public class State {
     /**
      * Get the set of transitions that correspond to a given event ID
      */
-    public List<Transition> getTransitionsForEvent(String event) {
+    public List<Transition<T>> getTransitionsForEvent(String event) {
     	return transitions.get(event);
     }
 }

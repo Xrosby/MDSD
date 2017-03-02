@@ -32,56 +32,64 @@ package statemachine.year2.cdplayer;
 import java.util.Arrays;
 import java.util.List;
 
-import statemachine.year2.framework.Machine;
+import statemachine.year2.framework.AbstractRuntimeState;
+import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
+import statemachine.year2.cdplayer.CDPlayerMachine.CD;
 
-public class CDPlayerMachine extends Machine {
+public class CDPlayerMachine extends MachineDescription<CD> {
 
+	public static class CD extends AbstractRuntimeState<CD> {
+		public int track;
+		@Override public void reset() { track = 0; }
+	}
+	
     // States
-    private State STATE_STOP, STATE_PLAYING, STATE_PAUSED;
+    private State<CD> STATE_STOP, STATE_PLAYING, STATE_PAUSED;
     
-    // Extended state
-    private int track;
-    public int getTrack() { return track; }
-
     // State machine definition
     public CDPlayerMachine() {
         // Forward and backward transitions are identical in STOPPED and PAUSED, share
-        Transition forward = new Transition(null) {
-            @Override public void effect() { track++; }
+        Transition<CD> forward = new Transition<CD>(null) {
+            @Override public void effect(CD state) { state.track++; }
         };
-        Transition backward = new Transition(null) {
-            @Override public boolean isApplicable() { return track>1; }
-            @Override public void effect() { track--; }
+        Transition<CD> backward = new Transition<CD>(null) {
+            @Override public boolean isApplicable(CD state) { return state.track>1; }
+            @Override public void effect(CD state) { state.track--; }
         };
         // Stop transition is identical in PLAYING and PAUSED, share
-        Transition stop = new Transition("STOP") {
-            @Override public void effect() { track=0; } 
+        Transition<CD> stop = new Transition<CD>("STOP") {
+            @Override public void effect(CD state) { state.track=0; } 
         };
         // Define states and transitions
-        STATE_STOP = new State(this,"STOP");
-        STATE_STOP.addTransition("PLAY", new Transition("PLAYING") {
-           @Override public void effect() { if(track==0) track=1; } 
+        STATE_STOP = new State<CD>(this,"STOP");
+        STATE_STOP.addTransition("PLAY", new Transition<CD>("PLAYING") {
+           @Override public void effect(CD state) { if(state.track==0) state.track=1; } 
         });
         STATE_STOP.addTransition("FORWARD", forward);
         STATE_STOP.addTransition("BACK", backward);
-        STATE_PLAYING = new State(this,"PLAYING");
+        STATE_PLAYING = new State<CD>(this,"PLAYING");
         STATE_PLAYING.addTransition("STOP", stop);
-        STATE_PLAYING.addTransition("PAUSE", new Transition("PAUSED"));
-        STATE_PLAYING.addTransition("TRACK_END", new Transition(null) {
-            @Override public void effect() { track++; }
+        STATE_PLAYING.addTransition("PAUSE", new Transition<CD>("PAUSED"));
+        STATE_PLAYING.addTransition("TRACK_END", new Transition<CD>(null) {
+            @Override public void effect(CD state) { state.track++; }
         });
-        STATE_PAUSED = new State(this,"PAUSED");
-        STATE_PAUSED.addTransition("PLAY", new Transition("PLAYING"));
+        STATE_PAUSED = new State<CD>(this,"PAUSED");
+        STATE_PAUSED.addTransition("PLAY", new Transition<CD>("PLAYING"));
         STATE_PAUSED.addTransition("STOP", stop);
         STATE_PAUSED.addTransition("FORWARD", forward);
         STATE_PAUSED.addTransition("BACK", backward);
     }
     
     @Override
-    protected List<State> getAllStates() {
+    protected List<State<CD>> getAllStates() {
         return Arrays.asList(STATE_STOP, STATE_PLAYING, STATE_PAUSED);
     }
+
+	@Override
+	protected CD createExtendedState() {
+		return new CD();
+	}
 
 }

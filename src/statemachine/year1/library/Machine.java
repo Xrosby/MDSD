@@ -36,7 +36,7 @@ import java.util.Observable;
  * and can process events by sending them to the current state
  * @author ups
  */
-public abstract class Machine<T extends RuntimeState> extends Observable implements IMachine<T> {
+public abstract class Machine<T extends SimpleRuntimeState> extends Observable implements IMachine<T> {
     
 	/**
 	 * The currently active state
@@ -60,13 +60,6 @@ public abstract class Machine<T extends RuntimeState> extends Observable impleme
      */
     public void setState(State state) {
         currentState.setState(state);
-    }
-
-    /**
-     * Get the name of the currently active state
-     */
-    public String getStateName() {
-        return currentState.getState().toString();
     }
 
     /**
