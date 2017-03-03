@@ -76,6 +76,7 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
      */
     protected abstract State getInitialState();
 
+    
 	protected SimpleRuntimeState createCurrentState() { return new SimpleRuntimeState(); }
     
     public SimpleRuntimeState getRuntimeState() {
