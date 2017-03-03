@@ -7,6 +7,11 @@ import java.util.Random;
 
 import statemachine.year1.library.Event;
 import statemachine.year1.library.IMachine;
+import statemachine.year1.library.RuntimeState;
+import statemachine.year2.cdplayer.CDPlayerMachine.CD;
+import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
+import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
+import statemachine.year3.dsl.GenericState;
 
 /**
  * Benchmark the running times of the various state machine implementations, using randomized
@@ -43,24 +48,24 @@ public class Benchmark {
 
 	// Lists of the various implementations of state machines, by type, as arrays
 	
-	private final IMachine[] machinesList_cdplayer = new IMachine[] {
+	private final IMachine<?>[] machinesList_cdplayer = new IMachine[] {
 		new statemachine.year1.cdplayer.CDPlayerMachine(), 
-		new statemachine.year2.cdplayer.CDPlayerMachine(), 
-		new statemachine.year3.cdplayer.CDPlayerMachine(), 
+		new statemachine.year2.framework.MachineExecutor<CD>(new statemachine.year2.cdplayer.CDPlayerMachine()), 
+		new statemachine.year2.framework.MachineExecutor<GenericState>(new statemachine.year3.cdplayer.CDPlayerMachine()), 
 		new statemachine.generated.CDPlayerImpl(), 
 	};
 	
-	private final IMachine[] machinesList_cookinghood = new IMachine[] {
+	private final IMachine<?>[] machinesList_cookinghood = new IMachine[] {
 			new statemachine.year1.cookinghood.CookingHoodMachine(),
-			new statemachine.year2.cookinghood.CookingHoodMachine(),
-			new statemachine.year3.cookinghood.CookingHoodMachine(),
+			new statemachine.year2.framework.MachineExecutor<CHM>(new statemachine.year2.cookinghood.CookingHoodMachine()),
+			new statemachine.year2.framework.MachineExecutor<GenericState>(new statemachine.year3.cookinghood.CookingHoodMachine()),
 			new statemachine.generated.CookingHoodImpl(),
 	};
 		
-	private final IMachine[] machinesList_microwaveoven = new IMachine[] {
+	private final IMachine<?>[] machinesList_microwaveoven = new IMachine[] {
 			new statemachine.year1.microwaveoven.MicrowaveMachine(),
-			new statemachine.year2.microwaveoven.MicrowaveMachine(),
-			new statemachine.year3.microwaveoven.MicrowaveMachine(),
+			new statemachine.year2.framework.MachineExecutor<MMS>(new statemachine.year2.microwaveoven.MicrowaveMachine()),
+			new statemachine.year2.framework.MachineExecutor<GenericState>(new statemachine.year3.microwaveoven.MicrowaveMachine()),
 			new statemachine.generated.MicroWaveOvenImpl(),
 		};
 		
