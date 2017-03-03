@@ -30,10 +30,34 @@ package statemachine.year2.framework;
 
 import statemachine.year1.library.IRuntimeState;
 
+/**
+ * Abstract baseclass for statemachine runtime states that can be specialized
+ * to hold the extended state required for a given statemachine
+ * @param <T> The specific type required to hold the extended state
+ * @author ups
+ */
 public abstract class AbstractRuntimeState<T extends AbstractRuntimeState<T>> implements IRuntimeState {
+	/**
+	 * The current state of the statemachine
+	 */
 	private State<T> currentState;
+	/**
+	 * Set the current state of the statemachine
+	 * @param state the new state
+	 */
 	public void setState(State<T> state) { currentState = state; }
+	/**
+	 * Get the current state of the statemachine
+	 * @return the current state
+	 */
 	public State<T> getState() { return currentState; }
+	/**
+	 * Reset the runtime state
+	 */
 	public void reset() { ; }
+	/**
+	 * Get the name of the currently executing state
+	 * @return The name of the current state
+	 */
 	public String getStateName() { return currentState.toString(); }
 }

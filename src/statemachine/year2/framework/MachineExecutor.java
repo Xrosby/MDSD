@@ -106,7 +106,9 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
         notifyObservers();
     }
 
-
+    /**
+     * Get the current runtime state of the machine
+     */
 	@Override
 	public T getRuntimeState() {
 		return runtimeState;

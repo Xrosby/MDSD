@@ -76,9 +76,15 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
      */
     protected abstract State getInitialState();
 
-    
+    /**
+     * Factory method for creating an instance of the state required for the given statemachine
+     * @return new instance of the corresponding state class
+     */
 	protected SimpleRuntimeState createCurrentState() { return new SimpleRuntimeState(); }
     
+	/**
+	 * Get the current runtime state of the machine
+	 */
     public SimpleRuntimeState getRuntimeState() {
     	return currentState;
     }

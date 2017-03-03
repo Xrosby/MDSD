@@ -43,6 +43,10 @@ public abstract class MachineDescription<T extends AbstractRuntimeState<T>> {
      * @return List of all states, first element is initial state
      */
     protected abstract List<State<T>> getAllStates();
-
+    /**
+     * Overridden by the concrete state machine.  Factory method that creates an
+     * instance of the specific extended state required for the statemachine
+     * @return new instance of the class that represents the extended state
+     */
 	protected abstract T createExtendedState();
 }
