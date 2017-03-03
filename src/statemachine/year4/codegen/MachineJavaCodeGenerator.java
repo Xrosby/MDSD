@@ -10,7 +10,7 @@ import statemachine.year2.framework.Transition;
 import statemachine.year3.dsl.FluentMachine;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;
-import statemachine.year3.dsl.IntegerState;
+import statemachine.year3.dsl.GenericState;
 
 /**
  * Code generator for state machines described using the FluentMachine model.
@@ -77,7 +77,7 @@ public class MachineJavaCodeGenerator {
 		stateIDcounter = 0;
 		generateHeader(packageName, className);
 		beginGenerateStates();
-		for(State state: model.getAllStates())
+		for(State<GenericState> state: model.getAllStates())
 			generateState(state);
 		finishGenerateStates();
 		generateVariableDeclarations();
@@ -144,7 +144,7 @@ public class MachineJavaCodeGenerator {
 	 * Generate the code for handling a single state
 	 * @param state the state to handle
 	 */
-	private void generateState(State state) {
+	private void generateState(State<GenericState> state) {
 		// CASE STATE:
 		_("    case "+getStateID(state.getName())+": // "+state.getName());
 		_("      switch(event) {");
@@ -168,9 +168,9 @@ public class MachineJavaCodeGenerator {
 					else if(c==Condition.GREATER) operator = ">";
 					else throw new Error("Internal error");
 					// Generate condition
-					IntegerState var = holder.getCondVariableMaybe();
-					variables.add(var.getName());
-					_(indent+"if("+var.getName()+operator+holder.getCondValue()+") {");
+					String var = holder.getCondVariableMaybe();
+					variables.add(var);
+					_(indent+"if("+var+operator+holder.getCondValue()+") {");
 				} 
 				else 
 					_(indent+"{");
@@ -183,9 +183,9 @@ public class MachineJavaCodeGenerator {
 					else if(e==Effect.SET) operator = "=";
 					else throw new Error("Internal error");
 					// Generate effect
-					IntegerState var = holder.getEffectVar();
-					variables.add(var.getName());
-					_(indent+"  "+var.getName()+operator+holder.getEffectArg()+";");
+					String var = holder.getEffectVar();
+					variables.add(var);
+					_(indent+"  "+var+operator+holder.getEffectArg()+";");
 				}
 				// TRANSITION CHANGE STATE
 				if(holder.getTarget()!=null) _(indent+"  state = "+getStateID(holder.getTarget())+"; // "+holder.getTarget());

@@ -32,6 +32,8 @@ package statemachine.year4.cdplayer;
 import javax.swing.JLabel;
 
 import statemachine.year1.library.GraphicalMachine;
+import statemachine.year1.library.RuntimeState;
+import statemachine.year3.dsl.GenericState;
 import statemachine.year1.cdplayer.CDPlayer1.ControlGUI;
 import statemachine.generated.CDPlayerImpl;
 
@@ -40,7 +42,7 @@ import statemachine.generated.CDPlayerImpl;
  * @author ups
  *
  */
-public class CDPlayer4 extends GraphicalMachine {
+public class CDPlayer4 extends GraphicalMachine<RuntimeState> {
 
 	/**
 	 * Run the example
@@ -61,7 +63,7 @@ public class CDPlayer4 extends GraphicalMachine {
      */
     @Override
     public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getStateName());
+        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
         ((JLabel)gui.getComponent("track")).setText(new Integer(((CDPlayerImpl)machine).get_track()).toString());
     }
 

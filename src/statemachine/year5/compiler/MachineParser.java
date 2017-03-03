@@ -3,10 +3,11 @@ package statemachine.year5.compiler;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import statemachine.year3.dsl.FluentMachine;
-import statemachine.year3.dsl.IntegerState;
 
 /**
  * Parse a source file and use it to build a semantic model using the existing fluent machine interface.
@@ -18,7 +19,7 @@ public class MachineParser extends FluentMachine {
 	/**
 	 * Map of external variables
 	 */
-	private Map<String,IntegerState> externalVariables = new HashMap<String,IntegerState>();
+	private Set<String> externalVariables = new HashSet<String>();
 	/**
 	 * The input text to parse
 	 */
@@ -136,7 +137,7 @@ public class MachineParser extends FluentMachine {
 		String event = lex.popToken("event");
 		super.transition(event);
 		// Condition?
-		IntegerState condVariable = null;
+		String condVariable = null;
 		String condOperator = null;
 		Integer condValue = null;
 		if(lex.checkMatch("[")) {
@@ -152,7 +153,7 @@ public class MachineParser extends FluentMachine {
 		// Action?
 		if(lex.checkMatch("/")) {
 			lex.popAndMatchToken("/");
-			IntegerState actionVariable = getExtendedVariable(lex.popToken("variable"));
+			String actionVariable = getExtendedVariable(lex.popToken("variable"));
 			String actionOperator = lex.popToken("oeprator");
 			Integer actionValue = lex.popTokenAsInt();
 			if("=".equals(actionOperator))
@@ -178,10 +179,9 @@ public class MachineParser extends FluentMachine {
 	 * @return the extended variable of the corresponding name
 	 * @throws ParseError if the name was not found
 	 */
-	private IntegerState getExtendedVariable(String name) throws ParseError {
-		IntegerState state = externalVariables.get(name);
-		if(state==null) throw new ParseError("Variable not found: "+name);
-		return state;
+	private String getExtendedVariable(String name) throws ParseError {
+		if(!externalVariables.contains(name)) throw new ParseError("Variable not found: "+name);
+		return name;
 	}
 
 	/**
@@ -189,7 +189,8 @@ public class MachineParser extends FluentMachine {
 	 * @param name the name of the external variable
 	 */
 	private void makeExternalVariable(String name) {
-		externalVariables.put(name, new IntegerState(name));
+		externalVariables.add(name);
+		super.integerState(name);
 	}
 
 }

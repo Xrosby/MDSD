@@ -6,6 +6,9 @@ import java.util.Observable;
 
 import statemachine.year1.library.Event;
 import statemachine.year1.library.IMachine;
+import statemachine.year1.library.RuntimeState;
+import statemachine.year1.library.SimpleRuntimeState;
+import statemachine.year3.dsl.GenericState;
 
 /**
  * Abstract class that serves as the basis for code generated for statemachines.
@@ -13,7 +16,7 @@ import statemachine.year1.library.IMachine;
  * @author ups
  *
  */
-public abstract class GeneratedMachine extends Observable implements IMachine {
+public abstract class GeneratedMachine extends Observable implements IMachine<RuntimeState> {
 
 	/**
 	 * The current state of the state machine, represented as an integer
@@ -54,10 +57,14 @@ public abstract class GeneratedMachine extends Observable implements IMachine {
 	 * @return the current state
 	 */
 	@Override
-	public String getStateName() {
-		return state_int2code.get(state);
+	public RuntimeState getRuntimeState() {
+		return new RuntimeState() {
+			@Override public void reset() { }
+			@Override public String getStateName() { return state_int2code.get(state); }
+		};
 	}
 
+	
 	/**
 	 * Template method for the compiled event processed based on integer state IDs
 	 * @param code

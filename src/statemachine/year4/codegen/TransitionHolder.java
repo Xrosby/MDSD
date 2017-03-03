@@ -3,7 +3,6 @@ package statemachine.year4.codegen;
 import statemachine.year2.framework.Transition;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;
-import statemachine.year3.dsl.IntegerState;
 
 /**
  * Data value object for transitions
@@ -12,14 +11,14 @@ import statemachine.year3.dsl.IntegerState;
  */
 public class TransitionHolder extends Transition {
 	private Effect effect;
-	private IntegerState effectVar;
+	private String effectVar;
 	private int effectArg;
 	private Condition cond;
-	private IntegerState condVariableMaybe;
+	private String condVariableMaybe;
 	private int condValue;
 	public TransitionHolder(String target, Effect effect,
-			IntegerState effectVar, int effectArg, Condition cond,
-			IntegerState condVariableMaybe, int condValue) {
+			String effectVar, int effectArg, Condition cond,
+			String condVariableMaybe, int condValue) {
 		super(target);
 		this.effect = effect;
 		this.effectVar = effectVar;
@@ -31,7 +30,7 @@ public class TransitionHolder extends Transition {
 	public Effect getEffect() {
 		return effect;
 	}
-	public IntegerState getEffectVar() {
+	public String getEffectVar() {
 		return effectVar;
 	}
 	public int getEffectArg() {
@@ -40,7 +39,7 @@ public class TransitionHolder extends Transition {
 	public Condition getCond() {
 		return cond;
 	}
-	public IntegerState getCondVariableMaybe() {
+	public String getCondVariableMaybe() {
 		return condVariableMaybe;
 	}
 	public int getCondValue() {

@@ -33,6 +33,7 @@ import javax.swing.JLabel;
 
 import statemachine.generated.MicroWaveOvenImpl;
 import statemachine.year1.library.GraphicalMachine;
+import statemachine.year1.library.RuntimeState;
 import statemachine.year1.microwaveoven.MicroWaveOven1.ControlGUI;
 
 /**
@@ -40,7 +41,7 @@ import statemachine.year1.microwaveoven.MicroWaveOven1.ControlGUI;
  * @author ups
  *
  */
-public class MicroWaveOven4 extends GraphicalMachine {
+public class MicroWaveOven4 extends GraphicalMachine<RuntimeState> {
 
 	/**
 	 * Run the example
@@ -61,7 +62,7 @@ public class MicroWaveOven4 extends GraphicalMachine {
      */
     @Override
     public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getStateName());
+        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
     }
 
 }

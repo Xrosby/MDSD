@@ -32,6 +32,7 @@ package statemachine.year4.cookinghood;
 import javax.swing.JLabel;
 
 import statemachine.year1.library.GraphicalMachine;
+import statemachine.year1.library.RuntimeState;
 import statemachine.year1.cookinghood.CookingHood1.ControlGUI;
 import statemachine.generated.CookingHoodImpl;
 
@@ -40,7 +41,7 @@ import statemachine.generated.CookingHoodImpl;
  * @author ups
  *
  */
-public class CookingHood4 extends GraphicalMachine {
+public class CookingHood4 extends GraphicalMachine<RuntimeState> {
 
 	/**
 	 * Run the example
@@ -61,7 +62,7 @@ public class CookingHood4 extends GraphicalMachine {
      */
     @Override
     public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getStateName());
+        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
         ((JLabel)gui.getComponent("power")).setText(new Integer(((CookingHoodImpl)machine).get_power()).toString());
     }
 

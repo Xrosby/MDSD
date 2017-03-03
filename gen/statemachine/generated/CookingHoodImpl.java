@@ -18,16 +18,6 @@ public class CookingHoodImpl extends GeneratedMachine {
     break;
     case 1: // ON
       switch(event) {
-      case 0: // PLUS
-        if(power==6) {
-          state = 2; // MAX
-        }
-      else
-        {
-          power+=1;
-          state = 1; // ON
-        }
-      break;
       case 1: // MINUS
         if(power==1) {
           state = 0; // OFF
@@ -35,6 +25,16 @@ public class CookingHoodImpl extends GeneratedMachine {
       else
         {
           power+=-1;
+          state = 1; // ON
+        }
+      break;
+      case 0: // PLUS
+        if(power==6) {
+          state = 2; // MAX
+        }
+      else
+        {
+          power+=1;
           state = 1; // ON
         }
       break;
@@ -61,8 +61,8 @@ public class CookingHoodImpl extends GeneratedMachine {
   public int get_power() { return power; }
   @Override protected void internalInitialize(Map<String, Integer> event_code2int, Map<Integer, String> state_int2code) {
     state_int2code.put(2,"MAX");
-    state_int2code.put(1,"ON");
     state_int2code.put(0,"OFF");
+    state_int2code.put(1,"ON");
     event_code2int.put("PLUS",0);
     event_code2int.put("MINUS",1);
   }
