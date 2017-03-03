@@ -142,7 +142,7 @@ public class MachineJavaCodeGenerator {
 	 * Convenience method for appending text to the accumulating buffer and then adding a newline
 	 * @param text the text to append to the buffer
 	 */
-	private void _(String text) {
+	private void p(String text) {
 		builder.append(text);
 		builder.append('\n');
 	}
@@ -153,19 +153,19 @@ public class MachineJavaCodeGenerator {
 	 * @param className the class name to use
 	 */
 	private void generateHeader(String packageName, String className) {
-		_("// Automatically generated code, do not edit");
-		_("package "+packageName+";");
-		_("import java.util.Map;");
-		_("import statemachine.year4.codegen.GeneratedMachine;");
-		_("public class "+className+" extends GeneratedMachine {");
+		p("// Automatically generated code, do not edit");
+		p("package "+packageName+";");
+		p("import java.util.Map;");
+		p("import statemachine.year4.codegen.GeneratedMachine;");
+		p("public class "+className+" extends GeneratedMachine {");
 	}
 	
 	/**
 	 * Generate the method header and initial code for the state processing method
 	 */
 	private void beginGenerateStates() {
-		_("  @Override protected void internalProcessEvent(int event) {");
-		_("    switch(state) {");
+		p("  @Override protected void internalProcessEvent(int event) {");
+		p("    switch(state) {");
 	}
 	
 	/**
@@ -174,18 +174,18 @@ public class MachineJavaCodeGenerator {
 	 */
 	private void generateState(State<GenericState> state) {
 		// CASE STATE:
-		_("    case "+getStateID(state.getName())+": // "+state.getName());
-		_("      switch(event) {");
+		p("    case "+getStateID(state.getName())+": // "+state.getName());
+		p("      switch(event) {");
 		for(String event: state.getApplicableEvents()) {
 			// CASE EVENT:
-			_("      case "+getEventID(event)+": // "+event);
+			p("      case "+getEventID(event)+": // "+event);
 			boolean first = true;
-			for(Transition transition: state.getTransitionsForEvent(event)) {
+			for(Transition<GenericState> transition: state.getTransitionsForEvent(event)) {
 				// IF(TRANSITION IS APPLICABLE)
 				if(first)
 					first = false;
 				else
-					_("      else");
+					p("      else");
 				TransitionHolder holder = (TransitionHolder)transition;
 				String indent = "        ";
 				if(holder.getCond()!=null) {
@@ -198,10 +198,10 @@ public class MachineJavaCodeGenerator {
 					// Generate condition
 					String var = holder.getCondVariableMaybe();
 					variables.add(var);
-					_(indent+"if("+var+operator+holder.getCondValue()+") {");
+					p(indent+"if("+var+operator+holder.getCondValue()+") {");
 				} 
 				else 
-					_(indent+"{");
+					p(indent+"{");
 				// TRANSITION EFFECT
 				if(holder.getEffect()!=null) {
 					// What kind of effect?
@@ -213,26 +213,26 @@ public class MachineJavaCodeGenerator {
 					// Generate effect
 					String var = holder.getEffectVar();
 					variables.add(var);
-					_(indent+"  "+var+operator+holder.getEffectArg()+";");
+					p(indent+"  "+var+operator+holder.getEffectArg()+";");
 				}
 				// TRANSITION CHANGE STATE
-				if(holder.getTarget()!=null) _(indent+"  state = "+getStateID(holder.getTarget())+"; // "+holder.getTarget());
-				_(indent+"}");
+				if(holder.getTarget()!=null) p(indent+"  state = "+getStateID(holder.getTarget())+"; // "+holder.getTarget());
+				p(indent+"}");
 			}
-			_("      break;");
+			p("      break;");
 		}
-		_("      default: ; // ignore");
-		_("      }");
-		_("    break;");
+		p("      default: ; // ignore");
+		p("      }");
+		p("    break;");
 	}
 
 	/**
 	 * Generate the end of the event processing method
 	 */
 	private void finishGenerateStates() {
-		_("    default: throw new Error(\"Internal error: unsupported state code\");");
-		_("    }");
-		_("  }");
+		p("    default: throw new Error(\"Internal error: unsupported state code\");");
+		p("    }");
+		p("  }");
 	}
 
 	/**
@@ -240,11 +240,11 @@ public class MachineJavaCodeGenerator {
 	 */
 	private void generateVariableDeclarations() {
 		for(String var: variables) {
-			_("  private int "+var+";");
-			_("  /** Get the value of the extended state "+var);
-			_("    * @return value of "+var);
-			_("  */");
-			_("  public int get_"+var+"() { return "+var+"; }");
+			p("  private int "+var+";");
+			p("  /** Get the value of the extended state "+var);
+			p("    * @return value of "+var);
+			p("  */");
+			p("  public int get_"+var+"() { return "+var+"; }");
 		}
 	}
 
@@ -252,19 +252,19 @@ public class MachineJavaCodeGenerator {
 	 * Generate initializer method for establishing maps between IDs and corresponding names
 	 */
 	private void generateInitializer() {
-		_("  @Override protected void internalInitialize(Map<String, Integer> event_code2int, Map<Integer, String> state_int2code) {");
+		p("  @Override protected void internalInitialize(Map<String, Integer> event_code2int, Map<Integer, String> state_int2code) {");
 		for(Map.Entry<String, Integer> state: stateMap.entrySet())
-			_("    state_int2code.put("+state.getValue()+",\""+state.getKey()+"\");");
+			p("    state_int2code.put("+state.getValue()+",\""+state.getKey()+"\");");
 		for(Map.Entry<String, Integer> event: eventMap.entrySet())
-			_("    event_code2int.put(\""+event.getKey()+"\","+event.getValue()+");");
-		_("  }");
+			p("    event_code2int.put(\""+event.getKey()+"\","+event.getValue()+");");
+		p("  }");
 	}
 
 	/**
 	 * Generate end of the class declaration
 	 */
 	private void generateFooter() {
-		_("}");
+		p("}");
 	}
 
 }
