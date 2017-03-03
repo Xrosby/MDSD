@@ -1,5 +1,7 @@
 package statemachine.year3.dsl;
 
+import java.util.Map;
+
 import statemachine.year2.framework.Transition;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;
@@ -10,7 +12,7 @@ import statemachine.year3.dsl.FluentMachine.Effect;
  * most one of each)
  * @author ups
  */
-class GenericTransition extends Transition {
+class GenericTransition extends Transition<GenericState> {
 	/**
 	 * The effect of the transition, if any, null otherwise
 	 */
@@ -18,7 +20,7 @@ class GenericTransition extends Transition {
     /**
      * Variable on which the transition has an effect, if any, null otherwise
      */
-    private IntegerState effectVariable;
+    private String effectVariableName;
     /**
      * The argument of the effect (e.g., how much is added) if any, null otherwise
      */
@@ -30,7 +32,7 @@ class GenericTransition extends Transition {
     /**
      * Condition variable on the transition, if any, null otherwise
      */
-    private IntegerState condVariableMaybe;
+    private String condVariableNameMaybe;
     /**
      * The value which the condition compares to (e.g., is equal to?) if any
      */
@@ -47,23 +49,23 @@ class GenericTransition extends Transition {
      * @param condValue The value which the condition compares to (e.g., is equal to?) if any
      */
     public GenericTransition(String target, 
-            Effect effectMaybe, IntegerState effectVariable, int effectArgument, 
-            Condition cond, IntegerState condVariableMaybe, int condValue) {
+            Effect effectMaybe, String effectVariableName, int effectArgument, 
+            Condition cond, String condVariableNameMaybe, int condValue) {
         super(target);
-        this.effectMaybe = effectMaybe; this.effectVariable = effectVariable; this.effectArgument = effectArgument; 
-        this.conditionMaybe = cond; this.condVariableMaybe = condVariableMaybe; this.condValue = condValue;
-        if(effectMaybe!=null && effectVariable==null) throw new Error("Inconistent effect description");
+        this.effectMaybe = effectMaybe; this.effectVariableName = effectVariableName; this.effectArgument = effectArgument; 
+        this.conditionMaybe = cond; this.condVariableNameMaybe = condVariableNameMaybe; this.condValue = condValue;
+        if(effectMaybe!=null && effectVariableName==null) throw new Error("Inconistent effect description");
     }
     
     /**
      * True is the transition is applicable in the current state
      */
-    @Override public boolean isApplicable() {
+    @Override public boolean isApplicable(GenericState extendedState) {
         if(conditionMaybe==null) return true; // no condition
         if(conditionMaybe==Condition.EQUAL) {
-            return condVariableMaybe.value()==condValue;
+            return extendedState.get(condVariableNameMaybe).intValue()==condValue;
         } else if(conditionMaybe==Condition.GREATER) {
-            return condVariableMaybe.value()>condValue;
+            return extendedState.get(condVariableNameMaybe).intValue()>condValue;
         } else 
             throw new Error("Illegal condition kind");
     }
@@ -71,12 +73,12 @@ class GenericTransition extends Transition {
     /**
      * Perform the effect of the transition
      */
-    @Override public void effect() {
+    @Override public void effect(GenericState extendedState) {
         if(effectMaybe==null) return; // no effect
         if(effectMaybe==Effect.SET)
-            effectVariable.set(effectArgument);
+            extendedState.set(effectVariableName,effectArgument);
         else if(effectMaybe==Effect.CHANGE)
-            effectVariable.set(effectVariable.value()+effectArgument);
+            extendedState.set(effectVariableName,extendedState.get(effectVariableName).intValue()+effectArgument);
         else
             throw new Error("Uknown effect");
     }
@@ -85,6 +87,6 @@ class GenericTransition extends Transition {
      * String representation (for debugging)
      */
     public String toString() {
-        return "T("+super.getTarget()+"): "+effectMaybe + "@" + effectVariable + "," + effectArgument;
+        return "T("+super.getTarget()+"): "+effectMaybe + "@" + effectVariableName + "," + effectArgument;
     }
 }

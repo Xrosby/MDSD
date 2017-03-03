@@ -30,7 +30,6 @@ either expressed or implied, of the University of Southern Denmark.
 package statemachine.year3.cookinghood;
 
 import statemachine.year3.dsl.FluentMachine;
-import statemachine.year3.dsl.IntegerState;
 
 public class CookingHoodMachine extends FluentMachine {
 
@@ -38,23 +37,19 @@ public class CookingHoodMachine extends FluentMachine {
     private static final int MIN_POWER = 1;
     private static final int MAX_POWER = 6;
 
-    // Extended state
-    private IntegerState power;
-    public int getPower() { return power.value(); }
-    
     // State machine definition
     @Override
     protected void build() {
-        power = new IntegerState("power");
+        integerState("power");
         state("POWER_OFF").
-          transition("PLUS").to("POWER_ON").setState(power,MIN_POWER).
+          transition("PLUS").to("POWER_ON").setState("power",MIN_POWER).
         state("POWER_ON").
-          transition("PLUS").to("MAX_POWER").whenStateEquals(power,MAX_POWER).
-                             changeState(power,1).otherwise().
-          transition("MINUS").to("POWER_OFF").whenStateEquals(power,MIN_POWER).
-                             changeState(power,-1).otherwise().
+          transition("PLUS").to("MAX_POWER").whenStateEquals("power",MAX_POWER).
+                             changeState("power",1).otherwise().
+          transition("MINUS").to("POWER_OFF").whenStateEquals("power",MIN_POWER).
+                             changeState("power",-1).otherwise().
         state("MAX_POWER").
-          transition("MINUS").to("POWER_ON").setState(power,MAX_POWER)
+          transition("MINUS").to("POWER_ON").setState("power",MAX_POWER)
         ;
     }
 

@@ -30,9 +30,11 @@ either expressed or implied, of the University of Southern Denmark.
 package statemachine.year3.dsl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import statemachine.year2.framework.Machine;
+import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
 
@@ -42,7 +44,7 @@ import statemachine.year2.framework.Transition;
  * model to be directly interpreted to run the state machine.
  * @author ups
  */
-public abstract class FluentMachine extends Machine {
+public abstract class FluentMachine extends MachineDescription<GenericState> {
 
     // Enums defining the types of effects and conditions that can be used
 	
@@ -60,11 +62,11 @@ public abstract class FluentMachine extends Machine {
     /**
      *  The complete list of all states (first is assumed to be initial)
      */
-    private List<State> allStates = new ArrayList<State>();
+    private List<State<GenericState>> allStates = new ArrayList<State<GenericState>>();
     /**
      *  The current state being built
      */
-    private State currentState;
+    private State<GenericState> currentState;
     /**
      *  The current event that transitions are being defined for
      */
@@ -82,9 +84,9 @@ public abstract class FluentMachine extends Machine {
      */
     private int effectArgument;
     /**
-     *  The mutable state acted upon by the effect on the current transition, if any
+     *  The name of the mutable state acted upon by the effect on the current transition, if any
      */
-    private IntegerState effectVariable;
+    private String effectVariable;
     /**
      * A factory object for creating transition instances, overwrite default to control transition creation
      */
@@ -93,6 +95,10 @@ public abstract class FluentMachine extends Machine {
 	 * Flag indicating whether the model has been built
 	 */
 	private boolean modelIsBuilt = false;
+	/**
+	 * Set containing names of all extended state variables
+	 */
+	Set<String> extendedStateVariables = new HashSet<>();
 	
     /**
      * Build a machine using the fluent interface.  First call build (overridden in subclass),
@@ -115,7 +121,7 @@ public abstract class FluentMachine extends Machine {
      * Get list of all states in the state machine
      */
     @Override
-	public List<State> getAllStates() {
+	public List<State<GenericState>> getAllStates() {
     	buildMachine();
         return allStates;
     }
@@ -133,7 +139,7 @@ public abstract class FluentMachine extends Machine {
             flushTransition(null,null,0);
             allStates.add(currentState);
         }
-        currentState = new State(this,name);
+        currentState = new State<GenericState>(name);
         return this;
     }
     
@@ -160,9 +166,10 @@ public abstract class FluentMachine extends Machine {
      * @param variable the variable to set
      * @param value the value to set it to
      */
-    public FluentMachine setState(IntegerState variable, int value) {
+    public FluentMachine setState(String variableName, int value) {
         effectMaybe = Effect.SET;
-        effectVariable = variable;
+        if(!this.extendedStateVariables.contains(variableName)) throw new Error("Undefined variable: "+variableName);
+        effectVariable = variableName;
         effectArgument = value;
         return this;
     }
@@ -172,9 +179,10 @@ public abstract class FluentMachine extends Machine {
      * @param variable the variable to change
      * @param value the value to add to the variable
      */
-    public FluentMachine changeState(IntegerState variable, int value) {
+    public FluentMachine changeState(String variableName, int value) {
         effectMaybe = Effect.CHANGE;
-        effectVariable = variable;
+        if(!this.extendedStateVariables.contains(variableName)) throw new Error("Undefined variable: "+variableName);
+        effectVariable = variableName;
         effectArgument = value;
         return this;
     }
@@ -184,8 +192,8 @@ public abstract class FluentMachine extends Machine {
      * @param variable the variable to have a condition on
      * @param value the value to compare to
      */
-    public FluentMachine whenStateEquals(IntegerState variable, int value) {
-        flushTransition(Condition.EQUAL,variable,value);
+    public FluentMachine whenStateEquals(String variableName, int value) {
+        flushTransition(Condition.EQUAL,variableName,value);
         return this;
     }
     
@@ -194,8 +202,8 @@ public abstract class FluentMachine extends Machine {
      * @param variable the variable to have a condition on
      * @param value the value to compare to
      */
-    public FluentMachine whenStateGreaterThan(IntegerState variable, int value) {
-        flushTransition(Condition.GREATER,variable,value);
+    public FluentMachine whenStateGreaterThan(String variableName, int value) {
+        flushTransition(Condition.GREATER,variableName,value);
         return this;
     }
     
@@ -213,14 +221,14 @@ public abstract class FluentMachine extends Machine {
      * @param condVariableMaybe the variable to test on, if any
      * @param condValue the value to compare to, if any
      */
-    private void flushTransition(Condition cond, IntegerState condVariableMaybe, int condValue) {
+    private void flushTransition(Condition cond, String condVariableNameMaybe, int condValue) {
         if(pendingEvent==null) return; // Nothing to flush
         if(targetTransition==null && effectMaybe==null) return; // empty transition
         // Define transition and add to current state
-        Transition transition = 
+        Transition<GenericState> transition = 
         		factory.createTransitionHook(targetTransition, 
         				effectMaybe, effectVariable, effectArgument, 
-        				cond, condVariableMaybe, condValue);
+        				cond, condVariableNameMaybe, condValue);
         currentState.addTransition(pendingEvent, transition);
         // Clear all context variables
         effectMaybe = null;
@@ -248,12 +256,22 @@ public abstract class FluentMachine extends Machine {
     	 * @param condValue the value used in the condition, if any
     	 * @return a transition object created according to the specification.
     	 */
-    	protected Transition createTransitionHook(String target, 
-    			Effect effect, IntegerState effectVar, int effectArg, 
-    			Condition cond, IntegerState condVariableMaybe, int condValue) {
+    	protected Transition<GenericState> createTransitionHook(String target, 
+    			Effect effect, String effectVarName, int effectArg, 
+    			Condition cond, String condVariableMaybe, int condValue) {
     		return new GenericTransition(target,
-    				effect,effectVar,effectArg,
+    				effect,effectVarName,effectArg,
     				cond, condVariableMaybe,condValue);
     	}
     }
+    
+    public void integerState(String name) {
+    	this.extendedStateVariables.add(name);
+    }
+    
+	@Override
+	protected GenericState createExtendedState() {
+		return new GenericState(this.extendedStateVariables);
+	}
+
 }

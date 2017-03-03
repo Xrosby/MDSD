@@ -32,16 +32,18 @@ package statemachine.year3.cdplayer;
 import javax.swing.JLabel;
 
 import statemachine.year1.library.GraphicalMachine;
+import statemachine.year2.framework.MachineExecutor;
+import statemachine.year3.dsl.GenericState;
 import statemachine.year1.cdplayer.CDPlayer1.ControlGUI;
 
-public class CDPlayer3 extends GraphicalMachine {
+public class CDPlayer3 extends GraphicalMachine<GenericState> {
 
     public static void main(String argv[]) {
         new CDPlayer3();
     }
     
     public CDPlayer3() {
-        super(new ControlGUI(),new CDPlayerMachine(),ControlGUI.POWER_ON_COMMAND);
+        super(new ControlGUI(),new MachineExecutor<GenericState>(new CDPlayerMachine()),ControlGUI.POWER_ON_COMMAND);
     }
 
     /**
@@ -49,8 +51,8 @@ public class CDPlayer3 extends GraphicalMachine {
      */
     @Override
     public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getStateName());
-        ((JLabel)gui.getComponent("track")).setText(new Integer(((CDPlayerMachine)machine).getTrack()).toString());
+        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
+        ((JLabel)gui.getComponent("track")).setText(machine.getRuntimeState().get("track").toString());
     }
 
 }

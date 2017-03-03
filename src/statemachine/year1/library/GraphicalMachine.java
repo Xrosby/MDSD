@@ -35,6 +35,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import quickqui.QuickGUI;
+import statemachine.year1.cdplayer.CDPlayer1.ControlGUI;
+import statemachine.year2.framework.MachineExecutor;
+import statemachine.year3.dsl.GenericState;
 
 /**
  * Generic infrastructure for having a GUI for a state machine
@@ -67,7 +70,7 @@ public abstract class GraphicalMachine<T extends RuntimeState> implements Action
         this.machine.addObserver(this);
     }
 
-    /**
+	/**
      * Handle events generated from the GUI
      */
     public void actionPerformed(ActionEvent e) {
