@@ -7,7 +7,6 @@ import java.util.Random;
 
 import statemachine.year1.library.Event;
 import statemachine.year1.library.IMachine;
-import statemachine.year1.library.IRuntimeState;
 import statemachine.year2.cdplayer.CDPlayerMachine.CD;
 import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
 import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
@@ -72,9 +71,9 @@ public class Benchmark {
 
 	// Lists of the various implementations of state machines, by type
 	
-	private List<IMachine> machines_cdplayer = Arrays.asList(machinesList_cdplayer);
-	private List<IMachine> machines_cookinghood = Arrays.asList(machinesList_cookinghood);
-	private List<IMachine> machines_microwaveoven = Arrays.asList(machinesList_microwaveoven);
+	private List<IMachine<?>> machines_cdplayer = Arrays.asList(machinesList_cdplayer);
+	private List<IMachine<?>> machines_cookinghood = Arrays.asList(machinesList_cookinghood);
+	private List<IMachine<?>> machines_microwaveoven = Arrays.asList(machinesList_microwaveoven);
 
 	// Enumeration of the events supported by each type of state machine
 	
@@ -86,9 +85,9 @@ public class Benchmark {
 	 * An experiment: a machine and a sequence of events to feed that machine
 	 */
 	private class Experiment {
-		private IMachine machine;
+		private IMachine<?> machine;
 		private Event[] events;
-		public Experiment(IMachine machine, Event[] events) {
+		public Experiment(IMachine<?> machine, Event[] events) {
 			this.machine = machine; this.events = events;
 			machine.initialize();
 		}
@@ -139,8 +138,8 @@ public class Benchmark {
 	 * @param machines the machines to generate experiments for
 	 * @param events the events to include in each experiment
 	 */
-	private void insertExperiments(List<Experiment> result, List<IMachine> machines, Event[] events) {
-		for(IMachine m: machines) result.add(new Experiment(m,events));
+	private void insertExperiments(List<Experiment> result, List<IMachine<?>> machines, Event[] events) {
+		for(IMachine<?> m: machines) result.add(new Experiment(m,events));
 	}
 
 	/**

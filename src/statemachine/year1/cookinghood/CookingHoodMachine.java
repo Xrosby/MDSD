@@ -29,10 +29,10 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year1.cookinghood;
 
-import statemachine.year1.library.MachineWithInternalState;
+import statemachine.year1.library.Machine;
 import statemachine.year1.library.State;
 
-public class CookingHoodMachine extends MachineWithInternalState {
+public class CookingHoodMachine extends Machine {
     // Constants
     public static final int MAX_POWER = 6;
     public static final int MIN_POWER = 1;

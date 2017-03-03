@@ -52,8 +52,8 @@ public interface IMachine<T extends IRuntimeState> {
      */
     public void addObserver(Observer observer);
     /**
-     * Get the name of the currently active state
-     * @return name of currently active state
+     * Get the runtime state of the currently executing machine
+     * @return the current runtime state
      */
     public T getRuntimeState();
 }

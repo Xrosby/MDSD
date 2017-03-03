@@ -36,12 +36,12 @@ import java.util.Observable;
  * and can process events by sending them to the current state
  * @author ups
  */
-public abstract class Machine<T extends SimpleRuntimeState> extends Observable implements IMachine<T> {
+public abstract class Machine extends Observable implements IMachine<SimpleRuntimeState> {
     
 	/**
 	 * The currently active state
 	 */
-    private T currentState = createCurrentState();
+    private SimpleRuntimeState currentState;
     
     /**
      * Initialize the state machine
@@ -52,8 +52,6 @@ public abstract class Machine<T extends SimpleRuntimeState> extends Observable i
         notifyObservers();
     }
     
-    protected abstract T createCurrentState();
-
 	/**
      * Directly set the current state of the state machine
      * @param state the future current state
@@ -78,7 +76,9 @@ public abstract class Machine<T extends SimpleRuntimeState> extends Observable i
      */
     protected abstract State getInitialState();
 
-    public T getRuntimeState() {
+	protected SimpleRuntimeState createCurrentState() { return new SimpleRuntimeState(); }
+    
+    public SimpleRuntimeState getRuntimeState() {
     	return currentState;
     }
 
