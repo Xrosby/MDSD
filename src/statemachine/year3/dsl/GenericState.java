@@ -34,20 +34,40 @@ import java.util.Set;
 
 import statemachine.year2.framework.AbstractRuntimeState;
 
+/**
+ * Generic extended state representation based on a map
+ * @author ups
+ */
 public class GenericState extends AbstractRuntimeState<GenericState> {
-
+	/**
+	 * The extended state
+	 */
 	private Map<String,Integer> values = new HashMap<>();
 
+	/**
+	 * Construct a generic state of the given set of variables
+	 * @param variables the set of legal names in the state machine
+	 */
 	public GenericState(Set<String> variables) {
 		for(String v: variables)
 			values.put(v, 0);
 	}
 
+	/**
+	 * Look up the value of a variable
+	 * @param name the name of the variable
+	 * @return the value of the variable
+	 */
 	public Integer get(String name) {
 		if(!values.containsKey(name)) throw new Error("Undeclared variable: "+name);
 		return values.get(name);
 	}
 
+	/**
+	 * Set the value of a variable
+	 * @param name the name of the variable to set
+	 * @param value the value to set the variable to
+	 */
 	public void set(String name, int value) {
 		if(!values.containsKey(name)) throw new Error("Undeclared variable: "+name);
 		values.put(name, value);

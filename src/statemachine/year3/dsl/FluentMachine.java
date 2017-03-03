@@ -244,6 +244,22 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
     	this.factory = factory;
     }
     
+    /**
+     * Add a new integer state to the state machine
+     * @param name the name of the extended state variable
+     */
+    public void integerState(String name) {
+    	this.extendedStateVariables.add(name);
+    }
+    
+    /**
+     * Create an instance of the extended state required for this statemachien
+     */
+	@Override
+	protected GenericState createExtendedState() {
+		return new GenericState(this.extendedStateVariables);
+	}
+    
     public static class TransitionFactory {
     	/**
     	 * Hook method allowing the creation of a transition to be changed, as specified by the arguments.
@@ -264,14 +280,5 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
     				cond, condVariableMaybe,condValue);
     	}
     }
-    
-    public void integerState(String name) {
-    	this.extendedStateVariables.add(name);
-    }
-    
-	@Override
-	protected GenericState createExtendedState() {
-		return new GenericState(this.extendedStateVariables);
-	}
 
 }
