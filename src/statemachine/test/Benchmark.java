@@ -7,7 +7,7 @@ import java.util.Random;
 
 import statemachine.year1.library.Event;
 import statemachine.year1.library.IMachine;
-import statemachine.year1.library.RuntimeState;
+import statemachine.year1.library.IRuntimeState;
 import statemachine.year2.cdplayer.CDPlayerMachine.CD;
 import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
 import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;

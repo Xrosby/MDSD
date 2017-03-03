@@ -1,6 +1,6 @@
 package statemachine.year1.library;
 
-public class SimpleRuntimeState implements RuntimeState {
+public class SimpleRuntimeState implements IRuntimeState {
 	private State currentState;
 	public void setState(State state) { currentState = state; }
 	public State getState() { return currentState; }

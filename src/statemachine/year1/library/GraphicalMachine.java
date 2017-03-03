@@ -43,7 +43,7 @@ import statemachine.year3.dsl.GenericState;
  * Generic infrastructure for having a GUI for a state machine
  * @author ups
  */
-public abstract class GraphicalMachine<T extends RuntimeState> implements ActionListener, Observer {
+public abstract class GraphicalMachine<T extends IRuntimeState> implements ActionListener, Observer {
 	/**
 	 * The GUI of the machine
 	 */
