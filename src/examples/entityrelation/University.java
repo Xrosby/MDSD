@@ -30,7 +30,7 @@ either expressed or implied, of the University of Southern Denmark.
 package examples.entityrelation;
 
 import entityrelation.Entity;
-import entityrelation.EntityRelationSystem;
+import entityrelation.model.EntityRelationSystem;
 
 /**
  * Entity-Relation example: small hierarchy of Student,Teacher extending Person and being related through Course

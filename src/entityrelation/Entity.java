@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.Map.Entry;
 
 import entityrelation.model.EntityField;
+import entityrelation.model.EntityRelationSystem;
 import entityrelation.model.EntityType;
 
 /**

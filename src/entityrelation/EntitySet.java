@@ -3,6 +3,8 @@ package entityrelation;
 import java.util.HashSet;
 import java.util.Set;
 
+import entityrelation.model.EntityRelationSystem;
+
 /**
  * Placeholder class for results returned from getMulti
  * @author ups

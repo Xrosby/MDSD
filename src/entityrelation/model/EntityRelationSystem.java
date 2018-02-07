@@ -27,13 +27,12 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-package entityrelation;
+package entityrelation.model;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import entityrelation.model.EntityField;
-import entityrelation.model.EntityType;
+import entityrelation.Entity;
 
 /**
  * Entity-Relation example: specialization of entities, they can change class, and have binary n-n relations
