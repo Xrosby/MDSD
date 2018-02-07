@@ -41,8 +41,13 @@ public class EntitiesLambda {
 			s.entity("Student", "Person", e -> {
 				e.field(String.class, "id");
 			});
+			s.entity("Teacher", "Person", e -> {
+				e.field(String.class, "title");
+			});
 		});
 	}
+
+	// Builder definitions, placed in this class to show declarations, place elsewhere in real system
 	
 	private IBuilder builder;
 	private interface IBuilder {
