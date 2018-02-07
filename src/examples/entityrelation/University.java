@@ -62,10 +62,10 @@ public class University extends EntityRelationSystem {
      */
     void main() {
         Entity ulrik = new Entity(this, "Teacher","Ulrik",41,EMPTY);
-        Entity swc = new Entity(this, "Course","SWC",EMPTY,ulrik);
+        Entity mdsd = new Entity(this, "Course","MDSD",EMPTY,ulrik);
         Entity opn = new Entity(this, "Course","OPN",EMPTY,ulrik);
-        new Entity(this, "Student","John",23,9123456,EMPTY).associate("follows",swc);
-        new Entity(this, "Student","Doe",23,234234,EMPTY).associate("follows",swc);
+        new Entity(this, "Student","John",23,9123456,EMPTY).associate("follows",mdsd);
+        new Entity(this, "Student","Doe",23,234234,EMPTY).associate("follows",mdsd);
         new Entity(this, "Student","Jane",23,8347543,EMPTY).associate("follows",opn);
         System.out.println("Ulriks students: "+ulrik.getMulti("teaches").getMulti("enrolled"));
     }
