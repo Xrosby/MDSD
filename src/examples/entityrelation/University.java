@@ -30,13 +30,13 @@ either expressed or implied, of the University of Southern Denmark.
 package examples.entityrelation;
 
 import entityrelation.Entity;
-import entityrelation.EntityRelation;
+import entityrelation.EntityRelationSystem;
 
 /**
  * Entity-Relation example: small hierarchy of Student,Teacher extending Person and being related through Course
  * @author ups
  */
-public class University extends EntityRelation {
+public class University extends EntityRelationSystem {
 
     /*
      * Build concrete instance of semantic model

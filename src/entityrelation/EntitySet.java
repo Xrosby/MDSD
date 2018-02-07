@@ -11,7 +11,7 @@ public class EntitySet {
     /**
 	 * The entity relation system in which this entity set exists
 	 */
-	private final EntityRelation entityRelationSystem;
+	private final EntityRelationSystem entityRelationSystem;
 	/**
      *  Contents of the result
      */
@@ -21,7 +21,7 @@ public class EntitySet {
      * @param set the set to hold
      * @param entityRelation TODO
      */
-    public EntitySet(EntityRelation entityRelation, Set<Entity> set) {
+    public EntitySet(EntityRelationSystem entityRelation, Set<Entity> set) {
         entityRelationSystem = entityRelation;
 		contents.addAll(set);
     }

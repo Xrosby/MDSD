@@ -21,7 +21,7 @@ public class Entity {
     /**
 	 * The entity relation system in which this entity exists
 	 */
-	private final EntityRelation entityRelationSystem;
+	private final EntityRelationSystem entityRelationSystem;
 	/**
      * Type of the entity (describes all of its contents)
      */
@@ -36,7 +36,7 @@ public class Entity {
      * @param contents one argument for each of the contents to be stored in the array
      * @param entityRelation TODO
      */
-    public Entity(EntityRelation entityRelation, String typeName, Object ... contents) {
+    public Entity(EntityRelationSystem entityRelation, String typeName, Object ... contents) {
         entityRelationSystem = entityRelation;
 		initialize(typeName,contents);
     }

@@ -43,7 +43,7 @@ import entityrelation.model.EntityType;
  *  
  * @author ups
  */
-public abstract class EntityRelation {
+public abstract class EntityRelationSystem {
 
     /**
      *  Empty set of entities (convenience syntax)
@@ -59,7 +59,7 @@ public abstract class EntityRelation {
     /**
      * Initialize entity-relation system by building semantic model
      */
-    public EntityRelation() {
+    public EntityRelationSystem() {
         this.build();
         getEntities().put(current.getName(),current);
     }
@@ -69,7 +69,7 @@ public abstract class EntityRelation {
      * @param name the name of the type of the entity
      * @return the builder (for further construction)
      */
-    public EntityRelation entity(String name) {
+    public EntityRelationSystem entity(String name) {
         if(current!=null) getEntities().put(current.getName(), current);
         current = new EntityType(name);
         return this;
@@ -79,7 +79,7 @@ public abstract class EntityRelation {
      * @param name the name of the entity type to sub-type
      * @return the builder (for further construction)
      */
-    public EntityRelation sub(String name) {
+    public EntityRelationSystem sub(String name) {
         current.set_super(getEntities().get(name));
         current.getFields().addAll(current.get_super().getFields());
         return this;
@@ -90,7 +90,7 @@ public abstract class EntityRelation {
      * @param name the name of the attribute
      * @return the builder (for further construction)
      */
-    public EntityRelation attribute(Class<?> type, String name) {
+    public EntityRelationSystem attribute(Class<?> type, String name) {
         current.getFields().add(new EntityField(name,null,type,false));
         return this;
     }
@@ -101,7 +101,7 @@ public abstract class EntityRelation {
      * @param inverse the name of the inverse relation (from target to this object)
      * @return the builder (for further construction)
      */
-    public EntityRelation relation_1_n(String name, String target, String inverse) {
+    public EntityRelationSystem relation_1_n(String name, String target, String inverse) {
         current.getFields().add(new EntityField(name,inverse,Entity.class,false));
         getEntities().get(target).getFields().add(new EntityField(inverse,name,Entity.class,true));
         return this;
@@ -113,7 +113,7 @@ public abstract class EntityRelation {
      * @param inverse the name of the inverse relation (from target to this object)
      * @return the builder (for further construction)
      */
-    public EntityRelation relation_n_1(String name, String target, String inverse) {
+    public EntityRelationSystem relation_n_1(String name, String target, String inverse) {
         current.getFields().add(new EntityField(name,inverse,Entity.class,true));
         getEntities().get(target).getFields().add(new EntityField(inverse,name,Entity.class,false));
         return this;
@@ -125,7 +125,7 @@ public abstract class EntityRelation {
      * @param inverse the name of the inverse relation (from target to this object)
      * @return the builder (for further construction)
      */
-    public EntityRelation relation_n_n(String name, String target, String inverse) {
+    public EntityRelationSystem relation_n_n(String name, String target, String inverse) {
         current.getFields().add(new EntityField(name,inverse,Entity.class,true));
         getEntities().get(target).getFields().add(new EntityField(inverse,name,Entity.class,true));
         return this;
