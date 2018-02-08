@@ -4,10 +4,10 @@ Created on 9 Jan 2018
 @author: ups
 '''
 
-import example
+import university
 import model
 
 if __name__ == '__main__':
     printer = model.SimplePrinter()
-    for e in example.university.entities.values():
+    for e in university.university.entities.values():
         e.dispatch(printer)
