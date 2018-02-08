@@ -36,17 +36,17 @@ public class SimpleRuntimeState implements IRuntimeState {
 	/**
 	 * The current state of the statemachine
 	 */
-	private State activeState;
+	private State currentState;
 	/**
 	 * Set the current state of the statemachine
 	 * @param state the new state
 	 */
-	public void setState(State state) { activeState = state; }
+	public void setState(State state) { currentState = state; }
 	/**
 	 * Get the current state of the statemachine
 	 * @return the current state
 	 */
-	public State getState() { return activeState; }
+	public State getState() { return currentState; }
 	/**
 	 * Reset the runtime state
 	 */
@@ -55,5 +55,5 @@ public class SimpleRuntimeState implements IRuntimeState {
 	 * Get the name of the currently executing state
 	 * @return The name of the current state
 	 */
-	public String getStateName() { return activeState.toString(); }
+	public String getStateName() { return currentState.toString(); }
 }

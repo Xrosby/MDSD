@@ -41,7 +41,7 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
 	/**
 	 * The currently active state
 	 */
-    private SimpleRuntimeState currentState;
+    private SimpleRuntimeState activeState;
     
     /**
      * Initialize the state machine
@@ -57,15 +57,15 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
      * @param state the future current state
      */
     public void setState(State state) {
-        currentState.setState(state);
+        activeState.setState(state);
     }
 
     /**
      * Process an incoming event, triggering appropriate transitions depending on the current state
      */
     public void processEvent(Event event) {
-        if(currentState==null) throw new Error("State machine not initialized");
-        currentState.getState().processEvent(event);
+        if(activeState==null) throw new Error("State machine not initialized");
+        activeState.getState().processEvent(event);
         setChanged();
         notifyObservers();
     }
@@ -86,7 +86,7 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
 	 * Get the current runtime state of the machine
 	 */
     public SimpleRuntimeState getRuntimeState() {
-    	return currentState;
+    	return activeState;
     }
 
 }
