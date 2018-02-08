@@ -39,13 +39,13 @@ public abstract class State {
 	/**
 	 * The state machine to which this state belongs
 	 */
-    private IMachine<SimpleRuntimeState> machine;
+    private IMachine<SimpleRuntime> machine;
 
     /**
      * Create a state belonging to the given state machine
      * @param machine the state machine to which this state belongs
      */
-    public State(IMachine<SimpleRuntimeState> machine) {
+    public State(IMachine<SimpleRuntime> machine) {
         this.machine = machine;
     }
 

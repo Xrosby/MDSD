@@ -32,7 +32,7 @@ package statemachine.year4.cookinghood;
 import javax.swing.JLabel;
 
 import statemachine.year1.library.GraphicalMachine;
-import statemachine.year1.library.IRuntimeState;
+import statemachine.year1.library.IRuntime;
 import statemachine.year1.cookinghood.CookingHood1.ControlGUI;
 import statemachine.generated.CookingHoodImpl;
 
@@ -41,7 +41,7 @@ import statemachine.generated.CookingHoodImpl;
  * @author ups
  *
  */
-public class CookingHood4 extends GraphicalMachine<IRuntimeState> {
+public class CookingHood4 extends GraphicalMachine<IRuntime> {
 
 	/**
 	 * Run the example

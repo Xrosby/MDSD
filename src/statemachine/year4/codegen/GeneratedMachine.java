@@ -34,7 +34,7 @@ import java.util.Observable;
 
 import statemachine.year1.library.Event;
 import statemachine.year1.library.IMachine;
-import statemachine.year1.library.IRuntimeState;
+import statemachine.year1.library.IRuntime;
 
 /**
  * Abstract class that serves as the basis for code generated for statemachines.
@@ -42,7 +42,7 @@ import statemachine.year1.library.IRuntimeState;
  * @author ups
  *
  */
-public abstract class GeneratedMachine extends Observable implements IMachine<IRuntimeState> {
+public abstract class GeneratedMachine extends Observable implements IMachine<IRuntime> {
 
 	/**
 	 * The current state of the state machine, represented as an integer
@@ -83,8 +83,8 @@ public abstract class GeneratedMachine extends Observable implements IMachine<IR
 	 * @return the current state
 	 */
 	@Override
-	public IRuntimeState getRuntimeState() {
-		return new IRuntimeState() {
+	public IRuntime getRuntimeState() {
+		return new IRuntime() {
 			@Override public void reset() { }
 			@Override public String getStateName() { return state_int2code.get(state); }
 		};

@@ -32,13 +32,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import statemachine.year2.framework.AbstractRuntimeState;
+import statemachine.year2.framework.AbstractRuntime;
 
 /**
  * Generic extended state representation based on a map
  * @author ups
  */
-public class GenericState extends AbstractRuntimeState<GenericState> {
+public class GenericState extends AbstractRuntime<GenericState> {
 	/**
 	 * The extended state
 	 */

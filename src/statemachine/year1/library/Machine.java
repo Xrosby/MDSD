@@ -36,12 +36,12 @@ import java.util.Observable;
  * and can process events by sending them to the current state
  * @author ups
  */
-public abstract class Machine extends Observable implements IMachine<SimpleRuntimeState> {
+public abstract class Machine extends Observable implements IMachine<SimpleRuntime> {
     
 	/**
 	 * The currently active state
 	 */
-    private SimpleRuntimeState runtimeState;
+    private SimpleRuntime runtime;
     
     /**
      * Initialize the state machine
@@ -57,15 +57,15 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
      * @param state the future current state
      */
     public void setState(State state) {
-        runtimeState.setState(state);
+        runtime.setState(state);
     }
 
     /**
      * Process an incoming event, triggering appropriate transitions depending on the current state
      */
     public void processEvent(Event event) {
-        if(runtimeState==null) throw new Error("State machine not initialized");
-        runtimeState.getState().processEvent(event);
+        if(runtime==null) throw new Error("State machine not initialized");
+        runtime.getState().processEvent(event);
         setChanged();
         notifyObservers();
     }
@@ -80,13 +80,13 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
      * Factory method for creating an instance of the state required for the given statemachine
      * @return new instance of the corresponding state class
      */
-	protected SimpleRuntimeState createCurrentState() { return new SimpleRuntimeState(); }
+	protected SimpleRuntime createCurrentState() { return new SimpleRuntime(); }
     
 	/**
 	 * Get the current runtime state of the machine
 	 */
-    public SimpleRuntimeState getRuntimeState() {
-    	return runtimeState;
+    public SimpleRuntime getRuntimeState() {
+    	return runtime;
     }
 
 }

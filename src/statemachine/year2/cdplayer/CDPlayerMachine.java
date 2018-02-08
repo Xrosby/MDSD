@@ -32,7 +32,7 @@ package statemachine.year2.cdplayer;
 import java.util.Arrays;
 import java.util.List;
 
-import statemachine.year2.framework.AbstractRuntimeState;
+import statemachine.year2.framework.AbstractRuntime;
 import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
@@ -40,7 +40,7 @@ import statemachine.year2.cdplayer.CDPlayerMachine.CD;
 
 public class CDPlayerMachine extends MachineDescription<CD> {
 
-	public static class CD extends AbstractRuntimeState<CD> {
+	public static class CD extends AbstractRuntime<CD> {
 		public int track;
 		@Override public void reset() { track = 0; }
 	}

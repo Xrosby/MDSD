@@ -32,7 +32,7 @@ package statemachine.year2.microwaveoven;
 import java.util.Arrays;
 import java.util.List;
 
-import statemachine.year2.framework.AbstractRuntimeState;
+import statemachine.year2.framework.AbstractRuntime;
 import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
@@ -40,7 +40,7 @@ import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
 
 public class MicrowaveMachine extends MachineDescription<MMS> {
 
-	public static class MMS extends AbstractRuntimeState<MMS> {	}
+	public static class MMS extends AbstractRuntime<MMS> {	}
 	
     // States
     private State<MMS> STATE_INACTIVE, STATE_COOKING, STATE_DOOR_OPEN;

@@ -33,9 +33,9 @@ import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
 import statemachine.year1.library.GraphicalMachine;
-import statemachine.year1.library.SimpleRuntimeState;
+import statemachine.year1.library.SimpleRuntime;
 
-public class CDPlayer1 extends GraphicalMachine<SimpleRuntimeState> {
+public class CDPlayer1 extends GraphicalMachine<SimpleRuntime> {
 
     /**
      * GUI for CD player test

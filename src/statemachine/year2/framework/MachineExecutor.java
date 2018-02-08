@@ -43,7 +43,7 @@ import statemachine.year1.library.IMachine;
  * to state object (used to perform state transitions).
  * @author ups
  */
-public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observable implements IMachine<T> {
+public class MachineExecutor<T extends AbstractRuntime<T>> extends Observable implements IMachine<T> {
 
     /**
      * Initial state
@@ -54,9 +54,9 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
      */
     private Map<String,State<T>> states = new HashMap<String,State<T>>();
     /**
-     * Extended state
+     * Runtime, including extended state
      */
-    private T runtimeState;
+    private T runtime;
     
     /**
      * Initialize the state machine based on the machine description
@@ -66,14 +66,14 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
         for(State<T> state: allStates)
             states.put(state.getName(), state);
         initialStateName = allStates.get(0).getName();
-        runtimeState = description.createExtendedState();
+        runtime = description.createExtendedState();
     }
     
     /**
      * Reset the state machine 
      */
     public void initialize() {
-    	runtimeState.reset();
+    	runtime.reset();
         setState(initialStateName);
         setChanged();
         notifyObservers();
@@ -86,22 +86,22 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
     public void setState(String stateid) {
         State<T> state = states.get(stateid);
         if(state==null) throw new Error("Illegal state identifier: "+stateid);
-        runtimeState.setState(state);
+        runtime.setState(state);
     }
 
     /**
      * Get the name of the currently active state
      */
     public String getStateName() {
-        return runtimeState.getStateName();
+        return runtime.getStateName();
     }
 
     /**
      * Process an incoming event based on the current state
      */
     public void processEvent(Event event) {
-        if(runtimeState.getState()==null) throw new Error("State machine not initialized");
-        runtimeState.getState().processEvent(this,event);
+        if(runtime.getState()==null) throw new Error("State machine not initialized");
+        runtime.getState().processEvent(this,event);
         setChanged();
         notifyObservers();
     }
@@ -111,7 +111,7 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
      */
 	@Override
 	public T getRuntimeState() {
-		return runtimeState;
+		return runtime;
 	}
 
 }

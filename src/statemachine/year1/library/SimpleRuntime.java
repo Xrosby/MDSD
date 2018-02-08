@@ -32,7 +32,7 @@ package statemachine.year1.library;
  * Simple representation of runtime state that does not include any variables
  * @author ups
  */
-public class SimpleRuntimeState implements IRuntimeState {
+public class SimpleRuntime implements IRuntime {
 	/**
 	 * The current state of the statemachine
 	 */

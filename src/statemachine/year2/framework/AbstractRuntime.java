@@ -26,21 +26,38 @@ The views and conclusions contained in the software and documentation are those
 of the authors and should not be interpreted as representing official policies, 
 either expressed or implied, of the University of Southern Denmark.
 */
-package statemachine.year1.library;
+package statemachine.year2.framework;
+
+import statemachine.year1.library.IRuntime;
 
 /**
- * Generic interface for representation of the runtime state of a state machine, 
- * allowing infrastructure for state machines to be reused between iterations
+ * Abstract baseclass for statemachine runtime states that can be specialized
+ * to hold the extended state required for a given statemachine
+ * @param <T> The specific type required to hold the extended state
  * @author ups
  */
-public interface IRuntimeState {
+public abstract class AbstractRuntime<T extends AbstractRuntime<T>> implements IRuntime {
+	/**
+	 * The current state of the statemachine
+	 */
+	private State<T> currentState;
+	/**
+	 * Set the current state of the statemachine
+	 * @param state the new state
+	 */
+	public void setState(State<T> state) { currentState = state; }
+	/**
+	 * Get the current state of the statemachine
+	 * @return the current state
+	 */
+	public State<T> getState() { return currentState; }
 	/**
 	 * Reset the runtime state
 	 */
-	public void reset();
+	public void reset() { ; }
 	/**
 	 * Get the name of the currently executing state
 	 * @return The name of the current state
 	 */
-	public String getStateName();
+	public String getStateName() { return currentState.toString(); }
 }
