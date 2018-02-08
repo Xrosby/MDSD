@@ -1,6 +1,6 @@
 package examples.formatter.model;
 
-public class FormatText extends FormatModel {
+public class FormatText extends FormatElement {
 
 	private String text;
 

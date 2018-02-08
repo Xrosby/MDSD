@@ -1,6 +1,6 @@
 package examples.formatter.model;
 
-public abstract class FormatModel {
+public abstract class FormatElement {
 
 	public abstract String format(Object[] inputs);
 	

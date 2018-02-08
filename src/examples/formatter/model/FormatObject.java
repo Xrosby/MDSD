@@ -2,7 +2,7 @@ package examples.formatter.model;
 
 import java.util.Calendar;
 
-public class FormatObject extends FormatModel {
+public class FormatObject extends FormatElement {
 
 	private int index;
 	private FormatKind kind;
