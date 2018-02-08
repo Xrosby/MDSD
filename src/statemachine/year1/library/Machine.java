@@ -47,6 +47,7 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
      * Initialize the state machine
      */
     public void initialize() {
+    		runtime = new SimpleRuntime();
         setState(getInitialState());
         setChanged();
         notifyObservers();
@@ -86,7 +87,7 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
 	 * Get the current runtime state of the machine
 	 */
     public SimpleRuntime getRuntimeState() {
-    	return runtime;
+    		return runtime;
     }
 
 }
