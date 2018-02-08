@@ -6,7 +6,7 @@ Created on 9 Jan 2018
 
 from dsl import *
 
-university = entitysystem(
+system = entitysystem(
     entity.Person.
       field(String.name).
       field(Integer.age).

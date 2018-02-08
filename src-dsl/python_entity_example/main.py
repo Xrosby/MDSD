@@ -9,5 +9,5 @@ import model
 
 if __name__ == '__main__':
     printer = model.SimplePrinter()
-    for e in university.university.entities.values():
+    for e in university.system.entities.values():
         e.dispatch(printer)
