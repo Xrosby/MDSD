@@ -29,10 +29,7 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year3.dsl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
@@ -46,6 +43,16 @@ import statemachine.year2.framework.Transition;
  */
 public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 
+	//
+	// Statemachine metamodel
+	//
+	
+	MachineMetaModel metamodel = new MachineMetaModel();
+
+	//
+	// Builder infrastructure
+	//	
+	
     // Enums defining the types of effects and conditions that can be used
 	
 	/**
@@ -58,11 +65,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
     public enum Condition { EQUAL, GREATER }
 
     // Accumulating variables for the builder
-    
-    /**
-     *  The complete list of all states (first is assumed to be initial)
-     */
-    private List<State<GenericRuntime>> allStates = new ArrayList<State<GenericRuntime>>();
+  
     /**
      *  The current state being built
      */
@@ -95,10 +98,6 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 	 * Flag indicating whether the model has been built
 	 */
 	private boolean modelIsBuilt = false;
-	/**
-	 * Set containing names of all extended state variables
-	 */
-	Set<String> extendedStateVariables = new HashSet<>();
 	
     /**
      * Build a machine using the fluent interface.  First call build (overridden in subclass),
@@ -113,7 +112,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
         build();
         flushTransition(null,null,0);
         if(currentState==null) throw new Error("Empty statemachine definition");
-        allStates.add(currentState);
+        metamodel.getAllStates().add(currentState);
         modelIsBuilt = true;
     }
     
@@ -123,9 +122,17 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
     @Override
 	public List<State<GenericRuntime>> getAllStates() {
     	buildMachine();
-        return allStates;
+        return metamodel.getAllStates();
     }
 
+    /**
+     * Create an instance of the extended state required for this statemachien
+     */
+	@Override
+	protected GenericRuntime createExtendedState() {
+		return new GenericRuntime(this.metamodel.getExtendedStateVariables());
+	}
+    
     /**
      * Override in subclasses, must define state machine using fluent interface (and initialize state variables)
      */
@@ -137,7 +144,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
     public FluentMachine state(String name) {
         if(currentState!=null) {
             flushTransition(null,null,0);
-            allStates.add(currentState);
+            metamodel.getAllStates().add(currentState);
         }
         currentState = new State<GenericRuntime>(name);
         return this;
@@ -168,7 +175,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
      */
     public FluentMachine setState(String variableName, int value) {
         effectMaybe = Effect.SET;
-        if(!this.extendedStateVariables.contains(variableName)) throw new Error("Undefined variable: "+variableName);
+        if(!this.metamodel.getExtendedStateVariables().contains(variableName)) throw new Error("Undefined variable: "+variableName);
         effectVariable = variableName;
         effectArgument = value;
         return this;
@@ -181,7 +188,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
      */
     public FluentMachine changeState(String variableName, int value) {
         effectMaybe = Effect.CHANGE;
-        if(!this.extendedStateVariables.contains(variableName)) throw new Error("Undefined variable: "+variableName);
+        if(!this.metamodel.getExtendedStateVariables().contains(variableName)) throw new Error("Undefined variable: "+variableName);
         effectVariable = variableName;
         effectArgument = value;
         return this;
@@ -249,16 +256,8 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
      * @param name the name of the extended state variable
      */
     public void integerState(String name) {
-    	this.extendedStateVariables.add(name);
+    	this.metamodel.getExtendedStateVariables().add(name);
     }
-    
-    /**
-     * Create an instance of the extended state required for this statemachien
-     */
-	@Override
-	protected GenericRuntime createExtendedState() {
-		return new GenericRuntime(this.extendedStateVariables);
-	}
     
     public static class TransitionFactory {
     	/**
