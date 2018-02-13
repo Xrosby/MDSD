@@ -29,7 +29,10 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year3.dsl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
@@ -113,6 +116,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 		flushTransition(null,null,0);
 		if(currentState==null) throw new Error("Empty statemachine definition");
 		metamodel.getAllStates().add(currentState);
+		checkNameConsistency();
 		modelIsBuilt = true;
 	}
 
@@ -259,6 +263,10 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 		this.metamodel.getExtendedStateVariables().add(name);
 	}
 
+	/**
+	 * Abstract transition creation for allowing override in DSL variations
+	 * @author ups
+	 */
 	public static class TransitionFactory {
 		/**
 		 * Hook method allowing the creation of a transition to be changed, as specified by the arguments.
@@ -277,6 +285,25 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 			return new GenericTransition(target,
 					effect,effectVarName,effectArg,
 					cond, condVariableMaybe,condValue);
+		}
+	}
+
+	/**
+	 * Check naming consistency, for now just state names
+	 */
+	private void checkNameConsistency() {
+		Set<String> allStateNames = new HashSet<>();
+		for(State<GenericRuntime> state: metamodel.getAllStates()) {
+			allStateNames.add(state.getName());
+		}
+		for(State<GenericRuntime> state: metamodel.getAllStates()) {
+			for(Map.Entry<String,List<Transition<GenericRuntime>>> transitionBlob: state.getAllTransitions().entrySet()) {
+				for(Transition<GenericRuntime> transition: transitionBlob.getValue()) {
+					String target = transition.getTarget();
+					if(target==null) continue; // Self transition?
+					if(!allStateNames.contains(target)) throw new Error("Illegal state name: "+transition.getTarget());
+				}
+			}
 		}
 	}
 

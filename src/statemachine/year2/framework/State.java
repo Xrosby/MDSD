@@ -30,6 +30,7 @@ either expressed or implied, of the University of Southern Denmark.
 package statemachine.year2.framework;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -121,5 +122,12 @@ public class State<T extends AbstractRuntime<T>> {
      */
     public List<Transition<T>> getTransitionsForEvent(String event) {
     	return transitions.get(event);
+    }
+    
+    /**
+     * Get all transitions (introspection)
+     */
+    public Map<String,List<Transition<T>>> getAllTransitions() {
+    		return Collections.unmodifiableMap(transitions);
     }
 }
