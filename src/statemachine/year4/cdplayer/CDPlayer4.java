@@ -33,7 +33,7 @@ import javax.swing.JLabel;
 
 import statemachine.year1.library.GraphicalMachine;
 import statemachine.year1.library.IRuntime;
-import statemachine.year3.dsl.GenericState;
+import statemachine.year3.dsl.GenericRuntime;
 import statemachine.year1.cdplayer.CDPlayer1.ControlGUI;
 import statemachine.generated.CDPlayerImpl;
 

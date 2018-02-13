@@ -33,17 +33,17 @@ import javax.swing.JLabel;
 
 import statemachine.year1.library.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
-import statemachine.year3.dsl.GenericState;
+import statemachine.year3.dsl.GenericRuntime;
 import statemachine.year1.cookinghood.CookingHood1.ControlGUI;
 
-public class CookingHood3 extends GraphicalMachine<GenericState> {
+public class CookingHood3 extends GraphicalMachine<GenericRuntime> {
 
     public static void main(String argv[]) {
         new CookingHood3();
     }
     
     public CookingHood3() {
-        super(new ControlGUI(),new MachineExecutor<GenericState>(new CookingHoodMachine()),ControlGUI.POWER_ON_COMMAND);
+        super(new ControlGUI(),new MachineExecutor<GenericRuntime>(new CookingHoodMachine()),ControlGUI.POWER_ON_COMMAND);
     }
 
     /**

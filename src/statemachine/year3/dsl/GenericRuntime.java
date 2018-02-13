@@ -38,7 +38,7 @@ import statemachine.year2.framework.AbstractRuntime;
  * Generic extended state representation based on a map
  * @author ups
  */
-public class GenericState extends AbstractRuntime<GenericState> {
+public class GenericRuntime extends AbstractRuntime<GenericRuntime> {
 	/**
 	 * The extended state
 	 */
@@ -48,7 +48,7 @@ public class GenericState extends AbstractRuntime<GenericState> {
 	 * Construct a generic state of the given set of variables
 	 * @param variables the set of legal names in the state machine
 	 */
-	public GenericState(Set<String> variables) {
+	public GenericRuntime(Set<String> variables) {
 		for(String v: variables)
 			values.put(v, 0);
 	}

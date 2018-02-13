@@ -33,17 +33,17 @@ import javax.swing.JLabel;
 
 import statemachine.year1.library.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
-import statemachine.year3.dsl.GenericState;
+import statemachine.year3.dsl.GenericRuntime;
 import statemachine.year1.cdplayer.CDPlayer1.ControlGUI;
 
-public class CDPlayer3 extends GraphicalMachine<GenericState> {
+public class CDPlayer3 extends GraphicalMachine<GenericRuntime> {
 
     public static void main(String argv[]) {
         new CDPlayer3();
     }
     
     public CDPlayer3() {
-        super(new ControlGUI(),new MachineExecutor<GenericState>(new CDPlayerMachine()),ControlGUI.POWER_ON_COMMAND);
+        super(new ControlGUI(),new MachineExecutor<GenericRuntime>(new CDPlayerMachine()),ControlGUI.POWER_ON_COMMAND);
     }
 
     /**

@@ -44,7 +44,7 @@ import statemachine.year2.framework.Transition;
  * model to be directly interpreted to run the state machine.
  * @author ups
  */
-public abstract class FluentMachine extends MachineDescription<GenericState> {
+public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 
     // Enums defining the types of effects and conditions that can be used
 	
@@ -62,11 +62,11 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
     /**
      *  The complete list of all states (first is assumed to be initial)
      */
-    private List<State<GenericState>> allStates = new ArrayList<State<GenericState>>();
+    private List<State<GenericRuntime>> allStates = new ArrayList<State<GenericRuntime>>();
     /**
      *  The current state being built
      */
-    private State<GenericState> currentState;
+    private State<GenericRuntime> currentState;
     /**
      *  The current event that transitions are being defined for
      */
@@ -121,7 +121,7 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
      * Get list of all states in the state machine
      */
     @Override
-	public List<State<GenericState>> getAllStates() {
+	public List<State<GenericRuntime>> getAllStates() {
     	buildMachine();
         return allStates;
     }
@@ -139,7 +139,7 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
             flushTransition(null,null,0);
             allStates.add(currentState);
         }
-        currentState = new State<GenericState>(name);
+        currentState = new State<GenericRuntime>(name);
         return this;
     }
     
@@ -225,7 +225,7 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
         if(pendingEvent==null) return; // Nothing to flush
         if(targetTransition==null && effectMaybe==null) return; // empty transition
         // Define transition and add to current state
-        Transition<GenericState> transition = 
+        Transition<GenericRuntime> transition = 
         		factory.createTransitionHook(targetTransition, 
         				effectMaybe, effectVariable, effectArgument, 
         				cond, condVariableNameMaybe, condValue);
@@ -256,8 +256,8 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
      * Create an instance of the extended state required for this statemachien
      */
 	@Override
-	protected GenericState createExtendedState() {
-		return new GenericState(this.extendedStateVariables);
+	protected GenericRuntime createExtendedState() {
+		return new GenericRuntime(this.extendedStateVariables);
 	}
     
     public static class TransitionFactory {
@@ -272,7 +272,7 @@ public abstract class FluentMachine extends MachineDescription<GenericState> {
     	 * @param condValue the value used in the condition, if any
     	 * @return a transition object created according to the specification.
     	 */
-    	protected Transition<GenericState> createTransitionHook(String target, 
+    	protected Transition<GenericRuntime> createTransitionHook(String target, 
     			Effect effect, String effectVarName, int effectArg, 
     			Condition cond, String condVariableMaybe, int condValue) {
     		return new GenericTransition(target,
