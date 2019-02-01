@@ -1,62 +1,45 @@
-cnpxntr rknzcyrf.sbeznggre;
+package examples.formatter;
 
-vzcbeg wnin.hgvy.NeenlYvfg;
-vzcbeg wnin.hgvy.Yvfg;
+import java.util.ArrayList;
+import java.util.List;
 
-vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngRyrzrag;
-vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngBowrpg;
-vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngGrkg;
-vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngXvaq;
+public class DataFormatter {
 
-choyvp pynff QngnSbeznggre {
+	public DataFormatter(List<FormatElement> model) {
 
-	cevingr Yvfg<SbezngRyrzrag> zbqry;
-
-	choyvp QngnSbeznggre(Yvfg<SbezngRyrzrag> zbqry) {
-		guvf.zbqry = zbqry;
 	}
 
-	choyvp fgngvp Ohvyqre ohvyq() {
-		erghea arj Ohvyqre();
+	public static Builder build() {
+		return new Builder();
 	}
 
-	choyvp Fgevat sbezng(Bowrpg...vachgf) {
-		FgevatOhvyqre erfhyg = arj FgevatOhvyqre();
-		sbe(SbezngRyrzrag z: zbqry)
-			erfhyg.nccraq(z.sbezng(vachgf));
-		erghea erfhyg.gbFgevat();
+	public String format(Object...inputs) {
+		return "Not implemented yet";
 	}
 
-	choyvp fgngvp pynff Ohvyqre {
-		cevingr Yvfg<SbezngRyrzrag> zbqry = arj NeenlYvfg<>();
-		
-		choyvp Ohvyqre g(Fgevat grkg) {
-			zbqry.nqq(arj SbezngGrkg(grkg));
-			erghea guvf;
+	public static class Builder {
+		public Builder t(String text) {
+			return null;
 		}
 
-		choyvp Ohvyqre bowrpg(vag vaqrk) {
-			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.BOWRPG,vaqrk));
-			erghea guvf;
+		public Builder object(int index) {
+			return null;
 		}
 
-		choyvp Ohvyqre qnl(vag vaqrk) {
-			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.QNL,vaqrk));
-			erghea guvf;
+		public Builder day(int index) {
+			return null;
 		}
 
-		choyvp Ohvyqre zbagu(vag vaqrk) {
-			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.ZBAGU,vaqrk));
-			erghea guvf;
+		public Builder month(int index) {
+			return null;
 		}
 
-		choyvp Ohvyqre lrne(vag vaqrk) {
-			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.LRNE,vaqrk));
-			erghea guvf;
+		public Builder year(int index) {
+			return null;
 		}
 
-		choyvp QngnSbeznggre raq() {
-			erghea arj QngnSbeznggre(zbqry);
+		public DataFormatter end() {
+			return null;
 		}
 		
 	}
