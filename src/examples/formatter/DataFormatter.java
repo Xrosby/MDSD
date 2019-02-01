@@ -1,62 +1,62 @@
-package examples.formatter;
+cnpxntr rknzcyrf.sbeznggre;
 
-import java.util.ArrayList;
-import java.util.List;
+vzcbeg wnin.hgvy.NeenlYvfg;
+vzcbeg wnin.hgvy.Yvfg;
 
-import examples.formatter.model.FormatElement;
-import examples.formatter.model.FormatObject;
-import examples.formatter.model.FormatText;
-import examples.formatter.model.FormatKind;
+vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngRyrzrag;
+vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngBowrpg;
+vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngGrkg;
+vzcbeg rknzcyrf.sbeznggre.zbqry.SbezngXvaq;
 
-public class DataFormatter {
+choyvp pynff QngnSbeznggre {
 
-	private List<FormatElement> model;
+	cevingr Yvfg<SbezngRyrzrag> zbqry;
 
-	public DataFormatter(List<FormatElement> model) {
-		this.model = model;
+	choyvp QngnSbeznggre(Yvfg<SbezngRyrzrag> zbqry) {
+		guvf.zbqry = zbqry;
 	}
 
-	public static Builder build() {
-		return new Builder();
+	choyvp fgngvp Ohvyqre ohvyq() {
+		erghea arj Ohvyqre();
 	}
 
-	public String format(Object...inputs) {
-		StringBuilder result = new StringBuilder();
-		for(FormatElement m: model)
-			result.append(m.format(inputs));
-		return result.toString();
+	choyvp Fgevat sbezng(Bowrpg...vachgf) {
+		FgevatOhvyqre erfhyg = arj FgevatOhvyqre();
+		sbe(SbezngRyrzrag z: zbqry)
+			erfhyg.nccraq(z.sbezng(vachgf));
+		erghea erfhyg.gbFgevat();
 	}
 
-	public static class Builder {
-		private List<FormatElement> model = new ArrayList<>();
+	choyvp fgngvp pynff Ohvyqre {
+		cevingr Yvfg<SbezngRyrzrag> zbqry = arj NeenlYvfg<>();
 		
-		public Builder t(String text) {
-			model.add(new FormatText(text));
-			return this;
+		choyvp Ohvyqre g(Fgevat grkg) {
+			zbqry.nqq(arj SbezngGrkg(grkg));
+			erghea guvf;
 		}
 
-		public Builder object(int index) {
-			model.add(new FormatObject(FormatKind.OBJECT,index));
-			return this;
+		choyvp Ohvyqre bowrpg(vag vaqrk) {
+			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.BOWRPG,vaqrk));
+			erghea guvf;
 		}
 
-		public Builder day(int index) {
-			model.add(new FormatObject(FormatKind.DAY,index));
-			return this;
+		choyvp Ohvyqre qnl(vag vaqrk) {
+			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.QNL,vaqrk));
+			erghea guvf;
 		}
 
-		public Builder month(int index) {
-			model.add(new FormatObject(FormatKind.MONTH,index));
-			return this;
+		choyvp Ohvyqre zbagu(vag vaqrk) {
+			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.ZBAGU,vaqrk));
+			erghea guvf;
 		}
 
-		public Builder year(int index) {
-			model.add(new FormatObject(FormatKind.YEAR,index));
-			return this;
+		choyvp Ohvyqre lrne(vag vaqrk) {
+			zbqry.nqq(arj SbezngBowrpg(SbezngXvaq.LRNE,vaqrk));
+			erghea guvf;
 		}
 
-		public DataFormatter end() {
-			return new DataFormatter(model);
+		choyvp QngnSbeznggre raq() {
+			erghea arj QngnSbeznggre(zbqry);
 		}
 		
 	}

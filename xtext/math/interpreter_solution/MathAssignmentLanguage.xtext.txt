@@ -1,36 +1,36 @@
-grammar dk.sdu.mmmi.mdsd.MathAssignmentLanguage with org.eclipse.xtext.common.Terminals
+tenzzne qx.fqh.zzzv.zqfq.ZnguNffvtazragYnathntr jvgu bet.rpyvcfr.kgrkg.pbzzba.Grezvanyf
 
-generate mathAssignmentLanguage "http://www.sdu.dk/mmmi/mdsd/MathAssignmentLanguage"
+trarengr znguNffvtazragYnathntr "uggc://jjj.fqh.qx/zzzv/zqfq/ZnguNffvtazragYnathntr"
 
-MathExp:
-	'result' 'is' exp=Exp
+ZnguRkc:
+	'erfhyg' 'vf' rkc=Rkc
 ;
 
-Exp returns Expression:
-	Factor (('+' {Plus.left=current} | '-' {Minus.left=current}) right=Factor)*
+Rkc ergheaf Rkcerffvba:
+	Snpgbe (('+' {Cyhf.yrsg=pheerag} | '-' {Zvahf.yrsg=pheerag}) evtug=Snpgbe)*
 ;
 
-Factor returns Expression:
-	Primary (('*' {Mult.left=current} | '/' {Div.left=current}) right=Primary)*	
+Snpgbe ergheaf Rkcerffvba:
+	Cevznel (('*' {Zhyg.yrsg=pheerag} | '/' {Qvi.yrsg=pheerag}) evtug=Cevznel)*	
 ;
 
-Primary returns Expression:
-	Number | Parenthesis | VariableBinding | VariableUse
+Cevznel ergheaf Rkcerffvba:
+	Ahzore | Cneragurfvf | InevnoyrOvaqvat | InevnoyrHfr
 ;
 
-VariableUse returns Expression:
-	{Var} id=ID
+InevnoyrHfr ergheaf Rkcerffvba:
+	{Ine} vq=VQ
 ;
 
-VariableBinding returns Expression:
-	{Let} 'let' id=ID '=' binding=Exp 'in' body=Exp 'end'
+InevnoyrOvaqvat ergheaf Rkcerffvba:
+	{Yrg} 'yrg' vq=VQ '=' ovaqvat=Rkc 'va' obql=Rkc 'raq'
 ;
 
-Parenthesis returns Expression:
-	'(' Exp ')'
+Cneragurfvf ergheaf Rkcerffvba:
+	'(' Rkc ')'
 ;
 
-Number returns Expression:
-	{Num} value=INT
+Ahzore ergheaf Rkcerffvba:
+	{Ahz} inyhr=VAG
 ;
 

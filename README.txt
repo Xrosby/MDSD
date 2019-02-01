@@ -1,5 +1,5 @@
 Examples for the MDSD course in domain-specific programming languages at MMMI, SDU.
-Provided by Ulrik Pagh Schultz ups@mmmi.sdu.dk http://www.mmmi.sdu.dk/~ups
+Provided by Ulrik Pagh Schultz ups@mmmi.sdu.dk http://www.sdu.dk/staff/ups
 All files covered by the BSD open source license (see LICENSE.txt for details).
 
 Contents:
