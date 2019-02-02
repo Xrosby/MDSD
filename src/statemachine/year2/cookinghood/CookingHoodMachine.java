@@ -36,55 +36,55 @@ import statemachine.year2.framework.AbstractRuntimeState;
 import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
-import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
+import statemachine.year2.cookinghood.CookingHoodMachine.CookingHood;
 
-public class CookingHoodMachine extends MachineDescription<CHM> {
+public class CookingHoodMachine extends MachineDescription<CookingHood> {
 
     // Constants
     private static final int MIN_POWER = 1;
     private static final int MAX_POWER = 6;
 
     // States
-    private State<CHM> STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER;
+    private State<CookingHood> STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER;
     
     // Extended state
-	public static class CHM extends AbstractRuntimeState<CHM> {
+	public static class CookingHood extends AbstractRuntimeState<CookingHood> {
 		public int power;
 	}
 	
     // State machine definition
     public CookingHoodMachine() {
-        STATE_POWER_OFF = new State<CHM>("POWER_OFF");
-        STATE_POWER_OFF.addTransition("PLUS", new Transition<CHM>("POWER_ON") { 
-            @Override public void effect(CHM state) { state.power=MIN_POWER; }
+        STATE_POWER_OFF = new State<CookingHood>("POWER_OFF");
+        STATE_POWER_OFF.addTransition("PLUS", new Transition<CookingHood>("POWER_ON") { 
+            @Override public void effect(CookingHood state) { state.power=MIN_POWER; }
         });
-        STATE_POWER_ON = new State<CHM>("POWER_ON");
-        STATE_POWER_ON.addTransition("PLUS", new Transition<CHM>("MAX_POWER") {
-            @Override public boolean isApplicable(CHM state) { return state.power==MAX_POWER; } 
+        STATE_POWER_ON = new State<CookingHood>("POWER_ON");
+        STATE_POWER_ON.addTransition("PLUS", new Transition<CookingHood>("MAX_POWER") {
+            @Override public boolean isApplicable(CookingHood state) { return state.power==MAX_POWER; } 
         });
-        STATE_POWER_ON.addTransition("PLUS", new Transition<CHM>(null) {
-            @Override public void effect(CHM state) { state.power++; }
+        STATE_POWER_ON.addTransition("PLUS", new Transition<CookingHood>(null) {
+            @Override public void effect(CookingHood state) { state.power++; }
         });
-        STATE_POWER_ON.addTransition("MINUS", new Transition<CHM>("POWER_OFF") {
-           @Override public boolean isApplicable(CHM state) { return state.power==MIN_POWER; } 
+        STATE_POWER_ON.addTransition("MINUS", new Transition<CookingHood>("POWER_OFF") {
+           @Override public boolean isApplicable(CookingHood state) { return state.power==MIN_POWER; } 
         });
-        STATE_POWER_ON.addTransition("MINUS", new Transition<CHM>(null) {
-            @Override public void effect(CHM state) { state.power--; }
+        STATE_POWER_ON.addTransition("MINUS", new Transition<CookingHood>(null) {
+            @Override public void effect(CookingHood state) { state.power--; }
         });
-        STATE_MAX_POWER = new State<CHM>("MAX_POWER");
-        STATE_MAX_POWER.addTransition("MINUS", new Transition<CHM>("POWER_ON") {
-            @Override public void effect(CHM state) { state.power=MAX_POWER; }
+        STATE_MAX_POWER = new State<CookingHood>("MAX_POWER");
+        STATE_MAX_POWER.addTransition("MINUS", new Transition<CookingHood>("POWER_ON") {
+            @Override public void effect(CookingHood state) { state.power=MAX_POWER; }
         });
     }
     
     @Override
-    protected List<State<CHM>> getAllStates() {
+    protected List<State<CookingHood>> getAllStates() {
         return Arrays.asList(STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER);
     }
 
 	@Override
-	protected CHM createRuntimeState() {
-		return new CHM();
+	protected CookingHood createRuntimeState() {
+		return new CookingHood();
 	}
 
 }

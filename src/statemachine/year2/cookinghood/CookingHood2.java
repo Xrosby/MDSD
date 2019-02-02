@@ -34,16 +34,16 @@ import javax.swing.JLabel;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.generic.GUIforCookingHood;
 import statemachine.generic.GraphicalMachine;
-import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
+import statemachine.year2.cookinghood.CookingHoodMachine.CookingHood;
 
-public class CookingHood2 extends GraphicalMachine<CHM> {
+public class CookingHood2 extends GraphicalMachine<CookingHood> {
 
     public static void main(String argv[]) {
         new CookingHood2();
     }
     
     public CookingHood2() {
-        super(new GUIforCookingHood(),new MachineExecutor<CHM>(new CookingHoodMachine()),GUIforCookingHood.POWER_ON_COMMAND);
+        super(new GUIforCookingHood(),new MachineExecutor<CookingHood>(new CookingHoodMachine()),GUIforCookingHood.POWER_ON_COMMAND);
     }
 
     /**

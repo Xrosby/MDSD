@@ -34,16 +34,16 @@ import javax.swing.JLabel;
 import statemachine.generic.GUIforMicrowaveOven;
 import statemachine.generic.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
-import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
+import statemachine.year2.microwaveoven.MicrowaveMachine.Microwave;
 
-public class MicroWaveOven2 extends GraphicalMachine<MMS> {
+public class MicroWaveOven2 extends GraphicalMachine<Microwave> {
 
     public static void main(String argv[]) {
         new MicroWaveOven2();
     }
     
     public MicroWaveOven2() {
-        super(new GUIforMicrowaveOven(),new MachineExecutor<MMS>(new MicrowaveMachine()),GUIforMicrowaveOven.POWER_ON_COMMAND);
+        super(new GUIforMicrowaveOven(),new MachineExecutor<Microwave>(new MicrowaveMachine()),GUIforMicrowaveOven.POWER_ON_COMMAND);
     }
 
     /**

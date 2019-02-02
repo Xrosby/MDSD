@@ -36,60 +36,60 @@ import statemachine.year2.framework.AbstractRuntimeState;
 import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
-import statemachine.year2.cdplayer.CDPlayerMachine.CD;
+import statemachine.year2.cdplayer.CDPlayerMachine.CDPlayer;
 
-public class CDPlayerMachine extends MachineDescription<CD> {
+public class CDPlayerMachine extends MachineDescription<CDPlayer> {
 
-	public static class CD extends AbstractRuntimeState<CD> {
+	public static class CDPlayer extends AbstractRuntimeState<CDPlayer> {
 		public int track;
 		@Override public void resetExtendedState() { track = 0; }
 	}
 	
     // States
-    private State<CD> STATE_STOP, STATE_PLAYING, STATE_PAUSED;
+    private State<CDPlayer> STATE_STOP, STATE_PLAYING, STATE_PAUSED;
     
     // State machine definition
     public CDPlayerMachine() {
         // Forward and backward transitions are identical in STOPPED and PAUSED, share
-        Transition<CD> forward = new Transition<CD>(null) {
-            @Override public void effect(CD state) { state.track++; }
+        Transition<CDPlayer> forward = new Transition<CDPlayer>(null) {
+            @Override public void effect(CDPlayer state) { state.track++; }
         };
-        Transition<CD> backward = new Transition<CD>(null) {
-            @Override public boolean isApplicable(CD state) { return state.track>1; }
-            @Override public void effect(CD state) { state.track--; }
+        Transition<CDPlayer> backward = new Transition<CDPlayer>(null) {
+            @Override public boolean isApplicable(CDPlayer state) { return state.track>1; }
+            @Override public void effect(CDPlayer state) { state.track--; }
         };
         // Stop transition is identical in PLAYING and PAUSED, share
-        Transition<CD> stop = new Transition<CD>("STOP") {
-            @Override public void effect(CD state) { state.track=0; } 
+        Transition<CDPlayer> stop = new Transition<CDPlayer>("STOP") {
+            @Override public void effect(CDPlayer state) { state.track=0; } 
         };
         // Define states and transitions
-        STATE_STOP = new State<CD>("STOP");
-        STATE_STOP.addTransition("PLAY", new Transition<CD>("PLAYING") {
-           @Override public void effect(CD state) { if(state.track==0) state.track=1; } 
+        STATE_STOP = new State<CDPlayer>("STOP");
+        STATE_STOP.addTransition("PLAY", new Transition<CDPlayer>("PLAYING") {
+           @Override public void effect(CDPlayer state) { if(state.track==0) state.track=1; } 
         });
         STATE_STOP.addTransition("FORWARD", forward);
         STATE_STOP.addTransition("BACK", backward);
-        STATE_PLAYING = new State<CD>("PLAYING");
+        STATE_PLAYING = new State<CDPlayer>("PLAYING");
         STATE_PLAYING.addTransition("STOP", stop);
-        STATE_PLAYING.addTransition("PAUSE", new Transition<CD>("PAUSED"));
-        STATE_PLAYING.addTransition("TRACK_END", new Transition<CD>(null) {
-            @Override public void effect(CD state) { state.track++; }
+        STATE_PLAYING.addTransition("PAUSE", new Transition<CDPlayer>("PAUSED"));
+        STATE_PLAYING.addTransition("TRACK_END", new Transition<CDPlayer>(null) {
+            @Override public void effect(CDPlayer state) { state.track++; }
         });
-        STATE_PAUSED = new State<CD>("PAUSED");
-        STATE_PAUSED.addTransition("PLAY", new Transition<CD>("PLAYING"));
+        STATE_PAUSED = new State<CDPlayer>("PAUSED");
+        STATE_PAUSED.addTransition("PLAY", new Transition<CDPlayer>("PLAYING"));
         STATE_PAUSED.addTransition("STOP", stop);
         STATE_PAUSED.addTransition("FORWARD", forward);
         STATE_PAUSED.addTransition("BACK", backward);
     }
     
     @Override
-    protected List<State<CD>> getAllStates() {
+    protected List<State<CDPlayer>> getAllStates() {
         return Arrays.asList(STATE_STOP, STATE_PLAYING, STATE_PAUSED);
     }
 
 	@Override
-	protected CD createRuntimeState() {
-		return new CD();
+	protected CDPlayer createRuntimeState() {
+		return new CDPlayer();
 	}
 
 }
