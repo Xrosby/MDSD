@@ -32,7 +32,7 @@ package statemachine.year3.cdplayer;
 import javax.swing.JLabel;
 
 import statemachine.generic.CDPlayerGUI;
-import statemachine.year2.framework.GraphicalMachine;
+import statemachine.year1.library.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntime;
 

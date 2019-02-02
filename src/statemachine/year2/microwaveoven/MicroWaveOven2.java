@@ -31,9 +31,8 @@ package statemachine.year2.microwaveoven;
 
 import javax.swing.JLabel;
 
+import statemachine.year1.library.GraphicalMachine;
 import statemachine.year1.microwaveoven.MicroWaveOven1.ControlGUI;
-import statemachine.year2.framework.AbstractRuntime;
-import statemachine.year2.framework.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
 
