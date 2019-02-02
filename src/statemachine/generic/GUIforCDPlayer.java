@@ -6,7 +6,7 @@ import quickqui.QuickGUI.GUIModel.Layout;
 /**
  * GUI for CD player test
  */
-public class CDPlayerGUI extends QuickGUI.GUIModel {
+public class GUIforCDPlayer extends QuickGUI.GUIModel {
     
     public static String POWER_ON_COMMAND = "__ON__";
     

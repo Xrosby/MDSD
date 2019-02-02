@@ -31,8 +31,8 @@ package statemachine.year4.cookinghood;
 
 import javax.swing.JLabel;
 
-import statemachine.year1.cookinghood.CookingHood1.ControlGUI;
 import statemachine.generated.CookingHoodImpl;
+import statemachine.generic.GUIforCookingHood;
 import statemachine.generic.GraphicalMachine;
 import statemachine.generic.IRuntime;
 
@@ -54,7 +54,7 @@ public class CookingHood4 extends GraphicalMachine<IRuntime> {
      * Create cooking hood example and establish GUI
      */
     public CookingHood4() {
-        super(new ControlGUI(),new CookingHoodImpl(),ControlGUI.POWER_ON_COMMAND);
+        super(new GUIforCookingHood(),new CookingHoodImpl(),GUIforCookingHood.POWER_ON_COMMAND);
     }
 
     /**

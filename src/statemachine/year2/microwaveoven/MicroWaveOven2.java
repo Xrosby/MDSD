@@ -31,8 +31,8 @@ package statemachine.year2.microwaveoven;
 
 import javax.swing.JLabel;
 
+import statemachine.generic.GUIforMicrowaveOven;
 import statemachine.generic.GraphicalMachine;
-import statemachine.year1.microwaveoven.MicroWaveOven1.ControlGUI;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
 
@@ -43,7 +43,7 @@ public class MicroWaveOven2 extends GraphicalMachine<MMS> {
     }
     
     public MicroWaveOven2() {
-        super(new ControlGUI(),new MachineExecutor<MMS>(new MicrowaveMachine()),ControlGUI.POWER_ON_COMMAND);
+        super(new GUIforMicrowaveOven(),new MachineExecutor<MMS>(new MicrowaveMachine()),GUIforMicrowaveOven.POWER_ON_COMMAND);
     }
 
     /**

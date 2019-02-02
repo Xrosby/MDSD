@@ -32,9 +32,9 @@ package statemachine.year4.microwaveoven;
 import javax.swing.JLabel;
 
 import statemachine.generated.MicroWaveOvenImpl;
+import statemachine.generic.GUIforMicrowaveOven;
 import statemachine.generic.GraphicalMachine;
 import statemachine.generic.IRuntime;
-import statemachine.year1.microwaveoven.MicroWaveOven1.ControlGUI;
 
 /**
  * Cooking hood example using the code-generation CookingHood4Impl class
@@ -54,7 +54,7 @@ public class MicroWaveOven4 extends GraphicalMachine<IRuntime> {
      * Create cooking hood example and establish GUI
      */
     public MicroWaveOven4() {
-        super(new ControlGUI(),new MicroWaveOvenImpl(),ControlGUI.POWER_ON_COMMAND);
+        super(new GUIforMicrowaveOven(),new MicroWaveOvenImpl(),GUIforMicrowaveOven.POWER_ON_COMMAND);
     }
 
     /**

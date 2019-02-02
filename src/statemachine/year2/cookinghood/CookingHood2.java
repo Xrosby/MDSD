@@ -32,8 +32,8 @@ package statemachine.year2.cookinghood;
 import javax.swing.JLabel;
 
 import statemachine.year2.framework.MachineExecutor;
+import statemachine.generic.GUIforCookingHood;
 import statemachine.generic.GraphicalMachine;
-import statemachine.year1.cookinghood.CookingHood1.ControlGUI;
 import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
 
 public class CookingHood2 extends GraphicalMachine<CHM> {
@@ -43,7 +43,7 @@ public class CookingHood2 extends GraphicalMachine<CHM> {
     }
     
     public CookingHood2() {
-        super(new ControlGUI(),new MachineExecutor<CHM>(new CookingHoodMachine()),ControlGUI.POWER_ON_COMMAND);
+        super(new GUIforCookingHood(),new MachineExecutor<CHM>(new CookingHoodMachine()),GUIforCookingHood.POWER_ON_COMMAND);
     }
 
     /**

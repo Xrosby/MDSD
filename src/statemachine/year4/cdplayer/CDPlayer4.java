@@ -33,7 +33,7 @@ import javax.swing.JLabel;
 
 import statemachine.year3.dsl.GenericRuntime;
 import statemachine.generated.CDPlayerImpl;
-import statemachine.generic.CDPlayerGUI;
+import statemachine.generic.GUIforCDPlayer;
 import statemachine.generic.GraphicalMachine;
 import statemachine.generic.IRuntime;
 
@@ -55,7 +55,7 @@ public class CDPlayer4 extends GraphicalMachine<IRuntime> {
      * Create cooking hood example and establish GUI
      */
     public CDPlayer4() {
-        super(new CDPlayerGUI(),new CDPlayerImpl(),CDPlayerGUI.POWER_ON_COMMAND);
+        super(new GUIforCDPlayer(),new CDPlayerImpl(),GUIforCDPlayer.POWER_ON_COMMAND);
     }
 
     /**
