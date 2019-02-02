@@ -42,7 +42,7 @@ public class CDPlayerMachine extends MachineDescription<CD> {
 
 	public static class CD extends AbstractRuntime<CD> {
 		public int track;
-		@Override public void reset() { track = 0; }
+		@Override public void resetExtendedState() { track = 0; }
 	}
 	
     // States

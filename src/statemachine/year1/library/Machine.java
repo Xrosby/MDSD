@@ -50,8 +50,9 @@ public abstract class Machine extends Observable implements IMachine<BasicRuntim
      * Initialize the state machine
      */
     public void initialize() {
-    		runtime = new BasicRuntimeState();
+    		runtime = new BasicRuntimeState(this);
         setState(getInitialState());
+        this.resetExtendedState();
         setChanged();
         notifyObservers();
     }
@@ -84,7 +85,7 @@ public abstract class Machine extends Observable implements IMachine<BasicRuntim
      * Factory method for creating an instance of the state required for the given statemachine
      * @return new instance of the corresponding state class
      */
-	protected BasicRuntimeState createCurrentState() { return new BasicRuntimeState(); }
+	protected BasicRuntimeState createCurrentState() { return new BasicRuntimeState(this); }
     
 	/**
 	 * Get the current runtime state of the machine
@@ -93,4 +94,8 @@ public abstract class Machine extends Observable implements IMachine<BasicRuntim
     		return runtime;
     }
 
+    /**
+     * Reset the machine extended state
+     */
+    protected abstract void resetExtendedState();
 }

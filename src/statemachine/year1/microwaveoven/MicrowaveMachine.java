@@ -42,4 +42,9 @@ public class MicrowaveMachine extends Machine {
     protected State getInitialState() {
         return INACTIVE_STATE;
     }
+
+	@Override
+	protected void resetExtendedState() {
+		;
+	}
 }

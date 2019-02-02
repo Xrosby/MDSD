@@ -51,4 +51,8 @@ public class CookingHoodMachine extends Machine {
     protected State getInitialState() {
         return POWER_OFF_STATE;
     }
+	@Override
+	protected void resetExtendedState() {
+		power = 0;
+	}
 }

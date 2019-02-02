@@ -85,7 +85,7 @@ public abstract class GeneratedMachine extends Observable implements IMachine<IR
 	@Override
 	public IRuntime getRuntimeState() {
 		return new IRuntime() {
-			@Override public void reset() { }
+			@Override public void resetExtendedState() { }
 			@Override public String getStateName() { return state_int2code.get(state); }
 		};
 	}

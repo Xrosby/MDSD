@@ -31,7 +31,7 @@ package statemachine.year1.library;
 import statemachine.generic.IRuntime;
 
 /**
- * Simple representation of runtime state that does not include any variables
+ * Simple representation of runtime state that does not include any extended state variables
  * @author ups
  */
 public class BasicRuntimeState implements IRuntime {
@@ -39,6 +39,16 @@ public class BasicRuntimeState implements IRuntime {
 	 * The current state of the statemachine
 	 */
 	private State currentState;
+	/**
+	 * The machine that this state relates to
+	 */
+	private Machine machine;
+	/**
+	 * Initialize with a given machine (since it holds the extended state)
+	 */
+	public BasicRuntimeState(Machine _machine) {
+		this.machine = _machine;
+	}
 	/**
 	 * Set the current state of the statemachine
 	 * @param state the new state
@@ -50,9 +60,11 @@ public class BasicRuntimeState implements IRuntime {
 	 */
 	public State getState() { return currentState; }
 	/**
-	 * Reset the runtime state
+	 * Reset the runtime extended state variables
 	 */
-	public void reset() { ; }
+	public void resetExtendedState() { 
+		machine.resetExtendedState();
+	}
 	/**
 	 * Get the name of the currently executing state
 	 * @return The name of the current state

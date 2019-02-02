@@ -37,7 +37,7 @@ public interface IRuntime {
 	/**
 	 * Reset the runtime state
 	 */
-	public void reset();
+	public void resetExtendedState();
 	/**
 	 * Get the name of the currently executing state
 	 * @return The name of the current state

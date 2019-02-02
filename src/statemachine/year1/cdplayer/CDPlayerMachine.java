@@ -51,4 +51,8 @@ public class CDPlayerMachine extends Machine {
     protected State getInitialState() {
         return STOPPED_STATE;
     }
+	@Override
+	protected void resetExtendedState() {
+		power = 0;
+	}
 }
