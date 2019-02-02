@@ -32,9 +32,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 
-import statemachine.year1.library.Event;
-import statemachine.year1.library.IMachine;
-import statemachine.year1.library.IRuntime;
+import statemachine.generic.Event;
+import statemachine.generic.IMachine;
+import statemachine.generic.IRuntime;
 
 /**
  * Abstract class that serves as the basis for code generated for statemachines.

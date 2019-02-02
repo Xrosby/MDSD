@@ -29,7 +29,7 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year1.cdplayer;
 
-import statemachine.year1.library.Event;
+import statemachine.generic.Event;
 import statemachine.year1.library.State;
 
 /**

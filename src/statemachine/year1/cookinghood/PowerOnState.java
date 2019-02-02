@@ -29,7 +29,7 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year1.cookinghood;
 
-import statemachine.year1.library.Event;
+import statemachine.generic.Event;
 
 public class PowerOnState extends CookingHoodState {
 

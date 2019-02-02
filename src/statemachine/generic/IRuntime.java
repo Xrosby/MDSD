@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2012, Ulrik Pagh Schultz, University of Southern Denmark
+Copyright (c) 2017, Ulrik Pagh Schultz, University of Southern Denmark
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -26,34 +26,21 @@ The views and conclusions contained in the software and documentation are those
 of the authors and should not be interpreted as representing official policies, 
 either expressed or implied, of the University of Southern Denmark.
 */
-
-package statemachine.year1.library;
+package statemachine.generic;
 
 /**
- * Generic event class, representing incoming event as a string
+ * Generic interface for representation of the runtime state of a state machine, 
+ * allowing infrastructure for state machines to be reused between iterations
  * @author ups
  */
-public class Event {
-
+public interface IRuntime {
 	/**
-	 * The code of the event, represented as a string
+	 * Reset the runtime state
 	 */
-    private String code;
-    
-    /**
-     * Construct event with the given code
-     * @param code the string representation of the event name
-     */
-    public Event(String code) {
-        this.code = code;
-    }
-    
-    /**
-     * Get the string representing the event code
-     * @return the event code
-     */
-    public String code() {
-        return code;
-    }
-
+	public void reset();
+	/**
+	 * Get the name of the currently executing state
+	 * @return The name of the current state
+	 */
+	public String getStateName();
 }

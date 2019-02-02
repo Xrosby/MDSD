@@ -29,6 +29,9 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year1.library;
 
+import statemachine.generic.Event;
+import statemachine.generic.IMachine;
+
 /**
  * Abstract state class: can process events (subclasses must provide behavior),
  * keeps a reference to the machine to which it belongs to enable changing its state.

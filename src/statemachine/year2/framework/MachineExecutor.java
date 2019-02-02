@@ -34,8 +34,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
-import statemachine.year1.library.Event;
-import statemachine.year1.library.IMachine;
+import statemachine.generic.Event;
+import statemachine.generic.IMachine;
 
 /**
  * State machine executor: executes a state machine description,

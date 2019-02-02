@@ -31,6 +31,9 @@ package statemachine.year1.library;
 
 import java.util.Observable;
 
+import statemachine.generic.Event;
+import statemachine.generic.IMachine;
+
 /**
  * Abstract state machine class: has a current state, starts in initial state,
  * and can process events by sending them to the current state

@@ -29,8 +29,6 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year2.framework;
 
-import java.util.Map;
-
 /**
  * Generic template class for transitions.  Simple transitions can use this class directly,
  * conditions can be added by overriding the isApplicable method, effects can be added by

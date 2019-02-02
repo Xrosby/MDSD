@@ -31,11 +31,11 @@ package statemachine.year4.cdplayer;
 
 import javax.swing.JLabel;
 
+import statemachine.year1.cdplayer.CDPlayerControlGUI;
 import statemachine.year1.library.GraphicalMachine;
-import statemachine.year1.library.IRuntime;
 import statemachine.year3.dsl.GenericRuntime;
-import statemachine.year1.cdplayer.CDPlayer1.ControlGUI;
 import statemachine.generated.CDPlayerImpl;
+import statemachine.generic.IRuntime;
 
 /**
  * Cooking hood example using the code-generation CookingHood4Impl class
@@ -55,7 +55,7 @@ public class CDPlayer4 extends GraphicalMachine<IRuntime> {
      * Create cooking hood example and establish GUI
      */
     public CDPlayer4() {
-        super(new ControlGUI(),new CDPlayerImpl(),ControlGUI.POWER_ON_COMMAND);
+        super(new CDPlayerControlGUI(),new CDPlayerImpl(),CDPlayerControlGUI.POWER_ON_COMMAND);
     }
 
     /**

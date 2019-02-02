@@ -27,7 +27,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-package statemachine.year1.library;
+package statemachine.generic;
 
 import java.util.Observer;
 

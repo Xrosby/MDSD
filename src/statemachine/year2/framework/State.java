@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import statemachine.year1.library.Event;
+import statemachine.generic.Event;
 
 /**
  * A generic state representation: belongs to a machine, has a name, and a number

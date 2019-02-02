@@ -28,6 +28,8 @@ either expressed or implied, of the University of Southern Denmark.
 */
 package statemachine.year1.library;
 
+import statemachine.generic.IRuntime;
+
 /**
  * Simple representation of runtime state that does not include any variables
  * @author ups

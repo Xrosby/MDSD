@@ -28,7 +28,7 @@ either expressed or implied, of the University of Southern Denmark.
 */
 package statemachine.year2.framework;
 
-import statemachine.year1.library.IRuntime;
+import statemachine.generic.IRuntime;
 
 /**
  * Abstract baseclass for statemachine runtime states that can be specialized

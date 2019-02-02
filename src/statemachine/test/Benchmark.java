@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import statemachine.year1.library.Event;
-import statemachine.year1.library.IMachine;
+import statemachine.generic.Event;
+import statemachine.generic.IMachine;
 import statemachine.year2.cdplayer.CDPlayerMachine.CD;
 import statemachine.year2.cookinghood.CookingHoodMachine.CHM;
 import statemachine.year2.microwaveoven.MicrowaveMachine.MMS;
