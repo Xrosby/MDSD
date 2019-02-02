@@ -41,7 +41,7 @@ import statemachine.year2.framework.State;
  * Metamodel for the state machine, constructed by FluentMachine and used at runtime by MachineExecutor
  * @author ups
  */
-public class MachineMetaModel extends MachineDescription<GenericRuntimeState> {
+public class MachineMetaModel implements MachineDescription<GenericRuntimeState> {
 	/**
 	 *  The complete list of all states (first is assumed to be initial)
 	 */
@@ -73,7 +73,7 @@ public class MachineMetaModel extends MachineDescription<GenericRuntimeState> {
 	}
 
 	@Override
-	protected GenericRuntimeState createRuntimeState() {
+	public GenericRuntimeState createRuntimeState() {
 		return new GenericRuntimeState(extendedStateVariables);
 	}
 }

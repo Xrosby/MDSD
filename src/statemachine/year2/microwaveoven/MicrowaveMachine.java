@@ -38,7 +38,7 @@ import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
 import statemachine.year2.microwaveoven.MicrowaveMachine.Microwave;
 
-public class MicrowaveMachine extends MachineDescription<Microwave> {
+public class MicrowaveMachine implements MachineDescription<Microwave> {
 
 	public static class Microwave extends AbstractRuntimeState<Microwave> {	}
 	
@@ -59,12 +59,12 @@ public class MicrowaveMachine extends MachineDescription<Microwave> {
     }
     
     @Override
-    protected List<State<Microwave>> getAllStates() {
+    public List<State<Microwave>> getAllStates() {
         return Arrays.asList(STATE_INACTIVE, STATE_COOKING, STATE_DOOR_OPEN);
     }
 
 	@Override
-	protected Microwave createRuntimeState() {
+	public Microwave createRuntimeState() {
 		return new Microwave();
 	}
 

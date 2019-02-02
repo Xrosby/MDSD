@@ -38,7 +38,7 @@ import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
 import statemachine.year2.cdplayer.CDPlayerMachine.CDPlayer;
 
-public class CDPlayerMachine extends MachineDescription<CDPlayer> {
+public class CDPlayerMachine implements MachineDescription<CDPlayer> {
 
 	public static class CDPlayer extends AbstractRuntimeState<CDPlayer> {
 		public int track;
@@ -83,12 +83,12 @@ public class CDPlayerMachine extends MachineDescription<CDPlayer> {
     }
     
     @Override
-    protected List<State<CDPlayer>> getAllStates() {
+    public List<State<CDPlayer>> getAllStates() {
         return Arrays.asList(STATE_STOP, STATE_PLAYING, STATE_PAUSED);
     }
 
 	@Override
-	protected CDPlayer createRuntimeState() {
+	public CDPlayer createRuntimeState() {
 		return new CDPlayer();
 	}
 

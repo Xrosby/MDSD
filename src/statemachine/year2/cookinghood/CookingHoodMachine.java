@@ -38,7 +38,7 @@ import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
 import statemachine.year2.cookinghood.CookingHoodMachine.CookingHood;
 
-public class CookingHoodMachine extends MachineDescription<CookingHood> {
+public class CookingHoodMachine implements MachineDescription<CookingHood> {
 
     // Constants
     private static final int MIN_POWER = 1;
@@ -78,12 +78,12 @@ public class CookingHoodMachine extends MachineDescription<CookingHood> {
     }
     
     @Override
-    protected List<State<CookingHood>> getAllStates() {
+    public List<State<CookingHood>> getAllStates() {
         return Arrays.asList(STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER);
     }
 
 	@Override
-	protected CookingHood createRuntimeState() {
+	public CookingHood createRuntimeState() {
 		return new CookingHood();
 	}
 
