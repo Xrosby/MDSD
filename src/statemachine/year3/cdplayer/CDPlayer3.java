@@ -31,7 +31,7 @@ package statemachine.year3.cdplayer;
 
 import javax.swing.JLabel;
 
-import statemachine.year1.cdplayer.CDPlayerControlGUI;
+import statemachine.generic.CDPlayerGUI;
 import statemachine.year2.framework.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntime;
@@ -43,7 +43,7 @@ public class CDPlayer3 extends GraphicalMachine<GenericRuntime> {
     }
     
     public CDPlayer3() {
-        super(new CDPlayerControlGUI(),new MachineExecutor<GenericRuntime>(new CDPlayerMachine()),CDPlayerControlGUI.POWER_ON_COMMAND);
+        super(new CDPlayerGUI(),new MachineExecutor<GenericRuntime>(new CDPlayerMachine()),CDPlayerGUI.POWER_ON_COMMAND);
     }
 
     /**

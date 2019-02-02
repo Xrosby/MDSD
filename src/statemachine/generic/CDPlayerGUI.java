@@ -1,4 +1,4 @@
-package statemachine.year1.cdplayer;
+package statemachine.generic;
 
 import quickqui.QuickGUI;
 import quickqui.QuickGUI.GUIModel.Layout;
@@ -6,7 +6,7 @@ import quickqui.QuickGUI.GUIModel.Layout;
 /**
  * GUI for CD player test
  */
-public class CDPlayerControlGUI extends QuickGUI.GUIModel {
+public class CDPlayerGUI extends QuickGUI.GUIModel {
     
     public static String POWER_ON_COMMAND = "__ON__";
     
