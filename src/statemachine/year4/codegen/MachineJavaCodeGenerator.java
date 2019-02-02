@@ -38,7 +38,7 @@ import statemachine.year2.framework.Transition;
 import statemachine.year3.dsl.FluentMachine;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;
-import statemachine.year3.dsl.GenericRuntime;
+import statemachine.year3.dsl.GenericRuntimeState;
 
 /**
  * Code generator for state machines described using the FluentMachine model.
@@ -105,7 +105,7 @@ public class MachineJavaCodeGenerator {
 		stateIDcounter = 0;
 		generateHeader(packageName, className);
 		beginGenerateStates();
-		for(State<GenericRuntime> state: model.getAllStates())
+		for(State<GenericRuntimeState> state: model.getAllStates())
 			generateState(state);
 		finishGenerateStates();
 		generateVariableDeclarations();
@@ -172,7 +172,7 @@ public class MachineJavaCodeGenerator {
 	 * Generate the code for handling a single state
 	 * @param state the state to handle
 	 */
-	private void generateState(State<GenericRuntime> state) {
+	private void generateState(State<GenericRuntimeState> state) {
 		// CASE STATE:
 		p("    case "+getStateID(state.getName())+": // "+state.getName());
 		p("      switch(event) {");
@@ -180,7 +180,7 @@ public class MachineJavaCodeGenerator {
 			// CASE EVENT:
 			p("      case "+getEventID(event)+": // "+event);
 			boolean first = true;
-			for(Transition<GenericRuntime> transition: state.getTransitionsForEvent(event)) {
+			for(Transition<GenericRuntimeState> transition: state.getTransitionsForEvent(event)) {
 				// IF(TRANSITION IS APPLICABLE)
 				if(first)
 					first = false;

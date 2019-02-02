@@ -12,7 +12,7 @@ import statemachine.year3.dsl.FluentMachine.Effect;
  * most one of each)
  * @author ups
  */
-class GenericTransition extends Transition<GenericRuntime> {
+class GenericTransition extends Transition<GenericRuntimeState> {
 	/**
 	 * The effect of the transition, if any, null otherwise
 	 */
@@ -60,7 +60,7 @@ class GenericTransition extends Transition<GenericRuntime> {
     /**
      * True is the transition is applicable in the current state
      */
-    @Override public boolean isApplicable(GenericRuntime extendedState) {
+    @Override public boolean isApplicable(GenericRuntimeState extendedState) {
         if(conditionMaybe==null) return true; // no condition
         if(conditionMaybe==Condition.EQUAL) {
             return extendedState.get(condVariableNameMaybe).intValue()==condValue;
@@ -73,7 +73,7 @@ class GenericTransition extends Transition<GenericRuntime> {
     /**
      * Perform the effect of the transition
      */
-    @Override public void effect(GenericRuntime extendedState) {
+    @Override public void effect(GenericRuntimeState extendedState) {
         if(effectMaybe==null) return; // no effect
         if(effectMaybe==Effect.SET)
             extendedState.set(effectVariableName,effectArgument);

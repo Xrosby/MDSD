@@ -32,18 +32,18 @@ package statemachine.year3.cookinghood;
 import javax.swing.JLabel;
 
 import statemachine.year2.framework.MachineExecutor;
-import statemachine.year3.dsl.GenericRuntime;
+import statemachine.year3.dsl.GenericRuntimeState;
 import statemachine.generic.GUIforCookingHood;
 import statemachine.generic.GraphicalMachine;
 
-public class CookingHood3 extends GraphicalMachine<GenericRuntime> {
+public class CookingHood3 extends GraphicalMachine<GenericRuntimeState> {
 
     public static void main(String argv[]) {
         new CookingHood3();
     }
     
     public CookingHood3() {
-        super(new GUIforCookingHood(),new MachineExecutor<GenericRuntime>(new CookingHoodMachine()),GUIforCookingHood.POWER_ON_COMMAND);
+        super(new GUIforCookingHood(),new MachineExecutor<GenericRuntimeState>(new CookingHoodMachine()),GUIforCookingHood.POWER_ON_COMMAND);
     }
 
     /**

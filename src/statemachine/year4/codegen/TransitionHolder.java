@@ -31,14 +31,14 @@ package statemachine.year4.codegen;
 import statemachine.year2.framework.Transition;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;
-import statemachine.year3.dsl.GenericRuntime;
+import statemachine.year3.dsl.GenericRuntimeState;
 
 /**
  * Data value object for transitions
  * @author ups
  *
  */
-public class TransitionHolder extends Transition<GenericRuntime> {
+public class TransitionHolder extends Transition<GenericRuntimeState> {
 	private Effect effect;
 	private String effectVar;
 	private int effectArg;

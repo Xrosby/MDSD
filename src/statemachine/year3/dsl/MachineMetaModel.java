@@ -44,22 +44,22 @@ public class MachineMetaModel {
 	/**
 	 *  The complete list of all states (first is assumed to be initial)
 	 */
-	private List<State<GenericRuntime>> allStates;
+	private List<State<GenericRuntimeState>> allStates;
 	/**
 	 * Set containing names of all extended state variables
 	 */
 	private Set<String> extendedStateVariables;
 
 	public MachineMetaModel() {
-		this.allStates = new ArrayList<State<GenericRuntime>>();
+		this.allStates = new ArrayList<State<GenericRuntimeState>>();
 		this.extendedStateVariables = new HashSet<>();
 	}
 
-	public List<State<GenericRuntime>> getAllStates() {
+	public List<State<GenericRuntimeState>> getAllStates() {
 		return allStates;
 	}
 
-	public void setAllStates(List<State<GenericRuntime>> allStates) {
+	public void setAllStates(List<State<GenericRuntimeState>> allStates) {
 		this.allStates = allStates;
 	}
 

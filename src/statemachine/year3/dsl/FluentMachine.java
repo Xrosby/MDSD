@@ -44,7 +44,7 @@ import statemachine.year2.framework.Transition;
  * model to be directly interpreted to run the state machine.
  * @author ups
  */
-public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
+public abstract class FluentMachine extends MachineDescription<GenericRuntimeState> {
 
 	//
 	// Statemachine metamodel
@@ -72,7 +72,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 	/**
 	 *  The current state being built
 	 */
-	private State<GenericRuntime> currentState;
+	private State<GenericRuntimeState> currentState;
 	/**
 	 *  The current event that transitions are being defined for
 	 */
@@ -124,7 +124,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 	 * Get list of all states in the state machine
 	 */
 	@Override
-	public List<State<GenericRuntime>> getAllStates() {
+	public List<State<GenericRuntimeState>> getAllStates() {
 		buildMachine();
 		return metamodel.getAllStates();
 	}
@@ -133,8 +133,8 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 	 * Create an instance of the extended state required for this statemachien
 	 */
 	@Override
-	protected GenericRuntime createRuntimeState() {
-		return new GenericRuntime(this.metamodel.getExtendedStateVariables());
+	protected GenericRuntimeState createRuntimeState() {
+		return new GenericRuntimeState(this.metamodel.getExtendedStateVariables());
 	}
 
 	/**
@@ -150,7 +150,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 			flushTransition(null,null,0);
 			metamodel.getAllStates().add(currentState);
 		}
-		currentState = new State<GenericRuntime>(name);
+		currentState = new State<GenericRuntimeState>(name);
 		return this;
 	}
 
@@ -236,7 +236,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 		if(pendingEvent==null) return; // Nothing to flush
 		if(targetTransition==null && effectMaybe==null) return; // empty transition
 		// Define transition and add to current state
-		Transition<GenericRuntime> transition = 
+		Transition<GenericRuntimeState> transition = 
 				factory.createTransitionHook(targetTransition, 
 						effectMaybe, effectVariable, effectArgument, 
 						cond, condVariableNameMaybe, condValue);
@@ -279,7 +279,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 		 * @param condValue the value used in the condition, if any
 		 * @return a transition object created according to the specification.
 		 */
-		protected Transition<GenericRuntime> createTransitionHook(String target, 
+		protected Transition<GenericRuntimeState> createTransitionHook(String target, 
 				Effect effect, String effectVarName, int effectArg, 
 				Condition cond, String condVariableMaybe, int condValue) {
 			return new GenericTransition(target,
@@ -293,12 +293,12 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 	 */
 	private void checkNameConsistency() {
 		Set<String> allStateNames = new HashSet<>();
-		for(State<GenericRuntime> state: metamodel.getAllStates()) {
+		for(State<GenericRuntimeState> state: metamodel.getAllStates()) {
 			allStateNames.add(state.getName());
 		}
-		for(State<GenericRuntime> state: metamodel.getAllStates()) {
-			for(Map.Entry<String,List<Transition<GenericRuntime>>> transitionBlob: state.getAllTransitions().entrySet()) {
-				for(Transition<GenericRuntime> transition: transitionBlob.getValue()) {
+		for(State<GenericRuntimeState> state: metamodel.getAllStates()) {
+			for(Map.Entry<String,List<Transition<GenericRuntimeState>>> transitionBlob: state.getAllTransitions().entrySet()) {
+				for(Transition<GenericRuntimeState> transition: transitionBlob.getValue()) {
 					String target = transition.getTarget();
 					if(target==null) continue; // Self transition?
 					if(!allStateNames.contains(target)) throw new Error("Illegal state name: "+transition.getTarget());

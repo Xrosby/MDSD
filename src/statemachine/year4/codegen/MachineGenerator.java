@@ -35,7 +35,7 @@ import java.io.IOException;
 import statemachine.year2.framework.Transition;
 import statemachine.year3.dsl.FluentMachine;
 import statemachine.year3.dsl.FluentMachine.TransitionFactory;
-import statemachine.year3.dsl.GenericRuntime;
+import statemachine.year3.dsl.GenericRuntimeState;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;
 
@@ -83,7 +83,7 @@ public class MachineGenerator {
 	 */
 	private class HolderFactory extends TransitionFactory {
 		@Override
-		protected Transition<GenericRuntime> createTransitionHook(String target, 
+		protected Transition<GenericRuntimeState> createTransitionHook(String target, 
 				Effect effect, String effectVar, int effectArg, 
 				Condition cond, String condVariableMaybe, int condValue) {
 			return new TransitionHolder(target,
