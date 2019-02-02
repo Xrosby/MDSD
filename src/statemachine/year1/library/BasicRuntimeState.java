@@ -34,7 +34,7 @@ import statemachine.generic.IRuntime;
  * Simple representation of runtime state that does not include any variables
  * @author ups
  */
-public class SimpleRuntime implements IRuntime {
+public class BasicRuntimeState implements IRuntime {
 	/**
 	 * The current state of the statemachine
 	 */

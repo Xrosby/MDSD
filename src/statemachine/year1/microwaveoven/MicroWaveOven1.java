@@ -32,10 +32,10 @@ package statemachine.year1.microwaveoven;
 import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
-import statemachine.year1.library.GraphicalMachine;
-import statemachine.year1.library.SimpleRuntime;
+import statemachine.generic.GraphicalMachine;
+import statemachine.year1.library.BasicRuntimeState;
 
-public class MicroWaveOven1 extends GraphicalMachine<SimpleRuntime> {
+public class MicroWaveOven1 extends GraphicalMachine<BasicRuntimeState> {
 
     /**
      * GUI for microwave oven test

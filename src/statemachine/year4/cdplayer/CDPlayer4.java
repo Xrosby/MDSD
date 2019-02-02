@@ -31,10 +31,10 @@ package statemachine.year4.cdplayer;
 
 import javax.swing.JLabel;
 
-import statemachine.year1.library.GraphicalMachine;
 import statemachine.year3.dsl.GenericRuntime;
 import statemachine.generated.CDPlayerImpl;
 import statemachine.generic.CDPlayerGUI;
+import statemachine.generic.GraphicalMachine;
 import statemachine.generic.IRuntime;
 
 /**

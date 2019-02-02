@@ -3,8 +3,8 @@ package statemachine.year1.cookinghood;
 import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
-import statemachine.year1.library.GraphicalMachine;
-import statemachine.year1.library.SimpleRuntime;
+import statemachine.generic.GraphicalMachine;
+import statemachine.year1.library.BasicRuntimeState;
 
 /*
 Copyright (c) 2012, Ulrik Pagh Schultz, University of Southern Denmark
@@ -35,7 +35,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-public class CookingHood1 extends GraphicalMachine<SimpleRuntime> {
+public class CookingHood1 extends GraphicalMachine<BasicRuntimeState> {
 
     /**
      * GUI for cooking hood test

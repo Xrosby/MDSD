@@ -39,18 +39,18 @@ import statemachine.generic.IMachine;
  * and can process events by sending them to the current state
  * @author ups
  */
-public abstract class Machine extends Observable implements IMachine<SimpleRuntime> {
+public abstract class Machine extends Observable implements IMachine<BasicRuntimeState> {
     
 	/**
 	 * The currently active state
 	 */
-    private SimpleRuntime runtime;
+    private BasicRuntimeState runtime;
     
     /**
      * Initialize the state machine
      */
     public void initialize() {
-    		runtime = new SimpleRuntime();
+    		runtime = new BasicRuntimeState();
         setState(getInitialState());
         setChanged();
         notifyObservers();
@@ -84,12 +84,12 @@ public abstract class Machine extends Observable implements IMachine<SimpleRunti
      * Factory method for creating an instance of the state required for the given statemachine
      * @return new instance of the corresponding state class
      */
-	protected SimpleRuntime createCurrentState() { return new SimpleRuntime(); }
+	protected BasicRuntimeState createCurrentState() { return new BasicRuntimeState(); }
     
 	/**
 	 * Get the current runtime state of the machine
 	 */
-    public SimpleRuntime getRuntimeState() {
+    public BasicRuntimeState getRuntimeState() {
     		return runtime;
     }
 

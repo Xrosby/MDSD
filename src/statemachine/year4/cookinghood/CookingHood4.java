@@ -31,9 +31,9 @@ package statemachine.year4.cookinghood;
 
 import javax.swing.JLabel;
 
-import statemachine.year1.library.GraphicalMachine;
 import statemachine.year1.cookinghood.CookingHood1.ControlGUI;
 import statemachine.generated.CookingHoodImpl;
+import statemachine.generic.GraphicalMachine;
 import statemachine.generic.IRuntime;
 
 /**
