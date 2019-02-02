@@ -43,7 +43,7 @@ public class MicroWaveOven3 extends GraphicalMachine<GenericRuntimeState> {
     }
     
     public MicroWaveOven3() {
-        super(new GUIforMicrowaveOven(),new MachineExecutor<GenericRuntimeState>(new MicrowaveMachine()),GUIforMicrowaveOven.POWER_ON_COMMAND);
+        super(new GUIforMicrowaveOven(),new MachineExecutor<GenericRuntimeState>(new MicrowaveMachine().getMetaModel()),GUIforMicrowaveOven.POWER_ON_COMMAND);
     }
 
     /**

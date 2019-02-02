@@ -43,7 +43,7 @@ public class CDPlayer3 extends GraphicalMachine<GenericRuntimeState> {
     }
     
     public CDPlayer3() {
-        super(new GUIforCDPlayer(),new MachineExecutor<GenericRuntimeState>(new CDPlayerMachine()),GUIforCDPlayer.POWER_ON_COMMAND);
+        super(new GUIforCDPlayer(),new MachineExecutor<GenericRuntimeState>(new CDPlayerMachine().getMetaModel()),GUIforCDPlayer.POWER_ON_COMMAND);
     }
 
     /**

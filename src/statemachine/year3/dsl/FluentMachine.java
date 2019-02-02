@@ -44,13 +44,15 @@ import statemachine.year2.framework.Transition;
  * model to be directly interpreted to run the state machine.
  * @author ups
  */
-public abstract class FluentMachine extends MachineDescription<GenericRuntimeState> {
+public abstract class FluentMachine {
 
 	//
 	// Statemachine metamodel
 	//
 
-	MachineMetaModel metamodel = new MachineMetaModel();
+	private MachineMetaModel metamodel = new MachineMetaModel();
+	
+	public MachineMetaModel getMetaModel() { return metamodel; }
 
 	//
 	// Builder infrastructure
@@ -108,6 +110,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntimeSta
 	 * and last add the state as the last in the list of states
 	 */
 	public FluentMachine() {
+		buildMachine();
 	}
 
 	protected void buildMachine() {
@@ -118,23 +121,6 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntimeSta
 		metamodel.getAllStates().add(currentState);
 		checkNameConsistency();
 		modelIsBuilt = true;
-	}
-
-	/**
-	 * Get list of all states in the state machine
-	 */
-	@Override
-	public List<State<GenericRuntimeState>> getAllStates() {
-		buildMachine();
-		return metamodel.getAllStates();
-	}
-
-	/**
-	 * Create an instance of the extended state required for this statemachien
-	 */
-	@Override
-	protected GenericRuntimeState createRuntimeState() {
-		return new GenericRuntimeState(this.metamodel.getExtendedStateVariables());
 	}
 
 	/**

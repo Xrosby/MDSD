@@ -73,4 +73,12 @@ public class GenericRuntimeState extends AbstractRuntimeState<GenericRuntimeStat
 		values.put(name, value);
 	}
 
+	/**
+	 * Reset the runtime state
+	 */
+	public void resetExtendedState() { 
+		for(Map.Entry<String, Integer> vars: values.entrySet())
+			vars.setValue(0);
+	}
+
 }

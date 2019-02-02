@@ -48,21 +48,21 @@ public class Benchmark {
 	private final IMachine<?>[] machinesList_cdplayer = new IMachine[] {
 		new statemachine.year1.cdplayer.CDPlayerMachine(), 
 		new statemachine.year2.framework.MachineExecutor<CDPlayer>(new statemachine.year2.cdplayer.CDPlayerMachine()), 
-		new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.cdplayer.CDPlayerMachine()), 
+		new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.cdplayer.CDPlayerMachine().getMetaModel()), 
 		new statemachine.generated.CDPlayerImpl(), 
 	};
 	
 	private final IMachine<?>[] machinesList_cookinghood = new IMachine[] {
 			new statemachine.year1.cookinghood.CookingHoodMachine(),
 			new statemachine.year2.framework.MachineExecutor<CookingHood>(new statemachine.year2.cookinghood.CookingHoodMachine()),
-			new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.cookinghood.CookingHoodMachine()),
+			new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.cookinghood.CookingHoodMachine().getMetaModel()),
 			new statemachine.generated.CookingHoodImpl(),
 	};
 		
 	private final IMachine<?>[] machinesList_microwaveoven = new IMachine[] {
 			new statemachine.year1.microwaveoven.MicrowaveMachine(),
 			new statemachine.year2.framework.MachineExecutor<Microwave>(new statemachine.year2.microwaveoven.MicrowaveMachine()),
-			new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.microwaveoven.MicrowaveMachine()),
+			new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.microwaveoven.MicrowaveMachine().getMetaModel()),
 			new statemachine.generated.MicroWaveOvenImpl(),
 		};
 		

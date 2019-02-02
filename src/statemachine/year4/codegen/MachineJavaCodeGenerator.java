@@ -39,6 +39,7 @@ import statemachine.year3.dsl.FluentMachine;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;
 import statemachine.year3.dsl.GenericRuntimeState;
+import statemachine.year3.dsl.MachineMetaModel;
 
 /**
  * Code generator for state machines described using the FluentMachine model.
@@ -54,7 +55,7 @@ public class MachineJavaCodeGenerator {
 	/**
 	 * The model according to which the code is generated
 	 */
-	private FluentMachine model;
+	private MachineMetaModel model;
 	/**
 	 * The buffer in which the output string (the classs definition) is accumulated
 	 */
@@ -85,8 +86,8 @@ public class MachineJavaCodeGenerator {
 	 * Create a code generator for the corresponding state machine model
 	 * @param model the state machine for which code is to be generated
 	 */
-	public MachineJavaCodeGenerator(FluentMachine model) {
-		this.model = model;
+	public MachineJavaCodeGenerator(FluentMachine machine) {
+		this.model = machine.getMetaModel();
 	}
 
 	/**

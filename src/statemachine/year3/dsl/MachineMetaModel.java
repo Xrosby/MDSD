@@ -34,13 +34,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 
 /**
  * Metamodel for the state machine, constructed by FluentMachine and used at runtime by MachineExecutor
  * @author ups
  */
-public class MachineMetaModel {
+public class MachineMetaModel extends MachineDescription<GenericRuntimeState> {
 	/**
 	 *  The complete list of all states (first is assumed to be initial)
 	 */
@@ -69,5 +70,10 @@ public class MachineMetaModel {
 
 	public void setExtendedStateVariables(Set<String> extendedStateVariables) {
 		this.extendedStateVariables = extendedStateVariables;
+	}
+
+	@Override
+	protected GenericRuntimeState createRuntimeState() {
+		return new GenericRuntimeState(extendedStateVariables);
 	}
 }

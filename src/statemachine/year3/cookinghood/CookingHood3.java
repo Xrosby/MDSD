@@ -43,7 +43,7 @@ public class CookingHood3 extends GraphicalMachine<GenericRuntimeState> {
     }
     
     public CookingHood3() {
-        super(new GUIforCookingHood(),new MachineExecutor<GenericRuntimeState>(new CookingHoodMachine()),GUIforCookingHood.POWER_ON_COMMAND);
+        super(new GUIforCookingHood(),new MachineExecutor<GenericRuntimeState>(new CookingHoodMachine().getMetaModel()),GUIforCookingHood.POWER_ON_COMMAND);
     }
 
     /**
