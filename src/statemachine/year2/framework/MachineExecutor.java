@@ -43,7 +43,7 @@ import statemachine.generic.IMachine;
  * to state object (used to perform state transitions).
  * @author ups
  */
-public class MachineExecutor<T extends AbstractRuntime<T>> extends Observable implements IMachine<T> {
+public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observable implements IMachine<T> {
 
     /**
      * Initial state
@@ -54,7 +54,7 @@ public class MachineExecutor<T extends AbstractRuntime<T>> extends Observable im
      */
     private Map<String,State<T>> states = new HashMap<String,State<T>>();
     /**
-     * Runtime, including extended state
+     * Runtime state, including extended state
      */
     private T runtime;
     
@@ -66,14 +66,14 @@ public class MachineExecutor<T extends AbstractRuntime<T>> extends Observable im
         for(State<T> state: allStates)
             states.put(state.getName(), state);
         initialStateName = allStates.get(0).getName();
-        runtime = description.createExtendedState();
+        runtime = description.createRuntimeState();
     }
     
     /**
      * Reset the state machine 
      */
     public void initialize() {
-    	runtime.resetExtendedState();
+    		runtime.resetExtendedState();
         setState(initialStateName);
         setChanged();
         notifyObservers();

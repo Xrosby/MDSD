@@ -32,7 +32,7 @@ package statemachine.year2.cookinghood;
 import java.util.Arrays;
 import java.util.List;
 
-import statemachine.year2.framework.AbstractRuntime;
+import statemachine.year2.framework.AbstractRuntimeState;
 import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
@@ -48,7 +48,7 @@ public class CookingHoodMachine extends MachineDescription<CHM> {
     private State<CHM> STATE_POWER_OFF, STATE_POWER_ON, STATE_MAX_POWER;
     
     // Extended state
-	public static class CHM extends AbstractRuntime<CHM> {
+	public static class CHM extends AbstractRuntimeState<CHM> {
 		public int power;
 	}
 	
@@ -83,7 +83,7 @@ public class CookingHoodMachine extends MachineDescription<CHM> {
     }
 
 	@Override
-	protected CHM createExtendedState() {
+	protected CHM createRuntimeState() {
 		return new CHM();
 	}
 

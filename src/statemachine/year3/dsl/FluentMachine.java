@@ -133,7 +133,7 @@ public abstract class FluentMachine extends MachineDescription<GenericRuntime> {
 	 * Create an instance of the extended state required for this statemachien
 	 */
 	@Override
-	protected GenericRuntime createExtendedState() {
+	protected GenericRuntime createRuntimeState() {
 		return new GenericRuntime(this.metamodel.getExtendedStateVariables());
 	}
 

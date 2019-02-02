@@ -36,7 +36,7 @@ import statemachine.generic.IRuntime;
  * @param <T> The specific type required to hold the extended state
  * @author ups
  */
-public abstract class AbstractRuntime<T extends AbstractRuntime<T>> implements IRuntime {
+public abstract class AbstractRuntimeState<T extends AbstractRuntimeState<T>> implements IRuntime {
 	/**
 	 * The current state of the statemachine
 	 */

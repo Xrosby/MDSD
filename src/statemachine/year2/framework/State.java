@@ -46,7 +46,7 @@ import statemachine.generic.Event;
  * corresponding transition (if any).
  * @author ups
  */
-public class State<T extends AbstractRuntime<T>> {
+public class State<T extends AbstractRuntimeState<T>> {
 
     /**
      * The name of the state

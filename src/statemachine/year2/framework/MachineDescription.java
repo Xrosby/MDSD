@@ -36,7 +36,7 @@ import java.util.List;
  * evolved to play the metamodel role)
  * @author ups
  */
-public abstract class MachineDescription<T extends AbstractRuntime<T>> {
+public abstract class MachineDescription<T extends AbstractRuntimeState<T>> {
     /**
      * Overridden by concrete state machine.  By convention the first element must be
      * the initial state.
@@ -48,5 +48,5 @@ public abstract class MachineDescription<T extends AbstractRuntime<T>> {
      * instance of the specific extended state required for the statemachine
      * @return new instance of the class that represents the extended state
      */
-	protected abstract T createExtendedState();
+	protected abstract T createRuntimeState();
 }
