@@ -1,7 +1,8 @@
 package examples.formatter;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import examples.formatter.model.FormatElement;
 
 public class DataFormatter {
 
