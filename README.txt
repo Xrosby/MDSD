@@ -19,6 +19,6 @@ src-dsl: DSL programs in other languages, external and internal
 xtext/entity: Implementations of in-class examples of the entity system in xtext
 xtext/math: Simple math example, used as basis for mandatory xtext assignments
 
-doc: Slightly dated documentation of examples in screencasts from previous years.
+docs: Slightly dated documentation of examples in screencasts from previous years.
 
 The root of this directory contains appropriate eclipse project definition files.
