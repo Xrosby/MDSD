@@ -35,7 +35,7 @@ import java.util.Observer;
  * Generic interface for state machine implementations, allowing them to be reused between iterations
  * @author ups
  */
-public interface IMachine<T extends IRuntime> {
+public interface IMachine {
 
 	/**
 	 * Initialize the statemachine (before sending events)

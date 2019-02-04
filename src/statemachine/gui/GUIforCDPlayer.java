@@ -11,9 +11,9 @@ import statemachine.generic.IRuntime;
 /**
  * GUI for CD player test
  */
-public abstract class GUIforCDPlayer<T extends IRuntime> extends GraphicalMachine<T> {
+public abstract class GUIforCDPlayer extends GraphicalMachine {
 
-	public GUIforCDPlayer(IMachine<T> machine) {
+	public GUIforCDPlayer(IMachine machine) {
 		super(new GUI(), machine, POWER_ON_COMMAND);
 	}
 

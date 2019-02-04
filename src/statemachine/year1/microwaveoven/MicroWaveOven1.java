@@ -35,7 +35,7 @@ import statemachine.gui.GUIforMicrowaveOven;
 import statemachine.gui.GraphicalMachine;
 import statemachine.year1.library.BasicRuntimeState;
 
-public class MicroWaveOven1 extends GUIforMicrowaveOven<BasicRuntimeState> {
+public class MicroWaveOven1 extends GUIforMicrowaveOven {
 
     public static void main(String argv[]) {
         new MicroWaveOven1();

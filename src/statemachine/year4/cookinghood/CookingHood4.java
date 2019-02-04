@@ -41,7 +41,7 @@ import statemachine.gui.GraphicalMachine;
  * @author ups
  *
  */
-public class CookingHood4 extends GUIforCookingHood<IRuntime> {
+public class CookingHood4 extends GUIforCookingHood {
 
 	/**
 	 * Run the example

@@ -41,7 +41,7 @@ import statemachine.gui.GraphicalMachine;
  * @author ups
  *
  */
-public class MicroWaveOven4 extends GUIforMicrowaveOven<IRuntime> {
+public class MicroWaveOven4 extends GUIforMicrowaveOven {
 
 	/**
 	 * Run the example

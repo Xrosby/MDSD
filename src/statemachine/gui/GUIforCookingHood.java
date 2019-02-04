@@ -10,9 +10,9 @@ import statemachine.generic.IRuntime;
 /**
  * GUI for cooking hood test
  */
-public abstract class GUIforCookingHood<T extends IRuntime> extends GraphicalMachine<T> { 
+public abstract class GUIforCookingHood extends GraphicalMachine { 
 
-	public GUIforCookingHood(IMachine<T> machine) {
+	public GUIforCookingHood(IMachine machine) {
 		super(new GUI(), machine, POWER_ON_COMMAND);
 	}
 

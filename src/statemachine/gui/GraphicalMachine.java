@@ -43,7 +43,7 @@ import statemachine.generic.IRuntime;
  * Generic infrastructure for having a GUI for a state machine
  * @author ups
  */
-public abstract class GraphicalMachine<T extends IRuntime> implements ActionListener, Observer {
+public abstract class GraphicalMachine implements ActionListener, Observer {
 	/**
 	 * The GUI of the machine
 	 */
@@ -51,7 +51,7 @@ public abstract class GraphicalMachine<T extends IRuntime> implements ActionList
     /**
      * The state machine being driven by the GUI
      */
-    protected IMachine<T> machine;
+    protected IMachine machine;
     /**
      * The action name that triggers initialize on the state machine
      */
@@ -63,7 +63,7 @@ public abstract class GraphicalMachine<T extends IRuntime> implements ActionList
      * @param machine the statemachine
      * @param powerOnCommand the command tha triggers state machine initialization
      */
-    public GraphicalMachine(QuickGUI.GUIModel model, IMachine<T> machine, String powerOnCommand) {
+    public GraphicalMachine(QuickGUI.GUIModel model, IMachine machine, String powerOnCommand) {
         this.gui = new QuickGUI(model,this);
         this.machine = machine;
         this.powerOnCommand = powerOnCommand;

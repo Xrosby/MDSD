@@ -35,7 +35,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-public class CookingHood1 extends GUIforCookingHood<BasicRuntimeState> {
+public class CookingHood1 extends GUIforCookingHood {
 
     public static void main(String argv[]) {
         new CookingHood1();

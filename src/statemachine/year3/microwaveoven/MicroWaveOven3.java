@@ -36,7 +36,7 @@ import statemachine.gui.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntimeState;
 
-public class MicroWaveOven3 extends GUIforMicrowaveOven<GenericRuntimeState> {
+public class MicroWaveOven3 extends GUIforMicrowaveOven {
 
     public static void main(String argv[]) {
         new MicroWaveOven3();

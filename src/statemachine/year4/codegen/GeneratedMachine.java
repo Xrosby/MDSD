@@ -42,7 +42,7 @@ import statemachine.generic.IRuntime;
  * @author ups
  *
  */
-public abstract class GeneratedMachine extends Observable implements IMachine<IRuntime> {
+public abstract class GeneratedMachine extends Observable implements IMachine {
 
 	/**
 	 * The current state of the state machine, represented as an integer

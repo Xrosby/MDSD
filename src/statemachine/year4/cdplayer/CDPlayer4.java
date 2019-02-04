@@ -42,7 +42,7 @@ import statemachine.gui.GraphicalMachine;
  * @author ups
  *
  */
-public class CDPlayer4 extends GUIforCDPlayer<IRuntime> {
+public class CDPlayer4 extends GUIforCDPlayer {
 
 	/**
 	 * Run the example

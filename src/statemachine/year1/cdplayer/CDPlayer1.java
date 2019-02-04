@@ -35,7 +35,7 @@ import statemachine.gui.GUIforCDPlayer;
 import statemachine.gui.GraphicalMachine;
 import statemachine.year1.library.BasicRuntimeState;
 
-public class CDPlayer1 extends GUIforCDPlayer<BasicRuntimeState> {
+public class CDPlayer1 extends GUIforCDPlayer {
 
     public static void main(String argv[]) {
         new CDPlayer1();

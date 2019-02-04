@@ -10,9 +10,9 @@ import statemachine.generic.IRuntime;
 /**
  * GUI for microwave oven test
  */
-public class GUIforMicrowaveOven<T extends IRuntime> extends GraphicalMachine<T> {
+public class GUIforMicrowaveOven extends GraphicalMachine {
 
-	public GUIforMicrowaveOven(IMachine<T> machine) {
+	public GUIforMicrowaveOven(IMachine machine) {
 		super(new GUI(), machine, POWER_ON_COMMAND);
 	}
 

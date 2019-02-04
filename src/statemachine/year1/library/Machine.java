@@ -39,7 +39,7 @@ import statemachine.generic.IMachine;
  * and can process events by sending them to the current state
  * @author ups
  */
-public abstract class Machine extends Observable implements IMachine<BasicRuntimeState> {
+public abstract class Machine extends Observable implements IMachine {
     
 	/**
 	 * The currently active state

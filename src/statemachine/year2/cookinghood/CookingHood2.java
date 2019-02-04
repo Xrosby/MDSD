@@ -36,7 +36,7 @@ import statemachine.gui.GUIforCookingHood;
 import statemachine.gui.GraphicalMachine;
 import statemachine.year2.cookinghood.CookingHoodMachine.CookingHood;
 
-public class CookingHood2 extends GUIforCookingHood<CookingHood> {
+public class CookingHood2 extends GUIforCookingHood {
 
     public static void main(String argv[]) {
         new CookingHood2();

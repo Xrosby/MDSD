@@ -45,21 +45,21 @@ public class Benchmark {
 
 	// Lists of the various implementations of state machines, by type, as arrays
 	
-	private final IMachine<?>[] machinesList_cdplayer = new IMachine[] {
+	private final IMachine[] machinesList_cdplayer = new IMachine[] {
 		new statemachine.year1.cdplayer.CDPlayerMachine(), 
 		new statemachine.year2.framework.MachineExecutor<CDPlayer>(new statemachine.year2.cdplayer.CDPlayerMachine()), 
 		new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.cdplayer.CDPlayerMachine().getMetaModel()), 
 		new statemachine.generated.CDPlayerImpl(), 
 	};
 	
-	private final IMachine<?>[] machinesList_cookinghood = new IMachine[] {
+	private final IMachine[] machinesList_cookinghood = new IMachine[] {
 			new statemachine.year1.cookinghood.CookingHoodMachine(),
 			new statemachine.year2.framework.MachineExecutor<CookingHood>(new statemachine.year2.cookinghood.CookingHoodMachine()),
 			new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.cookinghood.CookingHoodMachine().getMetaModel()),
 			new statemachine.generated.CookingHoodImpl(),
 	};
 		
-	private final IMachine<?>[] machinesList_microwaveoven = new IMachine[] {
+	private final IMachine[] machinesList_microwaveoven = new IMachine[] {
 			new statemachine.year1.microwaveoven.MicrowaveMachine(),
 			new statemachine.year2.framework.MachineExecutor<Microwave>(new statemachine.year2.microwaveoven.MicrowaveMachine()),
 			new statemachine.year2.framework.MachineExecutor<GenericRuntimeState>(new statemachine.year3.microwaveoven.MicrowaveMachine().getMetaModel()),
@@ -69,9 +69,9 @@ public class Benchmark {
 
 	// Lists of the various implementations of state machines, by type
 	
-	private List<IMachine<?>> machines_cdplayer = Arrays.asList(machinesList_cdplayer);
-	private List<IMachine<?>> machines_cookinghood = Arrays.asList(machinesList_cookinghood);
-	private List<IMachine<?>> machines_microwaveoven = Arrays.asList(machinesList_microwaveoven);
+	private List<IMachine> machines_cdplayer = Arrays.asList(machinesList_cdplayer);
+	private List<IMachine> machines_cookinghood = Arrays.asList(machinesList_cookinghood);
+	private List<IMachine> machines_microwaveoven = Arrays.asList(machinesList_microwaveoven);
 
 	// Enumeration of the events supported by each type of state machine
 	
@@ -83,9 +83,9 @@ public class Benchmark {
 	 * An experiment: a machine and a sequence of events to feed that machine
 	 */
 	private class Experiment {
-		private IMachine<?> machine;
+		private IMachine machine;
 		private Event[] events;
-		public Experiment(IMachine<?> machine, Event[] events) {
+		public Experiment(IMachine machine, Event[] events) {
 			this.machine = machine; this.events = events;
 			machine.initialize();
 		}
@@ -136,8 +136,8 @@ public class Benchmark {
 	 * @param machines the machines to generate experiments for
 	 * @param events the events to include in each experiment
 	 */
-	private void insertExperiments(List<Experiment> result, List<IMachine<?>> machines, Event[] events) {
-		for(IMachine<?> m: machines) result.add(new Experiment(m,events));
+	private void insertExperiments(List<Experiment> result, List<IMachine> machines, Event[] events) {
+		for(IMachine m: machines) result.add(new Experiment(m,events));
 	}
 
 	/**

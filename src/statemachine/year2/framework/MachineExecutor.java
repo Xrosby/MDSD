@@ -43,7 +43,7 @@ import statemachine.generic.IMachine;
  * to state object (used to perform state transitions).
  * @author ups
  */
-public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observable implements IMachine<T> {
+public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observable implements IMachine {
 
     /**
      * Initial state
