@@ -55,4 +55,9 @@ public class CookingHoodMachine extends Machine {
 	protected void resetExtendedState() {
 		power = 0;
 	}
+	@Override
+	protected String getVariableValue(String name) {
+		if("power".equals(name)) return Integer.toString(power);
+		return super.getVariableValue(name);
+	}
 }

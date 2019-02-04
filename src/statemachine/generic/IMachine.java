@@ -55,5 +55,6 @@ public interface IMachine<T extends IRuntime> {
      * Get the runtime state of the currently executing machine
      * @return the current runtime state
      */
+    public String getRuntimeStateFor(String what);
     public T getRuntimeState();
 }

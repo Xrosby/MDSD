@@ -41,7 +41,7 @@ import statemachine.generic.IRuntime;
  * @author ups
  *
  */
-public class MicroWaveOven4 extends GraphicalMachine<IRuntime> {
+public class MicroWaveOven4 extends GUIforMicrowaveOven<IRuntime> {
 
 	/**
 	 * Run the example
@@ -54,15 +54,7 @@ public class MicroWaveOven4 extends GraphicalMachine<IRuntime> {
      * Create cooking hood example and establish GUI
      */
     public MicroWaveOven4() {
-        super(new GUIforMicrowaveOven(),new MicroWaveOvenImpl(),GUIforMicrowaveOven.POWER_ON_COMMAND);
-    }
-
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
+        super(new MicroWaveOvenImpl());
     }
 
 }

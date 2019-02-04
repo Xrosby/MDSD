@@ -36,22 +36,14 @@ import statemachine.generic.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year2.microwaveoven.MicrowaveMachine.Microwave;
 
-public class MicroWaveOven2 extends GraphicalMachine<Microwave> {
+public class MicroWaveOven2 extends GUIforMicrowaveOven<Microwave> {
 
     public static void main(String argv[]) {
         new MicroWaveOven2();
     }
     
     public MicroWaveOven2() {
-        super(new GUIforMicrowaveOven(),new MachineExecutor<Microwave>(new MicrowaveMachine()),GUIforMicrowaveOven.POWER_ON_COMMAND);
-    }
-
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
+        super(new MachineExecutor<Microwave>(new MicrowaveMachine()));
     }
 
 }

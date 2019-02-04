@@ -90,6 +90,12 @@ public abstract class GeneratedMachine extends Observable implements IMachine<IR
 		};
 	}
 
+	@Override public String getRuntimeStateFor(String what) {
+		if(what==null)
+			return state_int2code.get(state);
+		else
+			throw new Error("Illegal extended state name: "+what);
+	}
 	
 	/**
 	 * Template method for the compiled event processed based on integer state IDs

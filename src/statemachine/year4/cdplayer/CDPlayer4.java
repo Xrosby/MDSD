@@ -42,7 +42,7 @@ import statemachine.generic.IRuntime;
  * @author ups
  *
  */
-public class CDPlayer4 extends GraphicalMachine<IRuntime> {
+public class CDPlayer4 extends GUIforCDPlayer<IRuntime> {
 
 	/**
 	 * Run the example
@@ -55,16 +55,7 @@ public class CDPlayer4 extends GraphicalMachine<IRuntime> {
      * Create cooking hood example and establish GUI
      */
     public CDPlayer4() {
-        super(new GUIforCDPlayer(),new CDPlayerImpl(),GUIforCDPlayer.POWER_ON_COMMAND);
-    }
-
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
-        ((JLabel)gui.getComponent("track")).setText(new Integer(((CDPlayerImpl)machine).get_track()).toString());
+        super(new CDPlayerImpl());
     }
 
 }

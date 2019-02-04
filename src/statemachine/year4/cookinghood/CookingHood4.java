@@ -41,7 +41,7 @@ import statemachine.generic.IRuntime;
  * @author ups
  *
  */
-public class CookingHood4 extends GraphicalMachine<IRuntime> {
+public class CookingHood4 extends GUIforCookingHood<IRuntime> {
 
 	/**
 	 * Run the example
@@ -54,16 +54,7 @@ public class CookingHood4 extends GraphicalMachine<IRuntime> {
      * Create cooking hood example and establish GUI
      */
     public CookingHood4() {
-        super(new GUIforCookingHood(),new CookingHoodImpl(),GUIforCookingHood.POWER_ON_COMMAND);
-    }
-
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
-        ((JLabel)gui.getComponent("power")).setText(new Integer(((CookingHoodImpl)machine).get_power()).toString());
+        super(new CookingHoodImpl());
     }
 
 }

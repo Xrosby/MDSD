@@ -36,14 +36,14 @@ import statemachine.generic.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntimeState;
 
-public class MicroWaveOven3 extends GraphicalMachine<GenericRuntimeState> {
+public class MicroWaveOven3 extends GUIforMicrowaveOven<GenericRuntimeState> {
 
     public static void main(String argv[]) {
         new MicroWaveOven3();
     }
     
     public MicroWaveOven3() {
-        super(new GUIforMicrowaveOven(),new MachineExecutor<GenericRuntimeState>(new MicrowaveMachine().getMetaModel()),GUIforMicrowaveOven.POWER_ON_COMMAND);
+        super(new MachineExecutor<GenericRuntimeState>(new MicrowaveMachine().getMetaModel()));
     }
 
     /**

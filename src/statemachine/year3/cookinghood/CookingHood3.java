@@ -36,23 +36,14 @@ import statemachine.year3.dsl.GenericRuntimeState;
 import statemachine.generic.GUIforCookingHood;
 import statemachine.generic.GraphicalMachine;
 
-public class CookingHood3 extends GraphicalMachine<GenericRuntimeState> {
+public class CookingHood3 extends GUIforCookingHood<GenericRuntimeState> {
 
     public static void main(String argv[]) {
         new CookingHood3();
     }
     
     public CookingHood3() {
-        super(new GUIforCookingHood(),new MachineExecutor<GenericRuntimeState>(new CookingHoodMachine().getMetaModel()),GUIforCookingHood.POWER_ON_COMMAND);
-    }
-
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
-        ((JLabel)gui.getComponent("power")).setText(machine.getRuntimeState().get("power").toString());
+        super(new MachineExecutor<GenericRuntimeState>(new CookingHoodMachine().getMetaModel()));
     }
 
 }

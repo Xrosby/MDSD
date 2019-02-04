@@ -35,23 +35,14 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-public class CookingHood1 extends GraphicalMachine<BasicRuntimeState> {
+public class CookingHood1 extends GUIforCookingHood<BasicRuntimeState> {
 
     public static void main(String argv[]) {
         new CookingHood1();
     }
     
     public CookingHood1() {
-        super(new GUIforCookingHood(),new CookingHoodMachine(),GUIforCookingHood.POWER_ON_COMMAND);
-    }
-
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
-        ((JLabel)gui.getComponent("power")).setText(new Integer(((CookingHoodMachine)machine).getPower()).toString());
+        super(new CookingHoodMachine());
     }
 
 }

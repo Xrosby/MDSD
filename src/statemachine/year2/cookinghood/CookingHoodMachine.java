@@ -50,6 +50,10 @@ public class CookingHoodMachine implements MachineDescription<CookingHood> {
     // Extended state
 	public static class CookingHood extends AbstractRuntimeState<CookingHood> {
 		public int power;
+		@Override public void resetExtendedState() { power = 0; }
+		@Override public String getExtendedState(String what) { 
+			return "power".equals(what) ? Integer.toString(power):super.getExtendedState(what); 
+		}
 	}
 	
     // State machine definition

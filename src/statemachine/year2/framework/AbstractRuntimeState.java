@@ -60,4 +60,7 @@ public abstract class AbstractRuntimeState<T extends AbstractRuntimeState<T>> im
 	 * @return The name of the current state
 	 */
 	public String getStateName() { return currentState.toString(); }
+	public String getExtendedState(String what) {
+		throw new Error("Bad name for extended state: "+what);
+	}
 }

@@ -86,14 +86,24 @@ public abstract class Machine extends Observable implements IMachine<BasicRuntim
      * @return new instance of the corresponding state class
      */
 	protected BasicRuntimeState createCurrentState() { return new BasicRuntimeState(this); }
-    
+    	
 	/**
 	 * Get the current runtime state of the machine
 	 */
-    public BasicRuntimeState getRuntimeState() {
-    		return runtime;
+	@Override public BasicRuntimeState getRuntimeState() {
+		return runtime;
+	}
+	@Override public String getRuntimeStateFor(String what) {
+    		if(what==null)
+    			return runtime.getStateName();
+    		else
+    			return this.getVariableValue(what);
     }
 
+	protected String getVariableValue(String name) {
+		throw new Error("Illegal variable name: "+name);
+	}
+    
     /**
      * Reset the machine extended state
      */

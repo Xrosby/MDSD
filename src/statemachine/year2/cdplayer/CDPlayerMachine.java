@@ -43,6 +43,9 @@ public class CDPlayerMachine implements MachineDescription<CDPlayer> {
 	public static class CDPlayer extends AbstractRuntimeState<CDPlayer> {
 		public int track;
 		@Override public void resetExtendedState() { track = 0; }
+		@Override public String getExtendedState(String what) { 
+			return "track".equals(what) ? Integer.toString(track):super.getExtendedState(what); 
+		}
 	}
 	
     // States

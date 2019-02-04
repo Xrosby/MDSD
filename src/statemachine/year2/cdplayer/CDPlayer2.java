@@ -36,23 +36,14 @@ import statemachine.generic.GraphicalMachine;
 import statemachine.year2.cdplayer.CDPlayerMachine.CDPlayer;
 import statemachine.year2.framework.MachineExecutor;
 
-public class CDPlayer2 extends GraphicalMachine<CDPlayer> {
+public class CDPlayer2 extends GUIforCDPlayer<CDPlayer> {
 
     public static void main(String argv[]) {
         new CDPlayer2();
     }
     
     public CDPlayer2() {
-        super(new GUIforCDPlayer(),new MachineExecutor<CDPlayer>(new CDPlayerMachine()),GUIforCDPlayer.POWER_ON_COMMAND);
-    }
-
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
-        ((JLabel)gui.getComponent("track")).setText(new Integer(machine.getRuntimeState().track).toString());
+        super(new MachineExecutor<CDPlayer>(new CDPlayerMachine()));
     }
 
 }

@@ -36,14 +36,14 @@ import statemachine.generic.GUIforCookingHood;
 import statemachine.generic.GraphicalMachine;
 import statemachine.year2.cookinghood.CookingHoodMachine.CookingHood;
 
-public class CookingHood2 extends GraphicalMachine<CookingHood> {
+public class CookingHood2 extends GUIforCookingHood<CookingHood> {
 
     public static void main(String argv[]) {
         new CookingHood2();
     }
     
     public CookingHood2() {
-        super(new GUIforCookingHood(),new MachineExecutor<CookingHood>(new CookingHoodMachine()),GUIforCookingHood.POWER_ON_COMMAND);
+        super(new MachineExecutor<CookingHood>(new CookingHoodMachine()));
     }
 
     /**
@@ -51,8 +51,8 @@ public class CookingHood2 extends GraphicalMachine<CookingHood> {
      */
     @Override
     public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
-        ((JLabel)gui.getComponent("power")).setText(new Integer(machine.getRuntimeState().power).toString());
+        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeStateFor(null));
+        ((JLabel)gui.getComponent("power")).setText(machine.getRuntimeStateFor("power"));
     }
 
 }
