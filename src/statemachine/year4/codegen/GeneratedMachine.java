@@ -34,7 +34,6 @@ import java.util.Observable;
 
 import statemachine.generic.Event;
 import statemachine.generic.IMachine;
-import statemachine.generic.IRuntime;
 
 /**
  * Abstract class that serves as the basis for code generated for statemachines.

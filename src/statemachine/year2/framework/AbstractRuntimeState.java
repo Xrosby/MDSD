@@ -28,15 +28,13 @@ either expressed or implied, of the University of Southern Denmark.
 */
 package statemachine.year2.framework;
 
-import statemachine.generic.IRuntime;
-
 /**
  * Abstract baseclass for statemachine runtime states that can be specialized
  * to hold the extended state required for a given statemachine
  * @param <T> The specific type required to hold the extended state
  * @author ups
  */
-public abstract class AbstractRuntimeState<T extends AbstractRuntimeState<T>> implements IRuntime {
+public abstract class AbstractRuntimeState<T extends AbstractRuntimeState<T>> {
 	/**
 	 * The current state of the statemachine
 	 */

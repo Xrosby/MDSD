@@ -32,7 +32,6 @@ package statemachine.year4.microwaveoven;
 import javax.swing.JLabel;
 
 import statemachine.generated.MicroWaveOvenImpl;
-import statemachine.generic.IRuntime;
 import statemachine.gui.GUIforMicrowaveOven;
 import statemachine.gui.GraphicalMachine;
 

@@ -28,13 +28,11 @@ either expressed or implied, of the University of Southern Denmark.
 */
 package statemachine.year1.library;
 
-import statemachine.generic.IRuntime;
-
 /**
  * Simple representation of runtime state that does not include any extended state variables
  * @author ups
  */
-public class BasicRuntimeState implements IRuntime {
+public class BasicRuntimeState {
 	/**
 	 * The current state of the statemachine
 	 */

@@ -37,7 +37,6 @@ import java.util.Observer;
 import quickqui.QuickGUI;
 import statemachine.generic.Event;
 import statemachine.generic.IMachine;
-import statemachine.generic.IRuntime;
 
 /**
  * Generic infrastructure for having a GUI for a state machine
