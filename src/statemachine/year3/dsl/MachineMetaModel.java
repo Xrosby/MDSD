@@ -46,32 +46,40 @@ public class MachineMetaModel implements MachineDescription<GenericRuntimeState>
 	 *  The complete list of all states (first is assumed to be initial)
 	 */
 	private List<State<GenericRuntimeState>> allStates;
+	
 	/**
 	 * Set containing names of all extended state variables
 	 */
 	private Set<String> extendedStateVariables;
 
+	/**
+	 * Initialize and empty metamodel
+	 */
 	public MachineMetaModel() {
 		this.allStates = new ArrayList<State<GenericRuntimeState>>();
 		this.extendedStateVariables = new HashSet<>();
 	}
 
+	/**
+	 * Get all states in the metamodel
+	 * @return the list of states, modifying this list modifies the metamodel
+	 */
 	public List<State<GenericRuntimeState>> getAllStates() {
 		return allStates;
 	}
 
-	public void setAllStates(List<State<GenericRuntimeState>> allStates) {
-		this.allStates = allStates;
-	}
-
+	/**
+	 * Get the names of all extended state variables in the metamodel
+	 * @return the list of names, modifying this list modifies the metamodel
+	 */
 	public Set<String> getExtendedStateVariables() {
 		return extendedStateVariables;
 	}
 
-	public void setExtendedStateVariables(Set<String> extendedStateVariables) {
-		this.extendedStateVariables = extendedStateVariables;
-	}
-
+	/**
+	 * Create a runtime state representation based on this metamodel
+	 * @return a runtime state object representing the current state of the metamodel
+	 */
 	@Override
 	public GenericRuntimeState createRuntimeState() {
 		return new GenericRuntimeState(extendedStateVariables);
