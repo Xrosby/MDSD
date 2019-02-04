@@ -1,7 +1,5 @@
 package statemachine.year3.dsl;
 
-import java.util.Map;
-
 import statemachine.year2.framework.Transition;
 import statemachine.year3.dsl.FluentMachine.Condition;
 import statemachine.year3.dsl.FluentMachine.Effect;

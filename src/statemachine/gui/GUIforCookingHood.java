@@ -8,7 +8,7 @@ import statemachine.generic.IMachine;
 /**
  * GUI for cooking hood test
  */
-public abstract class GUIforCookingHood extends GraphicalMachine { 
+public class GUIforCookingHood extends GraphicalMachine { 
 
 	public GUIforCookingHood(IMachine machine) {
 		super(new GUI(), machine, POWER_ON_COMMAND);

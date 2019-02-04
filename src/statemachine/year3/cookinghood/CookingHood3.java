@@ -29,21 +29,14 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year3.cookinghood;
 
-import javax.swing.JLabel;
-
 import statemachine.gui.GUIforCookingHood;
-import statemachine.gui.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntimeState;
 
-public class CookingHood3 extends GUIforCookingHood {
+public class CookingHood3 {
 
     public static void main(String argv[]) {
-        new CookingHood3();
+        new GUIforCookingHood(new MachineExecutor<GenericRuntimeState>(new CookingHoodMachine().getMetaModel()));
     }
     
-    public CookingHood3() {
-        super(new MachineExecutor<GenericRuntimeState>(new CookingHoodMachine().getMetaModel()));
-    }
-
 }

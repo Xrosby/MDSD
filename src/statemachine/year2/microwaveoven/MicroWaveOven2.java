@@ -33,14 +33,10 @@ import statemachine.gui.GUIforMicrowaveOven;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year2.microwaveoven.MicrowaveMachine.Microwave;
 
-public class MicroWaveOven2 extends GUIforMicrowaveOven {
+public class MicroWaveOven2 {
 
     public static void main(String argv[]) {
-        new MicroWaveOven2();
+        new GUIforMicrowaveOven(new MachineExecutor<Microwave>(new MicrowaveMachine()));
     }
     
-    public MicroWaveOven2() {
-        super(new MachineExecutor<Microwave>(new MicrowaveMachine()));
-    }
-
 }

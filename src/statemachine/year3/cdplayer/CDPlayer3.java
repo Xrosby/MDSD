@@ -33,14 +33,10 @@ import statemachine.gui.GUIforCDPlayer;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntimeState;
 
-public class CDPlayer3 extends GUIforCDPlayer {
+public class CDPlayer3 {
 
     public static void main(String argv[]) {
-        new CDPlayer3();
+        new GUIforCDPlayer(new MachineExecutor<GenericRuntimeState>(new CDPlayerMachine().getMetaModel()));
     }
     
-    public CDPlayer3() {
-        super(new MachineExecutor<GenericRuntimeState>(new CDPlayerMachine().getMetaModel()));
-    }
-
 }

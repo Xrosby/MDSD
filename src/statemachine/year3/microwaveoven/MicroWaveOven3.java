@@ -29,21 +29,14 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year3.microwaveoven;
 
-import javax.swing.JLabel;
-
 import statemachine.gui.GUIforMicrowaveOven;
-import statemachine.gui.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntimeState;
 
-public class MicroWaveOven3 extends GUIforMicrowaveOven {
+public class MicroWaveOven3 {
 
     public static void main(String argv[]) {
-        new MicroWaveOven3();
+        new GUIforMicrowaveOven(new MachineExecutor<GenericRuntimeState>(new MicrowaveMachine().getMetaModel()));
     }
     
-    public MicroWaveOven3() {
-        super(new MachineExecutor<GenericRuntimeState>(new MicrowaveMachine().getMetaModel()));
-    }
-
 }

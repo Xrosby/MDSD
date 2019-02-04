@@ -8,7 +8,7 @@ import statemachine.generic.IMachine;
 /**
  * GUI for CD player test
  */
-public abstract class GUIforCDPlayer extends GraphicalMachine {
+public class GUIforCDPlayer extends GraphicalMachine {
 
 	public GUIforCDPlayer(IMachine machine) {
 		super(new GUI(), machine, POWER_ON_COMMAND);

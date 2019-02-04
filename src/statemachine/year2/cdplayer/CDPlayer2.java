@@ -33,14 +33,10 @@ import statemachine.gui.GUIforCDPlayer;
 import statemachine.year2.cdplayer.CDPlayerMachine.CDPlayer;
 import statemachine.year2.framework.MachineExecutor;
 
-public class CDPlayer2 extends GUIforCDPlayer {
+public class CDPlayer2 {
 
     public static void main(String argv[]) {
-        new CDPlayer2();
-    }
-    
-    public CDPlayer2() {
-        super(new MachineExecutor<CDPlayer>(new CDPlayerMachine()));
+        new GUIforCDPlayer(new MachineExecutor<CDPlayer>(new CDPlayerMachine()));
     }
 
 }

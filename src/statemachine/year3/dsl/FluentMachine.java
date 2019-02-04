@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import statemachine.year2.framework.MachineDescription;
 import statemachine.year2.framework.State;
 import statemachine.year2.framework.Transition;
 

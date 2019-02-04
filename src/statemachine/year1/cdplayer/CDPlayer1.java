@@ -31,14 +31,10 @@ package statemachine.year1.cdplayer;
 
 import statemachine.gui.GUIforCDPlayer;
 
-public class CDPlayer1 extends GUIforCDPlayer {
+public class CDPlayer1 {
 
     public static void main(String argv[]) {
-        new CDPlayer1();
+        new GUIforCDPlayer(new CDPlayerMachine());
     }
     
-    public CDPlayer1() {
-        super(new CDPlayerMachine());
-    }
-
 }

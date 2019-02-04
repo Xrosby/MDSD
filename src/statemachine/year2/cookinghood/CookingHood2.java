@@ -33,14 +33,10 @@ import statemachine.year2.framework.MachineExecutor;
 import statemachine.gui.GUIforCookingHood;
 import statemachine.year2.cookinghood.CookingHoodMachine.CookingHood;
 
-public class CookingHood2 extends GUIforCookingHood {
+public class CookingHood2 {
 
     public static void main(String argv[]) {
-        new CookingHood2();
-    }
-    
-    public CookingHood2() {
-        super(new MachineExecutor<CookingHood>(new CookingHoodMachine()));
+        new GUIforCookingHood(new MachineExecutor<CookingHood>(new CookingHoodMachine()));
     }
 
 }
