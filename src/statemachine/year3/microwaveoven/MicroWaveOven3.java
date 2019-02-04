@@ -46,12 +46,4 @@ public class MicroWaveOven3 extends GUIforMicrowaveOven<GenericRuntimeState> {
         super(new MachineExecutor<GenericRuntimeState>(new MicrowaveMachine().getMetaModel()));
     }
 
-    /**
-     * Handle updates to the state machine, display the current state in the GUI
-     */
-    @Override
-    public void update() {
-        ((JLabel)gui.getComponent("state")).setText(machine.getRuntimeState().getStateName());
-    }
-
 }

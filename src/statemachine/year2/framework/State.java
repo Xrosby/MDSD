@@ -84,12 +84,12 @@ public class State<T extends AbstractRuntimeState<T>> {
      * Process event by testing isApplicable in sequence, and then performing the action which
      * may have an effect and returns the name of a new state, if a transition is to be made.
      */
-    public void processEvent(MachineExecutor<T> machine, Event event) {
+    public void processEvent(MachineExecutor<T> machine, T runtime, Event event) {
         List<Transition<T>> matches = transitions.get(event.code());
         if(matches==null) return;
         for(Transition<T> tran: matches)
-            if(tran.isApplicable(machine.getRuntimeState())) { 
-                String newMaybe = tran.action(machine.getRuntimeState());
+            if(tran.isApplicable(runtime)) { 
+                String newMaybe = tran.action(runtime);
                 if(newMaybe!=null) machine.setState(newMaybe);
                 return;
             }

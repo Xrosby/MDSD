@@ -101,14 +101,11 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
      */
     public void processEvent(Event event) {
         if(runtime.getState()==null) throw new Error("State machine not initialized");
-        runtime.getState().processEvent(this,event);
+        runtime.getState().processEvent(this,runtime,event);
         setChanged();
         notifyObservers();
     }
 
-    @Override public T getRuntimeState() {
-	   return runtime;
-   }
 	@Override
 	public String getRuntimeStateFor(String what) {
 		if(what==null)

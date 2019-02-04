@@ -90,9 +90,6 @@ public abstract class Machine extends Observable implements IMachine<BasicRuntim
 	/**
 	 * Get the current runtime state of the machine
 	 */
-	@Override public BasicRuntimeState getRuntimeState() {
-		return runtime;
-	}
 	@Override public String getRuntimeStateFor(String what) {
     		if(what==null)
     			return runtime.getStateName();
