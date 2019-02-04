@@ -29,32 +29,21 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year4.cdplayer;
 
-import javax.swing.JLabel;
-
-import statemachine.year3.dsl.GenericRuntimeState;
 import statemachine.generated.CDPlayerImpl;
 import statemachine.gui.GUIforCDPlayer;
-import statemachine.gui.GraphicalMachine;
 
 /**
  * Cooking hood example using the code-generation CookingHood4Impl class
  * @author ups
  *
  */
-public class CDPlayer4 extends GUIforCDPlayer {
+public class CDPlayer4 {
 
 	/**
 	 * Run the example
 	 */
     public static void main(String argv[]) {
-        new CDPlayer4();
+        new GUIforCDPlayer(new CDPlayerImpl());
     }
     
-    /**
-     * Create cooking hood example and establish GUI
-     */
-    public CDPlayer4() {
-        super(new CDPlayerImpl());
-    }
-
 }

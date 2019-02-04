@@ -29,31 +29,21 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year4.microwaveoven;
 
-import javax.swing.JLabel;
-
 import statemachine.generated.MicroWaveOvenImpl;
 import statemachine.gui.GUIforMicrowaveOven;
-import statemachine.gui.GraphicalMachine;
 
 /**
  * Cooking hood example using the code-generation CookingHood4Impl class
  * @author ups
  *
  */
-public class MicroWaveOven4 extends GUIforMicrowaveOven {
+public class MicroWaveOven4 {
 
 	/**
 	 * Run the example
 	 */
     public static void main(String argv[]) {
-        new MicroWaveOven4();
-    }
-    
-    /**
-     * Create cooking hood example and establish GUI
-     */
-    public MicroWaveOven4() {
-        super(new MicroWaveOvenImpl());
+        new GUIforMicrowaveOven(new MicroWaveOvenImpl());
     }
 
 }

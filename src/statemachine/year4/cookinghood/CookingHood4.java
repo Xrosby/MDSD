@@ -29,31 +29,21 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year4.cookinghood;
 
-import javax.swing.JLabel;
-
 import statemachine.generated.CookingHoodImpl;
 import statemachine.gui.GUIforCookingHood;
-import statemachine.gui.GraphicalMachine;
 
 /**
  * Cooking hood example using the code-generation CookingHood4Impl class
  * @author ups
  *
  */
-public class CookingHood4 extends GUIforCookingHood {
+public class CookingHood4 {
 
 	/**
 	 * Run the example
 	 */
     public static void main(String argv[]) {
-        new CookingHood4();
+        new GUIforCookingHood(new CookingHoodImpl());
     }
     
-    /**
-     * Create cooking hood example and establish GUI
-     */
-    public CookingHood4() {
-        super(new CookingHoodImpl());
-    }
-
 }
