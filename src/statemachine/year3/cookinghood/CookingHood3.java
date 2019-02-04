@@ -31,10 +31,10 @@ package statemachine.year3.cookinghood;
 
 import javax.swing.JLabel;
 
+import statemachine.gui.GUIforCookingHood;
+import statemachine.gui.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntimeState;
-import statemachine.generic.GUIforCookingHood;
-import statemachine.generic.GraphicalMachine;
 
 public class CookingHood3 extends GUIforCookingHood<GenericRuntimeState> {
 

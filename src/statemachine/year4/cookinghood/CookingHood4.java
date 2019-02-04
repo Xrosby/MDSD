@@ -32,9 +32,9 @@ package statemachine.year4.cookinghood;
 import javax.swing.JLabel;
 
 import statemachine.generated.CookingHoodImpl;
-import statemachine.generic.GUIforCookingHood;
-import statemachine.generic.GraphicalMachine;
 import statemachine.generic.IRuntime;
+import statemachine.gui.GUIforCookingHood;
+import statemachine.gui.GraphicalMachine;
 
 /**
  * Cooking hood example using the code-generation CookingHood4Impl class

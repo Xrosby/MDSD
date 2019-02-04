@@ -27,7 +27,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-package statemachine.generic;
+package statemachine.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +35,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 import quickqui.QuickGUI;
+import statemachine.generic.Event;
+import statemachine.generic.IMachine;
+import statemachine.generic.IRuntime;
 
 /**
  * Generic infrastructure for having a GUI for a state machine

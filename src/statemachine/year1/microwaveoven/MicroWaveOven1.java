@@ -31,8 +31,8 @@ package statemachine.year1.microwaveoven;
 
 import javax.swing.JLabel;
 
-import statemachine.generic.GUIforMicrowaveOven;
-import statemachine.generic.GraphicalMachine;
+import statemachine.gui.GUIforMicrowaveOven;
+import statemachine.gui.GraphicalMachine;
 import statemachine.year1.library.BasicRuntimeState;
 
 public class MicroWaveOven1 extends GUIforMicrowaveOven<BasicRuntimeState> {

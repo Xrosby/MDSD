@@ -2,8 +2,8 @@ package statemachine.year1.cookinghood;
 
 import javax.swing.JLabel;
 
-import statemachine.generic.GUIforCookingHood;
-import statemachine.generic.GraphicalMachine;
+import statemachine.gui.GUIforCookingHood;
+import statemachine.gui.GraphicalMachine;
 import statemachine.year1.library.BasicRuntimeState;
 
 /*

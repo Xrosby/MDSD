@@ -1,10 +1,12 @@
-package statemachine.generic;
+package statemachine.gui;
 
 import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
 import quickqui.QuickGUI.GUIModel;
 import quickqui.QuickGUI.GUIModel.Layout;
+import statemachine.generic.IMachine;
+import statemachine.generic.IRuntime;
 
 /**
  * GUI for CD player test
