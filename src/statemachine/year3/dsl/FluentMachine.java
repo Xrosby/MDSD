@@ -109,10 +109,6 @@ public abstract class FluentMachine {
 	 * then ensure that all transitions associated with the current state have been defined,
 	 * and last add the state as the last in the list of states
 	 */
-	public FluentMachine() {
-		buildMachine();
-	}
-
 	protected void buildMachine() {
 		if(modelIsBuilt) return;
 		build();

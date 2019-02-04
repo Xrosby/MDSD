@@ -46,7 +46,7 @@ public class CookingHoodCompiler {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String argv[]) throws FileNotFoundException {
-    	MachineCompiler.compile("src-dsl/cookinghood.sm0","gen");
+    		MachineCompiler.compile("src-dsl/cookinghood.sm0","gen");
     }
     
    

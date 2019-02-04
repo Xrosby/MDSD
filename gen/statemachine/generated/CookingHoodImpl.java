@@ -59,6 +59,9 @@ public class CookingHoodImpl extends GeneratedMachine {
     * @return value of power
   */
   public int get_power() { return power; }
+  @Override public String getRuntimeStateFor(String what) {
+    return "power".equals(what)?Integer.toString(power):super.getRuntimeStateFor(what);
+  }
   @Override protected void internalInitialize(Map<String, Integer> event_code2int, Map<Integer, String> state_int2code) {
     state_int2code.put(2,"MAX");
     state_int2code.put(0,"OFF");

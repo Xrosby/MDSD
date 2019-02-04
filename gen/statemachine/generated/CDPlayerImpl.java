@@ -88,6 +88,9 @@ public class CDPlayerImpl extends GeneratedMachine {
     * @return value of track
   */
   public int get_track() { return track; }
+  @Override public String getRuntimeStateFor(String what) {
+    return "track".equals(what)?Integer.toString(track):super.getRuntimeStateFor(what);
+  }
   @Override protected void internalInitialize(Map<String, Integer> event_code2int, Map<Integer, String> state_int2code) {
     state_int2code.put(2,"PAUSED");
     state_int2code.put(0,"STOPPED");

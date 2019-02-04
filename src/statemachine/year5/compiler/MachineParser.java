@@ -60,6 +60,7 @@ public class MachineParser extends FluentMachine {
 	 * @param stream the input to parse
 	 */
 	public MachineParser(BufferedReader stream) {
+		if(stream==null) throw new Error("Illegal stream: null");
 		this.stream = stream;
 	}
 	

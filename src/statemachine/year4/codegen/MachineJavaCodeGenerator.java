@@ -246,6 +246,9 @@ public class MachineJavaCodeGenerator {
 			p("    * @return value of "+var);
 			p("  */");
 			p("  public int get_"+var+"() { return "+var+"; }");
+			p("  @Override public String getRuntimeStateFor(String what) {");
+			p("    return \""+var+"\".equals(what)?Integer.toString("+var+"):super.getRuntimeStateFor(what);");
+			p("  }");
 		}
 	}
 
