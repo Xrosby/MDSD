@@ -52,8 +52,8 @@ public interface IMachine {
      */
     public void addObserver(Observer observer);
     /**
-     * Get the runtime state of the currently executing machine
-     * @return the current runtime state
+	 * @param name the name of the extended state variable, null for the active state of the machine
+     * @return string representation of the current runtime state
      */
     public String getRuntimeStateFor(String what);
 }

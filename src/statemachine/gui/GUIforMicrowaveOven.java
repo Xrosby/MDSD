@@ -3,7 +3,6 @@ package statemachine.gui;
 import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
-import quickqui.QuickGUI.GUIModel.Layout;
 import statemachine.generic.IMachine;
 
 /**
@@ -25,9 +24,7 @@ public class GUIforMicrowaveOven extends GraphicalMachine {
 		((JLabel)gui.getComponent("state")).setText(machine.getRuntimeStateFor(null));
 	}
 
-
 	private static class GUI extends QuickGUI.GUIModel {
-
 
 		@Override 
 		public void build() {

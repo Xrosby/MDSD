@@ -97,6 +97,11 @@ public abstract class Machine extends Observable implements IMachine {
     			return this.getVariableValue(what);
     }
 
+	/**
+	 * Get the value of an extended state variable
+	 * @param name the name of the extended state variable, null for the active state of the machine
+	 * @return string representation of the value
+	 */
 	protected String getVariableValue(String name) {
 		throw new Error("Illegal variable name: "+name);
 	}

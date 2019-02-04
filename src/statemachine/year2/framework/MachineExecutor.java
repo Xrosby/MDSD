@@ -106,6 +106,10 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
         notifyObservers();
     }
 
+    /**
+	 * @param name the name of the extended state variable, null for the active state of the machine
+     * @return string representation of the current runtime state
+     */
 	@Override
 	public String getRuntimeStateFor(String what) {
 		if(what==null)

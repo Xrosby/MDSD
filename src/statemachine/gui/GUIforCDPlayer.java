@@ -3,8 +3,6 @@ package statemachine.gui;
 import javax.swing.JLabel;
 
 import quickqui.QuickGUI;
-import quickqui.QuickGUI.GUIModel;
-import quickqui.QuickGUI.GUIModel.Layout;
 import statemachine.generic.IMachine;
 
 /**
@@ -17,7 +15,6 @@ public abstract class GUIforCDPlayer extends GraphicalMachine {
 	}
 
 	private static String POWER_ON_COMMAND = "__ON__";
-
 
 	/**
 	 * Handle updates to the state machine, display the current state in the GUI

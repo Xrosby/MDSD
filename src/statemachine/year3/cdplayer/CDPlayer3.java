@@ -29,10 +29,7 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year3.cdplayer;
 
-import javax.swing.JLabel;
-
 import statemachine.gui.GUIforCDPlayer;
-import statemachine.gui.GraphicalMachine;
 import statemachine.year2.framework.MachineExecutor;
 import statemachine.year3.dsl.GenericRuntimeState;
 
