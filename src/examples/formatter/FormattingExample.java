@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 public class FormattingExample {
 
 	public static void main(String argv[]) {
+		System.out.println("Expected output:\nCourse MDSD had start date: 2/6-2019\nCourse OPN had start date: 1/9-2017\nActual output:");
 		DataFormatter f1 = DataFormatter.build().t("Course ").object(0).
 				t(" had start date: ").day(1).t("/").month(1).t("-").year(1).
 				end();
