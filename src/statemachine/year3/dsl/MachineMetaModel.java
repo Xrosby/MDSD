@@ -30,6 +30,7 @@ either expressed or implied, of the University of Southern Denmark.
 package statemachine.year3.dsl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,6 +43,7 @@ import statemachine.year2.framework.State;
  * @author ups
  */
 public class MachineMetaModel implements MachineDescription<GenericRuntimeState> {
+
 	/**
 	 *  The complete list of all states (first is assumed to be initial)
 	 */
@@ -51,31 +53,31 @@ public class MachineMetaModel implements MachineDescription<GenericRuntimeState>
 	 * Set containing names of all extended state variables
 	 */
 	private Set<String> extendedStateVariables;
-
+	
 	/**
-	 * Initialize and empty metamodel
+	 * Initialize metamodel
 	 */
-	public MachineMetaModel() {
-		this.allStates = new ArrayList<State<GenericRuntimeState>>();
-		this.extendedStateVariables = new HashSet<>();
+	public MachineMetaModel(List<State<GenericRuntimeState>> states, Set<String> variables) {
+		this.allStates = new ArrayList<State<GenericRuntimeState>>(states);
+		this.extendedStateVariables = new HashSet<>(variables);
 	}
 
 	/**
 	 * Get all states in the metamodel
-	 * @return the list of states, modifying this list modifies the metamodel
+	 * @return the list of states, read-only
 	 */
 	public List<State<GenericRuntimeState>> getAllStates() {
-		return allStates;
+		return Collections.unmodifiableList(allStates);
 	}
 
 	/**
 	 * Get the names of all extended state variables in the metamodel
-	 * @return the list of names, modifying this list modifies the metamodel
+	 * @return the list of names, read-only
 	 */
 	public Set<String> getExtendedStateVariables() {
-		return extendedStateVariables;
+		return Collections.unmodifiableSet(extendedStateVariables);
 	}
-
+	
 	/**
 	 * Create a runtime state representation based on this metamodel
 	 * @return a runtime state object representing the current state of the metamodel

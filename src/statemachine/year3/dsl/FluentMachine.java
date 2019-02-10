@@ -29,6 +29,7 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year3.dsl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -49,9 +50,12 @@ public abstract class FluentMachine {
 	// Statemachine metamodel
 	//
 
-	private MachineMetaModel metamodel = new MachineMetaModel();
+	private MachineMetaModel metamodel;
 	
-	public MachineMetaModel getMetaModel() { return metamodel; }
+	public MachineMetaModel getMetaModel() {
+		this.buildMachine();
+		return metamodel; 
+	}
 
 	//
 	// Builder infrastructure
@@ -70,6 +74,14 @@ public abstract class FluentMachine {
 
 	// Accumulating variables for the builder
 
+	/**
+	 * All states that have been defined
+	 */
+	private List<State<GenericRuntimeState>> states = new ArrayList<>();
+	/**
+	 * All extended state variables that have been defined
+	 */
+	private Set<String> variables = new HashSet<>();
 	/**
 	 *  The current state being built
 	 */
@@ -98,10 +110,6 @@ public abstract class FluentMachine {
 	 * A factory object for creating transition instances, overwrite default to control transition creation
 	 */
 	private TransitionFactory factory = new TransitionFactory();
-	/**
-	 * Flag indicating whether the model has been built
-	 */
-	private boolean modelIsBuilt = false;
 
 	/**
 	 * Build a machine using the fluent interface.  First call build (overridden in subclass),
@@ -109,13 +117,13 @@ public abstract class FluentMachine {
 	 * and last add the state as the last in the list of states
 	 */
 	protected void buildMachine() {
-		if(modelIsBuilt) return;
+		if(metamodel!=null) return;
 		build();
 		flushTransition(null,null,0);
 		if(currentState==null) throw new Error("Empty statemachine definition");
-		metamodel.getAllStates().add(currentState);
+		states.add(currentState);
 		checkNameConsistency();
-		modelIsBuilt = true;
+		metamodel = new MachineMetaModel(states,variables);
 	}
 
 	/**
@@ -129,7 +137,7 @@ public abstract class FluentMachine {
 	public FluentMachine state(String name) {
 		if(currentState!=null) {
 			flushTransition(null,null,0);
-			metamodel.getAllStates().add(currentState);
+			states.add(currentState);
 		}
 		currentState = new State<GenericRuntimeState>(name);
 		return this;
@@ -160,7 +168,7 @@ public abstract class FluentMachine {
 	 */
 	public FluentMachine setState(String variableName, int value) {
 		effectMaybe = Effect.SET;
-		if(!this.metamodel.getExtendedStateVariables().contains(variableName)) throw new Error("Undefined variable: "+variableName);
+		if(!variables.contains(variableName)) throw new Error("Undefined variable: "+variableName);
 		effectVariable = variableName;
 		effectArgument = value;
 		return this;
@@ -173,7 +181,7 @@ public abstract class FluentMachine {
 	 */
 	public FluentMachine changeState(String variableName, int value) {
 		effectMaybe = Effect.CHANGE;
-		if(!this.metamodel.getExtendedStateVariables().contains(variableName)) throw new Error("Undefined variable: "+variableName);
+		if(!variables.contains(variableName)) throw new Error("Undefined variable: "+variableName);
 		effectVariable = variableName;
 		effectArgument = value;
 		return this;
@@ -241,7 +249,7 @@ public abstract class FluentMachine {
 	 * @param name the name of the extended state variable
 	 */
 	public void integerState(String name) {
-		this.metamodel.getExtendedStateVariables().add(name);
+		variables.add(name);
 	}
 
 	/**
@@ -274,10 +282,10 @@ public abstract class FluentMachine {
 	 */
 	private void checkNameConsistency() {
 		Set<String> allStateNames = new HashSet<>();
-		for(State<GenericRuntimeState> state: metamodel.getAllStates()) {
+		for(State<GenericRuntimeState> state: states) {
 			allStateNames.add(state.getName());
 		}
-		for(State<GenericRuntimeState> state: metamodel.getAllStates()) {
+		for(State<GenericRuntimeState> state: states) {
 			for(Map.Entry<String,List<Transition<GenericRuntimeState>>> transitionBlob: state.getAllTransitions().entrySet()) {
 				for(Transition<GenericRuntimeState> transition: transitionBlob.getValue()) {
 					String target = transition.getTarget();

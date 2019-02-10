@@ -73,7 +73,7 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
      * Reset the state machine 
      */
     public void initialize() {
-    		runtime.resetExtendedState();
+    	runtime.resetExtendedState();
         setState(initialStateName);
         setChanged();
         notifyObservers();

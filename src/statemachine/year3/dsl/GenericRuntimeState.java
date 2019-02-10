@@ -80,5 +80,17 @@ public class GenericRuntimeState extends AbstractRuntimeState<GenericRuntimeStat
 		for(Map.Entry<String, Integer> vars: values.entrySet())
 			vars.setValue(0);
 	}
+	
+	/**
+	 * Get string presentation of the value of an extended state variable
+	 * @param what the name of the variable
+	 * @return string representation of the state
+	 */
+	@Override public String getExtendedState(String what) {
+		if(what==null)
+			return super.getExtendedState(what);
+		else
+			return this.get(what).toString();
+	}
 
 }
