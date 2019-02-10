@@ -29,6 +29,8 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year5.cdplayer;
 
+import statemachine.generated.CDPlayerImpl;
+import statemachine.gui.GUIforCDPlayer;
 import statemachine.year4.cdplayer.CDPlayer4;
 
 /**
@@ -42,7 +44,7 @@ public class CDPlayer5 extends CDPlayer4 {
 	 * Run the example
 	 */
     public static void main(String argv[]) {
-        new CDPlayer5();
+    	new GUIforCDPlayer(new CDPlayerImpl());
     }
 
 }

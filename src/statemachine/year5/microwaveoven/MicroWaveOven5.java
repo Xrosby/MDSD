@@ -29,6 +29,8 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year5.microwaveoven;
 
+import statemachine.generated.MicroWaveOvenImpl;
+import statemachine.gui.GUIforMicrowaveOven;
 import statemachine.year4.microwaveoven.MicroWaveOven4;
 
 /**
@@ -42,7 +44,7 @@ public class MicroWaveOven5 extends MicroWaveOven4 {
 	 * Run the example
 	 */
     public static void main(String argv[]) {
-        new MicroWaveOven5();
+    	new GUIforMicrowaveOven(new MicroWaveOvenImpl());
     }
 
 }

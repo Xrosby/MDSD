@@ -29,6 +29,8 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year5.cookinghood;
 
+import statemachine.generated.CookingHoodImpl;
+import statemachine.gui.GUIforCookingHood;
 import statemachine.year4.cookinghood.CookingHood4;
 
 /**
@@ -42,7 +44,7 @@ public class CookingHood5 extends CookingHood4 {
 	 * Run the example
 	 */
     public static void main(String argv[]) {
-        new CookingHood5();
+    	new GUIforCookingHood(new CookingHoodImpl());
     }
 
 }
