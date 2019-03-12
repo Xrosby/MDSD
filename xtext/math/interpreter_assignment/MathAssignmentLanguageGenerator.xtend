@@ -27,6 +27,7 @@ class MathAssignmentLanguageGenerator extends AbstractGenerator {
 		val math = resource.allContents.filter(MathExp).next
 		val result = math.compute
 		System.out.println("Math expression = "+math.display)
+		// For +1 score, replace with hovering, see Bettini Chapter 8
 		JOptionPane.showMessageDialog(null, "result = "+result,"Math Language", JOptionPane.INFORMATION_MESSAGE)
 	}
 	
@@ -42,10 +43,10 @@ class MathAssignmentLanguageGenerator extends AbstractGenerator {
 	def int computeExp(Exp exp) {
 		val left = exp.left.computePrim
 		switch exp.operator {
-			case Plus: left+exp.right.computeExp
-			case Minus: left-exp.right.computeExp
-			case Mult: left*exp.right.computeExp
-			case Div: left/exp.right.computeExp
+			Plus: left+exp.right.computeExp
+			Minus: left-exp.right.computeExp
+			Mult: left*exp.right.computeExp
+			Div: left/exp.right.computeExp
 			default: left
 		}
 	}
