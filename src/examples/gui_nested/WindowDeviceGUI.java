@@ -36,6 +36,7 @@ import java.io.IOException;
 import javax.swing.JLabel;
 
 import examples.communication.WindowControllerDevice;
+import qui_generic_model.QPanel.Layout;
 
 /**
  * Extension of the window controller device server to display information in GUI and make

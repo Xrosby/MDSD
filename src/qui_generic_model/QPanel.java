@@ -18,12 +18,13 @@ public class QPanel extends QComponent {
     /**
      * The layout of the panel
      */
-    private GUIModel.Layout layout;
+    public static enum Layout { FLOW, VERTICAL, HORIZONTAL; }
+    private Layout layout;
     /**
      * Create a panel model with the given layout
      * @param layout the layout of the panel
      */
-    public QPanel(GUIModel.Layout layout) { this.layout = layout; }
+    public QPanel(Layout layout) { this.layout = layout; }
     /**
      * Create JPanel containing the nested components
      */
@@ -39,11 +40,11 @@ public class QPanel extends QComponent {
      * @return the new layout manager
      */
     private LayoutManager getLayout(JPanel panel) {
-        if(layout==GUIModel.Layout.FLOW)
+        if(layout==Layout.FLOW)
             return new FlowLayout();
-        else if(layout==GUIModel.Layout.HORIZONTAL)
+        else if(layout==Layout.HORIZONTAL)
             return new BoxLayout(panel,BoxLayout.X_AXIS);
-        else if(layout==GUIModel.Layout.VERTICAL)
+        else if(layout==Layout.VERTICAL)
             return new BoxLayout(panel,BoxLayout.Y_AXIS);
         else
             throw new Error("Unknown layout: "+layout);

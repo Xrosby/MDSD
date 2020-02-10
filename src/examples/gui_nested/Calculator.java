@@ -36,6 +36,8 @@ import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
 
+import qui_generic_model.QPanel.Layout;
+
 /**
  * Small, canonical GUI example: the calculator
  * @author ups

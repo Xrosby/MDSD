@@ -42,6 +42,7 @@ import qui_generic_model.QComponent;
 import qui_generic_model.QFrame;
 import qui_generic_model.QLabel;
 import qui_generic_model.QPanel;
+import qui_generic_model.QPanel.Layout;
 
 /**
  * QuickGUI allows concise description of a simple GUI (one frame, buttons, labels, organized into panels)
@@ -55,10 +56,6 @@ public class QuickGUI {
      * @author ups
      */
     public static abstract class GUIModel {
-        /**
-         * The kinds of layout supported by the builder
-         */
-        public enum Layout { FLOW, VERTICAL, HORIZONTAL; }
         /**
          * The top-level frame
          */

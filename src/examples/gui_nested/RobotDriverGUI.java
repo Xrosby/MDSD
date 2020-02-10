@@ -35,6 +35,7 @@ import java.io.IOException;
 import javax.swing.JLabel;
 
 import examples.communication.RobotDriver;
+import qui_generic_model.QPanel.Layout;
 
 /**
  * Extension of the robot driver server to display information in GUI and make

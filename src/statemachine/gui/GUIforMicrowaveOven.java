@@ -3,6 +3,7 @@ package statemachine.gui;
 import javax.swing.JLabel;
 
 import examples.gui_nested.QuickGUI;
+import qui_generic_model.QPanel.Layout;
 import statemachine.generic.IMachine;
 
 /**
