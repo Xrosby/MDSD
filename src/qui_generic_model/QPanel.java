@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import examples.gui_nested.QuickGUI.GUIModel;
+import examples.gui_nested.QuickNestedGUI.GUIBuilder;
 
 /**
  * GUI metamodel: a nested panel organizing a number of nested components

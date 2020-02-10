@@ -49,13 +49,13 @@ import qui_generic_model.QPanel.Layout;
  * to be instantiated as a GUI that can be used from the application.
  * @author ups
  */
-public class QuickGUI {
+public class QuickNestedGUI {
 
     /**
      * Builder class: provides convenience methods for constructing a GUI metamodel
      * @author ups
      */
-    public static abstract class GUIModel {
+    public static abstract class GUIBuilder {
         /**
          * The top-level frame
          */
@@ -135,7 +135,7 @@ public class QuickGUI {
      * @param model the model to instantiate from
      * @param handler the handler to use when handling GUI events
      */
-    public QuickGUI(final GUIModel model, final ActionListener handler) {
+    public QuickNestedGUI(final GUIBuilder model, final ActionListener handler) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 buildGUI(model.getTop(),handler);

@@ -48,7 +48,7 @@ public class RobotDriverGUI extends RobotDriver implements ActionListener {
      * The specific GUI to use for this application
      * @author ups
      */
-    public static class ControlGUI extends QuickGUI.GUIModel {
+    public static class ControlGUI extends QuickNestedGUI.GUIBuilder {
         
         @Override 
         public void build() {
@@ -72,7 +72,7 @@ public class RobotDriverGUI extends RobotDriver implements ActionListener {
      */
     public static void main(String argv[]) throws IOException {
         RobotDriverGUI driver = new RobotDriverGUI();
-        driver.gui = new QuickGUI(new ControlGUI(),driver);
+        driver.gui = new QuickNestedGUI(new ControlGUI(),driver);
         driver.main();
     }
 
@@ -84,7 +84,7 @@ public class RobotDriverGUI extends RobotDriver implements ActionListener {
     /**
      * The GUI 
      */
-    private QuickGUI gui;
+    private QuickNestedGUI gui;
     
     /**
      * Respond to GUI events

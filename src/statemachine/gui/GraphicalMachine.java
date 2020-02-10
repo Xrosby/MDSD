@@ -34,7 +34,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import examples.gui_nested.QuickGUI;
+import examples.gui_nested.QuickNestedGUI;
 import statemachine.generic.Event;
 import statemachine.generic.IMachine;
 
@@ -46,7 +46,7 @@ public abstract class GraphicalMachine implements ActionListener, Observer {
 	/**
 	 * The GUI of the machine
 	 */
-    protected QuickGUI gui;
+    protected QuickNestedGUI gui;
     /**
      * The state machine being driven by the GUI
      */
@@ -62,8 +62,8 @@ public abstract class GraphicalMachine implements ActionListener, Observer {
      * @param machine the statemachine
      * @param powerOnCommand the command tha triggers state machine initialization
      */
-    public GraphicalMachine(QuickGUI.GUIModel model, IMachine machine, String powerOnCommand) {
-        this.gui = new QuickGUI(model,this);
+    public GraphicalMachine(QuickNestedGUI.GUIBuilder model, IMachine machine, String powerOnCommand) {
+        this.gui = new QuickNestedGUI(model,this);
         this.machine = machine;
         this.powerOnCommand = powerOnCommand;
         this.machine.addObserver(this);

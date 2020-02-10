@@ -48,7 +48,7 @@ public class Calculator implements ActionListener {
      * The specific GUI to use for this application
      * @author ups
      */
-    public static class CalculatorGUI extends QuickGUI.GUIModel {
+    public static class CalculatorGUI extends QuickNestedGUI.GUIBuilder {
         
         @Override 
         public void build() {
@@ -80,13 +80,13 @@ public class Calculator implements ActionListener {
      */
     public static void main(String argv[]) throws IOException {
         Calculator calc = new Calculator();
-        calc.gui = new QuickGUI(new CalculatorGUI(),calc);
+        calc.gui = new QuickNestedGUI(new CalculatorGUI(),calc);
     }
 
     /**
      * The GUI 
      */
-    private QuickGUI gui;
+    private QuickNestedGUI gui;
 
     /**
      * Regexp pattern matcher for detecting number button events

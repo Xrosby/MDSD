@@ -49,7 +49,7 @@ public class WindowDeviceGUI extends WindowControllerDevice implements ActionLis
      * The specific GUI to use for this application
      * @author ups
      */
-    public static class ControlGUI extends QuickGUI.GUIModel {
+    public static class ControlGUI extends QuickNestedGUI.GUIBuilder {
         
         @Override 
         public void build() {
@@ -73,7 +73,7 @@ public class WindowDeviceGUI extends WindowControllerDevice implements ActionLis
      */
     public static void main(String argv[]) throws IOException {
         WindowDeviceGUI device = new WindowDeviceGUI();
-        device.gui = new QuickGUI(new ControlGUI(),device);
+        device.gui = new QuickNestedGUI(new ControlGUI(),device);
         device.main();
     }
 
@@ -85,7 +85,7 @@ public class WindowDeviceGUI extends WindowControllerDevice implements ActionLis
     /**
      * The GUI 
      */
-    private QuickGUI gui;
+    private QuickNestedGUI gui;
     
     /**
      * Respond to GUI events
