@@ -9,16 +9,17 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import examples.gui_nested.QuickNestedGUI.GUIBuilder;
-
 /**
  * GUI metamodel: a nested panel organizing a number of nested components
  */
 public class QPanel extends QComponent {
+	/**
+	 * Supported layouts
+	 */
+    public static enum Layout { FLOW, VERTICAL, HORIZONTAL; }
     /**
      * The layout of the panel
      */
-    public static enum Layout { FLOW, VERTICAL, HORIZONTAL; }
     private Layout layout;
     /**
      * Create a panel model with the given layout

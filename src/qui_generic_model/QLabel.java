@@ -18,7 +18,7 @@ public class QLabel extends QComponent {
      */
     private List<Parameter> properties = new ArrayList<Parameter>();
     /**
-     * Create a new element of the given kind with the given properties
+     * Create a new Label element with the given properties
      * @param kind the element kind
      * @param properties the element properties
      */
