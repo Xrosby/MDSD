@@ -45,8 +45,8 @@ public class EntitiesNested {
 	
 	private interface Entity { }
 	private interface Field { }
-	static void system(Entity...entities) { ; }
-	static Entity entity(String name, Field...fields) { return null; }
-	static Entity entity(String name, String base, Field...fields) { return null; }
-	static Field field(Class<? extends Object> type, String name) { return null; }	
+	static void system(Entity...entities) { throw new Error("Not implemented"); }
+	static Entity entity(String name, Field...fields) { throw new Error("Not implemented"); }
+	static Entity entity(String name, String base, Field...fields) { throw new Error("Not implemented"); }
+	static Field field(Class<? extends Object> type, String name) { throw new Error("Not implemented"); }	
 }

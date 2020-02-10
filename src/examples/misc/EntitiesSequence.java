@@ -42,7 +42,7 @@ public class EntitiesSequence {
 	
 	// Builder definitions, placed in this class to show declarations, place elsewhere in real system
 	
-	static void entity(String name) { ; }
-	static void entity(String name, String base) { ; }
-	static void field(Class<? extends Object> type, String name) { ; }	
+	static void entity(String name) { throw new Error("Not implemented"); }
+	static void entity(String name, String base) { throw new Error("Not implemented"); }
+	static void field(Class<? extends Object> type, String name) { throw new Error("Not implemented"); }	
 }
