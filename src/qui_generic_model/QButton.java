@@ -1,9 +1,6 @@
 package qui_generic_model;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -16,21 +13,20 @@ public class QButton extends QComponent {
     /**
      * The properties of this element
      */
-    private List<Parameter> properties = new ArrayList<Parameter>();
+    private String name, text;
     /**
      * Create a new Button element with the given properties
-     * @param kind the element kind
-     * @param properties the element properties
+     * @param name the name of the button
+     * @param text the text of the button
      */
-    public QButton(Parameter[] properties) {
-        this.properties.addAll(Arrays.asList(properties));
+    public QButton(String name, String text) {
+        this.name = name; this.text = text;
     }
     /**
      * Create the corresponding Swing element, depending on the kind, store in map etc
      */
     @Override protected JComponent create(ActionListener handler, Map<String,JComponent> componentMap) {
-    	String name = Parameter.get(properties,Parameter.Kind.NAME);
-        JButton button = new JButton(Parameter.get(properties,Parameter.Kind.TEXT));
+        JButton button = new JButton(text);
         button.setActionCommand(name);
         button.addActionListener(handler);
         if(name!=null) componentMap.put(name, button);

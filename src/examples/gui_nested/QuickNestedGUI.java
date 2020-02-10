@@ -36,7 +36,6 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import qui_generic_model.Parameter;
 import qui_generic_model.QButton;
 import qui_generic_model.QComponent;
 import qui_generic_model.QFrame;
@@ -92,7 +91,12 @@ public class QuickNestedGUI {
          * @return the button model
          */
         public QButton button(Parameter ... spec) { 
-            return new QButton(spec);
+        	String name = null, text = null;
+        	for(Parameter p: spec) {
+        		if(p.getName()!=null) name = p.getName();
+        		if(p.getText()!=null) text = p.getText();
+        	}
+            return new QButton(name,text);
         }
         /**
          * Create a label with the given properties
@@ -100,7 +104,12 @@ public class QuickNestedGUI {
          * @return the label model
          */
         public QLabel label(Parameter ... spec) { 
-            return new QLabel(spec);
+        	String name = null, text = null;
+        	for(Parameter p: spec) {
+        		if(p.getName()!=null) name = p.getName();
+        		if(p.getText()!=null) text = p.getText();
+        	}
+            return new QLabel(name,text);
         }
         /**
          * Create a text property, typically visible in the GUI

@@ -1,9 +1,6 @@
 package qui_generic_model;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -16,21 +13,20 @@ public class QLabel extends QComponent {
     /**
      * The properties of this element
      */
-    private List<Parameter> properties = new ArrayList<Parameter>();
+    private String name, text;
     /**
      * Create a new Label element with the given properties
-     * @param kind the element kind
-     * @param properties the element properties
+     * @param name the name of the button
+     * @param label the label of the button
      */
-    public QLabel(Parameter[] properties) {
-        this.properties.addAll(Arrays.asList(properties));
+    public QLabel(String name, String text) {
+        this.name = name; this.text = text;
     }
     /**
      * Create the corresponding Swing element, depending on the kind, store in map etc
      */
     @Override protected JComponent create(ActionListener handler, Map<String,JComponent> componentMap) {
-    	 String name = Parameter.get(properties,Parameter.Kind.NAME);
-         JLabel label = new JLabel(Parameter.get(properties,Parameter.Kind.TEXT));
+         JLabel label = new JLabel(text);
          if(name!=null) componentMap.put(name,label);
          return label;
     }

@@ -1,6 +1,4 @@
-package qui_generic_model;
-
-import java.util.List;
+package examples.gui_nested;
 
 /**
  * A parameter provided to describe a GUI element
@@ -33,18 +31,13 @@ public class Parameter {
      */
     public Parameter.Kind getKind() { return kind; }
     /**
-     * Get the value of the parameter
+     * Get the value of the parameter if it is text, otherwise null
      * @return the parameter value
      */
-    public String getValue() { return value; }
+    public String getText() { return kind==Kind.TEXT?value:null; }
     /**
-     * From a list of parameters, get the value of the first parameter of the given kind, null otherwise
-     * @param ps the list of parameters to search
-     * @param k the kind of parameter wanted
-     * @return the value of the parameter matching the given kind, null otherwise
+     * Get the value of the parameter if it is name, otherwise null
+     * @return the parameter value
      */
-    public static String get(List<Parameter> ps, Parameter.Kind k) {
-        for(Parameter p: ps) if(p.getKind()==k) return p.getValue();
-        return null;
-    }
+    public String getName() { return kind==Kind.NAME?value:null; }
 }
