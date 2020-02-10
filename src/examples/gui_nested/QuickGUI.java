@@ -27,7 +27,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-package quickqui;
+package examples.gui_nested;
 
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -36,11 +36,12 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import quickqui.model.Parameter;
-import quickqui.model.QComponent;
-import quickqui.model.QElement;
-import quickqui.model.QFrame;
-import quickqui.model.QPanel;
+import qui_generic_model.Parameter;
+import qui_generic_model.QButton;
+import qui_generic_model.QComponent;
+import qui_generic_model.QFrame;
+import qui_generic_model.QLabel;
+import qui_generic_model.QPanel;
 
 /**
  * QuickGUI allows concise description of a simple GUI (one frame, buttons, labels, organized into panels)
@@ -93,16 +94,16 @@ public class QuickGUI {
          * @param spec the properties specifying the button
          * @return the button model
          */
-        public QElement button(Parameter ... spec) { 
-            return new QElement(QElement.Kind.BUTTON,spec);
+        public QButton button(Parameter ... spec) { 
+            return new QButton(spec);
         }
         /**
          * Create a label with the given properties
          * @param spec the properties specifying the label
          * @return the label model
          */
-        public QElement label(Parameter ... spec) { 
-            return new QElement(QElement.Kind.LABEL,spec);
+        public QLabel label(Parameter ... spec) { 
+            return new QLabel(spec);
         }
         /**
          * Create a text property, typically visible in the GUI

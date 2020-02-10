@@ -34,7 +34,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import quickqui.QuickGUI;
+import examples.gui_nested.QuickGUI;
 import statemachine.generic.Event;
 import statemachine.generic.IMachine;
 

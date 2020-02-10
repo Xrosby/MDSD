@@ -27,7 +27,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-package examples.gui;
+package examples.gui_nested;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,8 +35,6 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 import javax.swing.JLabel;
-
-import quickqui.QuickGUI;
 
 /**
  * Small, canonical GUI example: the calculator

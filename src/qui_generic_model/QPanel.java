@@ -1,4 +1,4 @@
-package quickqui.model;
+package qui_generic_model;
 
 import java.awt.FlowLayout;
 import java.awt.LayoutManager;
@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import quickqui.QuickGUI.GUIModel;
+import examples.gui_nested.QuickGUI.GUIModel;
 
 /**
  * GUI metamodel: a nested panel organizing a number of nested components

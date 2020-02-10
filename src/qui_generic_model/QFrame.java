@@ -1,4 +1,4 @@
-package quickqui.model;
+package qui_generic_model;
 
 import java.awt.event.ActionListener;
 import java.util.Map;

@@ -2,7 +2,7 @@ package statemachine.gui;
 
 import javax.swing.JLabel;
 
-import quickqui.QuickGUI;
+import examples.gui_nested.QuickGUI;
 import statemachine.generic.IMachine;
 
 /**

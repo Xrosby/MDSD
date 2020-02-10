@@ -27,7 +27,7 @@ of the authors and should not be interpreted as representing official policies,
 either expressed or implied, of the University of Southern Denmark.
 */
 
-package examples.gui;
+package examples.gui_nested;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +35,6 @@ import java.io.IOException;
 import javax.swing.JLabel;
 
 import examples.communication.RobotDriver;
-import quickqui.QuickGUI;
 
 /**
  * Extension of the robot driver server to display information in GUI and make
