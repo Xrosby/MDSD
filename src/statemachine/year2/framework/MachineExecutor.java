@@ -32,10 +32,10 @@ package statemachine.year2.framework;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 
 import statemachine.generic.Event;
 import statemachine.generic.IMachine;
+import statemachine.gui.GraphicalMachine;
 
 /**
  * State machine executor: executes a state machine description,
@@ -43,7 +43,7 @@ import statemachine.generic.IMachine;
  * to state object (used to perform state transitions).
  * @author ups
  */
-public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observable implements IMachine {
+public class MachineExecutor<T extends AbstractRuntimeState<T>> implements IMachine {
 
     /**
      * Initial state
@@ -57,7 +57,11 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
      * Runtime state, including extended state
      */
     private T runtime;
-    
+    /**
+     * The GUI attached to this statemachine
+     */
+    private GraphicalMachine gui;
+        
     /**
      * Initialize the state machine based on the machine description
      */
@@ -75,11 +79,25 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
     public void initialize() {
     	runtime.resetExtendedState();
         setState(initialStateName);
-        setChanged();
-        notifyObservers();
+        notifyGUI();
     }
     
     /**
+     * Notify the GUI that the state changed
+     */
+	private void notifyGUI() {
+		gui.updateGUI();		
+	}
+
+	/**
+     * Add an observer to the state machine, notified whenever the state changes
+     * @param observer the statemachine observer
+     */
+	public void addGUI(GraphicalMachine graphicalMachine) {
+		gui = graphicalMachine;
+	}
+
+	/**
      * Set the current active state
      * @param stateid the ID of the active state
      */
@@ -102,8 +120,7 @@ public class MachineExecutor<T extends AbstractRuntimeState<T>> extends Observab
     public void processEvent(Event event) {
         if(runtime.getState()==null) throw new Error("State machine not initialized");
         runtime.getState().processEvent(this,runtime,event);
-        setChanged();
-        notifyObservers();
+        notifyGUI();
     }
 
     /**

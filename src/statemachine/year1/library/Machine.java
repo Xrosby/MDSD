@@ -29,17 +29,16 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.year1.library;
 
-import java.util.Observable;
-
 import statemachine.generic.Event;
 import statemachine.generic.IMachine;
+import statemachine.gui.GraphicalMachine;
 
 /**
  * Abstract state machine class: has a current state, starts in initial state,
  * and can process events by sending them to the current state
  * @author ups
  */
-public abstract class Machine extends Observable implements IMachine {
+public abstract class Machine implements IMachine {
     
 	/**
 	 * The currently active state
@@ -47,16 +46,35 @@ public abstract class Machine extends Observable implements IMachine {
     private BasicRuntimeState runtime;
     
     /**
+     * The GUI attached to this statemachine
+     */
+    private GraphicalMachine gui;
+    
+    /**
      * Initialize the state machine
      */
     public void initialize() {
-    		runtime = new BasicRuntimeState(this);
+    	runtime = new BasicRuntimeState(this);
         setState(getInitialState());
         this.resetExtendedState();
-        setChanged();
-        notifyObservers();
+        notifyGUI();
     }
     
+    /**
+     * Notify the GUI that the state changed
+     */
+	private void notifyGUI() {
+		gui.updateGUI();		
+	}
+
+	/**
+     * Add an observer to the state machine, notified whenever the state changes
+     * @param observer the statemachine observer
+     */
+	public void addGUI(GraphicalMachine graphicalMachine) {
+		gui = graphicalMachine;
+	}
+	
 	/**
      * Directly set the current state of the state machine
      * @param state the future current state
@@ -71,8 +89,7 @@ public abstract class Machine extends Observable implements IMachine {
     public void processEvent(Event event) {
         if(runtime==null) throw new Error("State machine not initialized");
         runtime.getState().processEvent(event);
-        setChanged();
-        notifyObservers();
+        notifyGUI();
     }
     
     /**

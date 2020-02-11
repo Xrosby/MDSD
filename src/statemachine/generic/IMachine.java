@@ -29,7 +29,7 @@ either expressed or implied, of the University of Southern Denmark.
 
 package statemachine.generic;
 
-import java.util.Observer;
+import statemachine.gui.GraphicalMachine;
 
 /**
  * Generic interface for state machine implementations, allowing them to be reused between iterations
@@ -50,7 +50,7 @@ public interface IMachine {
      * Add an observer to the state machine, notified whenever the state changes
      * @param observer the statemachine observer
      */
-    public void addObserver(Observer observer);
+	public void addGUI(GraphicalMachine graphicalMachine);
     /**
 	 * @param name the name of the extended state variable, null for the active state of the machine
      * @return string representation of the current runtime state

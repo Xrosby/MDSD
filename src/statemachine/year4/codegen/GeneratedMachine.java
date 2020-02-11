@@ -34,6 +34,7 @@ import java.util.Observable;
 
 import statemachine.generic.Event;
 import statemachine.generic.IMachine;
+import statemachine.gui.GraphicalMachine;
 
 /**
  * Abstract class that serves as the basis for code generated for statemachines.
@@ -41,7 +42,7 @@ import statemachine.generic.IMachine;
  * @author ups
  *
  */
-public abstract class GeneratedMachine extends Observable implements IMachine {
+public abstract class GeneratedMachine implements IMachine {
 
 	/**
 	 * The current state of the state machine, represented as an integer
@@ -55,15 +56,18 @@ public abstract class GeneratedMachine extends Observable implements IMachine {
 	 * Map from state IDs to state names
 	 */
 	private Map<Integer,String> state_int2code = new HashMap<Integer,String>();
-	
+	/**
+     * The GUI attached to this statemachine
+     */
+    private GraphicalMachine gui;
+    
 	/**
 	 * Initialize the state machine, including the event and state maps
 	 */
 	@Override
 	public void initialize() {
 		internalInitialize(event_code2int, state_int2code);
-		this.setChanged();
-		this.notifyObservers();
+		this.notifyGUI();
 	}
 
 	/**
@@ -73,8 +77,7 @@ public abstract class GeneratedMachine extends Observable implements IMachine {
 	@Override
 	public void processEvent(Event event) {
 		internalProcessEvent(event_code2int.get(event.code()));
-		this.setChanged();
-		this.notifyObservers();
+		this.notifyGUI();
 	}
 
 	/**
@@ -88,6 +91,22 @@ public abstract class GeneratedMachine extends Observable implements IMachine {
 			throw new Error("Illegal extended state name: "+what);
 	}
 	
+    
+    /**
+     * Notify the GUI that the state changed
+     */
+	private void notifyGUI() {
+		gui.updateGUI();		
+	}
+
+	/**
+     * Add an observer to the state machine, notified whenever the state changes
+     * @param observer the statemachine observer
+     */
+	public void addGUI(GraphicalMachine graphicalMachine) {
+		gui = graphicalMachine;
+	}
+
 	/**
 	 * Template method for the compiled event processed based on integer state IDs
 	 * @param code
