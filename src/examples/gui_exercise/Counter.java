@@ -58,26 +58,14 @@ public class Counter implements ActionListener {
         @Override 
         public void build() {
             frame("Counter");
-//            		  label("display","0").
-//					newline().
-            List<QComponent> currentRow = new ArrayList<>();
-            currentRow.add(new QLabel("display","0"));
-            QPanel p0 = new QPanel(Layout.HORIZONTAL);
-            for(QComponent c: currentRow) p0.add(c);
-            getTopPanel().add(p0);
-            currentRow.clear();
-//            		  button("Less").button("More").
-//					newline().
-            currentRow.add(new QButton("Less","Less"));
-            currentRow.add(new QButton("More","More"));
-            QPanel p1 = new QPanel(Layout.HORIZONTAL);
-            for(QComponent c: currentRow) p1.add(c);            
-            getTopPanel().add(p1);
-            currentRow.clear();
-//                	  button("Reset").button("Quit").
-//            		newline();
-        	
+            		label("display","0").
+                    newline().
+                    button("Less").button("More").
+                    newline().
+                    button("Reset").button("Quit").
+                    newline();
         }
+        
     }
 
     /**

@@ -101,7 +101,12 @@ public class QuickGUI {
          * TODO: implement this method
          */
         public GUIBuilder newline() {
-        	// ...
+            QPanel panel = new QPanel(Layout.HORIZONTAL);
+        	for(QComponent c: currentRow) {
+                panel.add(c);
+            }
+            getTopPanel().add(panel);
+            currentRow.clear();
         	return this;
         }
 		/**
@@ -112,7 +117,8 @@ public class QuickGUI {
          * TODO: implement this method
          */
         public GUIBuilder label(String name, String text) { 
-            // ...
+            currentRow.add(new QLabel(name,text));
+    
             return this;
         }
 		/**
@@ -131,7 +137,7 @@ public class QuickGUI {
          * TODO: implement this method
          */
         public GUIBuilder button(String name, String text) { 
-            // ...
+            currentRow.add(new QButton(name, text));
             return this;
         }
 		/**
